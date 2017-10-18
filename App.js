@@ -24,12 +24,10 @@ export default class Application extends React.Component {
 
     render() {
         return (
-            <Provider {...stores}>
-                <View style={{ flex: 1 }}>
-                    <StatusBar {...AppConfig.expo.androidStatusBar} />
-                    <Router />
-                </View>
-            </Provider>
+            <View style={{ flex: 1 }}>
+                <StatusBar {...AppConfig.expo.androidStatusBar} />
+                <Router />
+            </View>
         );
     }
 }
