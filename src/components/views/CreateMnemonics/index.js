@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Utils from '../../../common/utils';
 import ButtonProceed from './ButtonProceed';
 import ButtonReveal from './ButtonReveal';
+import Mnemonic from './Mnemonic';
 
 export class CreateMnemonics extends React.Component {
     
@@ -10,22 +11,25 @@ export class CreateMnemonics extends React.Component {
 
     state = { mnemonics: null }
 
-    get revealButton() {
-        return <ButtonReveal onPress={this.onPressReveal} />;
-    }
-
     onPressReveal = () => {
         const mnemonics = Utils.generateMnemonic();
         this.setState({ mnemonics });
     }
 
     renderMnemonic = (mnemonic, index) => (
-        <Text key={index}>{mnemonic}</Text>
+        <View style={styles.mnemonic} key={index}>
+            <Mnemonic label={mnemonic} />
+        </View>
     );
 
     renderBody() {
         const { mnemonics } = this.state;
-        return (mnemonics) ? mnemonics.map(this.renderMnemonic) : this.revealButton;
+        if (!mnemonics) return <ButtonReveal onPress={this.onPressReveal} />;
+        return (
+            <View style={styles.mnemonicsContainer}>
+                {mnemonics.map(this.renderMnemonic)}
+            </View>
+        );
     }
 
     render() {
@@ -63,6 +67,15 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 8,
         marginHorizontal: 32
+    },
+    mnemonicsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        maxWidth: '80%'
+    },
+    mnemonic: {
+        margin: 4
     },
     buttonsContainer: {
         width: '100%',
