@@ -8,7 +8,8 @@ export const INITIAL_ROUTE = 'NoWallet';
 export default StackNavigator({
     NoWallet: { screen: Views.NoWallet },
     NewWallet: { screen: Views.NewWallet },
-    CreateMnemonics: { screen: Views.CreateMnemonics }
+    CreateMnemonics: { screen: Views.CreateMnemonics },
+    ConfirmMnemonics: { screen: Views.ConfirmMnemonics }
 }, {
     initialRouteName: INITIAL_ROUTE
 });

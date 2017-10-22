@@ -1,40 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Utils from '../../../common/utils';
-import ButtonProceed from './ButtonProceed';
-import ButtonReveal from './ButtonReveal';
-import Mnemonic from './Mnemonic';
+import ButtonConfirm from './ButtonConfirm';
+import ConfirmBox from './ConfirmBox';
 
-export class CreateMnemonics extends React.Component {
+export class ConfirmMnemonics extends React.Component {
     
     static navigationOptions = { header: null }
 
-    state = { mnemonics: null }
+    state = { mnemonics: null };
 
-    onPressProceed = () => {
-        const { mnemonics } = this.state;
-        this.props.navigation.navigate('ConfirmMnemonics', { mnemonics });
-    }
-
-    onPressReveal = () => {
-        const mnemonics = Utils.generateMnemonic();
+    componentWillMount() {
+        const { mnemonics } = this.props.navigation.state.params;
         this.setState({ mnemonics });
     }
 
-    renderMnemonic = (mnemonic, index) => (
-        <View style={styles.mnemonic} key={index}>
-            <Mnemonic label={mnemonic} />
-        </View>
-    );
-
-    renderBody() {
-        const { mnemonics } = this.state;
-        if (!mnemonics) return <ButtonReveal onPress={this.onPressReveal} />;
-        return (
-            <View style={styles.mnemonicsContainer}>
-                {mnemonics.map(this.renderMnemonic)}
-            </View>
-        );
+    onPressConfirm = () => {
+        console.log(this.refs.confirm.isValidSequence());
+        if (this.refs.confirm.isValidSequence()) {
+            this.props.navigation.navigate('NoWallet');
+        }
     }
 
     render() {
@@ -42,10 +27,9 @@ export class CreateMnemonics extends React.Component {
             <View style={styles.background}>
                 <View style={styles.container}>
                     <View />
-                    <Text style={styles.message}>Save carefully your sequence of mnemonics:</Text>
-                    {this.renderBody()}
+                    <ConfirmBox ref="confirm" mnemonics={this.state.mnemonics} />
                     <View style={styles.buttonsContainer}>
-                        <ButtonProceed onPress={this.onPressProceed} />
+                        <ButtonConfirm onPress={this.onPressConfirm} />
                     </View>
                 </View>
             </View>
