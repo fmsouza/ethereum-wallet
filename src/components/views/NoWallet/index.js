@@ -17,6 +17,7 @@ export class NoWallet extends React.Component {
         return (
             <View style={styles.background}>
                 <View style={styles.container}>
+                    <View />
                     <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                     <View style={styles.buttonsContainer}>
                         <ButtonNewWallet onPress={this.onPressNewWallet} />
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: '70%'
+        flex: 1,
     },
     logo: {
         width: 128,

@@ -1,13 +1,31 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import * as Utils from '../../../common/utils';
 import ButtonProceed from './ButtonProceed';
+import ButtonReveal from './ButtonReveal';
 
-export class NewWallet extends React.Component {
-
-    static navigationOptions = { header: null }
+export class CreateMnemonics extends React.Component {
     
-    onPressProceed = () => {
-        this.props.navigation.navigate('CreateMnemonics');
+    static navigationOptions = { header: null }
+
+    state = { mnemonics: null }
+
+    get revealButton() {
+        return <ButtonReveal onPress={this.onPressReveal} />;
+    }
+
+    onPressReveal = () => {
+        const mnemonics = Utils.generateMnemonic();
+        this.setState({ mnemonics });
+    }
+
+    renderMnemonic = (mnemonic, index) => (
+        <Text key={index}>{mnemonic}</Text>
+    );
+
+    renderBody() {
+        const { mnemonics } = this.state;
+        return (mnemonics) ? mnemonics.map(this.renderMnemonic) : this.revealButton;
     }
 
     render() {
@@ -15,11 +33,8 @@ export class NewWallet extends React.Component {
             <View style={styles.background}>
                 <View style={styles.container}>
                     <View />
-                    <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
-                    <View>
-                        <Text style={styles.message}>When creating a new wallet you will receive a sequence of words that represent your "personal password". Anyone with this sequence may be able to reconfigure your wallet in any new device. Keep it as secure as possible. Only you should have access to this information.</Text>
-                        <Text style={styles.message}>Write it somewhere safe so you can make sure you won't lose it, or you may lose permanently all your coins. There is no way to recover it later.</Text>
-                    </View>
+                    <Text style={styles.message}>Save carefully your sequence of mnemonics:</Text>
+                    {this.renderBody()}
                     <View style={styles.buttonsContainer}>
                         <ButtonProceed onPress={this.onPressProceed} />
                     </View>
@@ -48,10 +63,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 8,
         marginHorizontal: 32
-    },
-    logo: {
-        width: 128,
-        height: 128,
     },
     buttonsContainer: {
         width: '100%',
