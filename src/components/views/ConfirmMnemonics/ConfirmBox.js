@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableHighlight, View, Text } from 'react-native';
-import * as Utils from '../../../common/utils';
-import Mnemonic from './Mnemonic';
+import { TextBullet } from 'components/widgets';
+import * as Utils from 'common/utils';
 
 export default class ConfirmBox extends React.Component {
 
@@ -33,7 +33,7 @@ export default class ConfirmBox extends React.Component {
     renderMnemonic = (mnemonic, index, selected) => (
         <TouchableHighlight style={styles.mnemonic} key={index} onPress={() => this.onPressMnemonic(mnemonic, selected)}>
             <View>
-                <Mnemonic label={mnemonic} />
+                <TextBullet>{mnemonic}</TextBullet>
             </View>
         </TouchableHighlight>
     );

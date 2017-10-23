@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import ButtonLoadWallet from './ButtonLoadWallet';
-import ButtonNewWallet from './ButtonNewWallet';
+import { Button } from 'components/widgets';
+import { colors } from 'common/styles';
 
 export class NoWallet extends React.Component {
 
@@ -20,8 +20,8 @@ export class NoWallet extends React.Component {
                     <View />
                     <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                     <View style={styles.buttonsContainer}>
-                        <ButtonNewWallet onPress={this.onPressNewWallet} />
-                        <ButtonLoadWallet onPress={this.onPressLoadWallet} />
+                        <Button onPress={this.onPressNewWallet}>Create new wallet</Button>
+                        <Button onPress={this.onPressNewWallet}>Load from existing wallet</Button>
                     </View>
                 </View>
             </View>
@@ -32,7 +32,7 @@ export class NoWallet extends React.Component {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: '#3E7BE5',
+        backgroundColor: colors.primary,
         justifyContent: 'flex-end',
         padding: 8,
         paddingBottom: 32

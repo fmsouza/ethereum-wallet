@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import ButtonProceed from './ButtonProceed';
+import { Button } from 'components/widgets';
+import { colors } from 'common/styles';
 
 export class NewWallet extends React.Component {
 
@@ -21,7 +22,7 @@ export class NewWallet extends React.Component {
                         <Text style={styles.message}>Write it somewhere safe so you can make sure you won't lose it, or you may lose permanently all your coins. There is no way to recover it later.</Text>
                     </View>
                     <View style={styles.buttonsContainer}>
-                        <ButtonProceed onPress={this.onPressProceed} />
+                        <Button onPress={this.onPressProceed}>Proceed</Button>
                     </View>
                 </View>
             </View>
@@ -32,7 +33,7 @@ export class NewWallet extends React.Component {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: '#3E7BE5',
+        backgroundColor: colors.primary,
         justifyContent: 'flex-end',
         padding: 8,
         paddingBottom: 32
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     message: {
-        color: 'white',
+        color: colors.secondary,
         fontSize: 16,
         textAlign: 'center',
         marginVertical: 8,

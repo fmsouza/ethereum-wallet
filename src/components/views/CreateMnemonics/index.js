@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as Utils from '../../../common/utils';
-import ButtonProceed from './ButtonProceed';
-import ButtonReveal from './ButtonReveal';
-import Mnemonic from './Mnemonic';
+import { Button, TextBullet } from 'components/widgets';
+import * as Utils from 'common/utils';
+import { colors } from 'common/styles';
 
 export class CreateMnemonics extends React.Component {
     
@@ -23,13 +22,13 @@ export class CreateMnemonics extends React.Component {
 
     renderMnemonic = (mnemonic, index) => (
         <View style={styles.mnemonic} key={index}>
-            <Mnemonic label={mnemonic} />
+            <TextBullet>{mnemonic}</TextBullet>
         </View>
     );
 
     renderBody() {
         const { mnemonics } = this.state;
-        if (!mnemonics) return <ButtonReveal onPress={this.onPressReveal} />;
+        if (!mnemonics) return <Button onPress={this.onPressReveal}>Reveal</Button>;
         return (
             <View style={styles.mnemonicsContainer}>
                 {mnemonics.map(this.renderMnemonic)}
@@ -46,7 +45,7 @@ export class CreateMnemonics extends React.Component {
                     {this.renderBody()}
                     <View style={styles.buttonsContainer}>
                         {this.state.mnemonics && (
-                            <ButtonProceed onPress={this.onPressProceed} />
+                            <Button onPress={this.onPressProceed}>Proceed</Button>
                         )}
                     </View>
                 </View>
@@ -58,7 +57,7 @@ export class CreateMnemonics extends React.Component {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: '#3E7BE5',
+        backgroundColor: colors.primary,
         justifyContent: 'flex-end',
         padding: 8,
         paddingBottom: 32
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     message: {
-        color: 'white',
+        color: colors.secondary,
         fontSize: 16,
         textAlign: 'center',
         marginVertical: 8,

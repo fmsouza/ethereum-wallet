@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'components/widgets';
 import * as Utils from 'common/utils';
-import ButtonConfirm from './ButtonConfirm';
+import { colors } from 'common/styles';
 import ConfirmBox from './ConfirmBox';
 
 export class ConfirmMnemonics extends React.Component {
@@ -29,7 +30,7 @@ export class ConfirmMnemonics extends React.Component {
                     <View />
                     <ConfirmBox ref="confirm" mnemonics={this.state.mnemonics} />
                     <View style={styles.buttonsContainer}>
-                        <ButtonConfirm onPress={this.onPressConfirm} />
+                        <Button onPress={this.onPressConfirm}>Confirm & open wallet</Button>
                     </View>
                 </View>
             </View>
@@ -40,7 +41,7 @@ export class ConfirmMnemonics extends React.Component {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: '#3E7BE5',
+        backgroundColor: colors.primary,
         justifyContent: 'flex-end',
         padding: 8,
         paddingBottom: 32
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     message: {
-        color: 'white',
+        color: colors.secondary,
         fontSize: 16,
         textAlign: 'center',
         marginVertical: 8,

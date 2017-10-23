@@ -9,7 +9,8 @@
     ["module-resolver", {
       "alias": {
         "assets": "./assets",
-        "common": "./src/common"
+        "common": "./src/common",
+        "components": "./src/components"
       }
     }]
   ]
