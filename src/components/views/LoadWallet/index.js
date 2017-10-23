@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { Button } from 'components/widgets';
 import { colors } from 'common/styles';
 
-export class NoWallet extends React.Component {
+export class LoadWallet extends React.Component {
 
     static navigationOptions = { header: null }
 
@@ -14,9 +14,12 @@ export class NoWallet extends React.Component {
                 <View style={styles.container}>
                     <View />
                     <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
+                    <View>
+                        <Text style={styles.message}>Load the wallet from</Text>
+                    </View>
                     <View style={styles.buttonsContainer}>
-                        <Button onPress={() => navigate('NewWallet')}>Create new wallet</Button>
-                        <Button onPress={() => navigate('LoadWallet')}>Load from existing wallet</Button>
+                        <Button onPress={() => navigate('LoadPrivateKey')}>Private key</Button>
+                        <Button onPress={() => navigate('LoadMnemonics')}>Mnemonics</Button>
                     </View>
                 </View>
             </View>
@@ -35,11 +38,18 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        flex: 1,
+        flex: 1
+    },
+    message: {
+        color: colors.secondary,
+        fontSize: 16,
+        textAlign: 'center',
+        marginVertical: 8,
+        marginHorizontal: 32
     },
     logo: {
         width: 128,
-        height: 128
+        height: 128,
     },
     buttonsContainer: {
         width: '100%',
