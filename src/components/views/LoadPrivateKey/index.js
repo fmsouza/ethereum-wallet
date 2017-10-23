@@ -23,7 +23,9 @@ export class LoadPrivateKey extends React.Component {
                             onChangeText={pk => this.setState({ pk })} />
                     </View>
                     <View style={styles.buttonsContainer}>
-                        <Button onPress={() => navigate('WalletsOverview')}>Open wallet</Button>
+                        <Button
+                            children="Open wallet"
+                            onPress={() => this.state.pk.length > 0 && navigate('WalletsOverview')} />
                     </View>
                 </View>
             </View>
