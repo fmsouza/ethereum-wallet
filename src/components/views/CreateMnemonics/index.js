@@ -45,7 +45,9 @@ export class CreateMnemonics extends React.Component {
                     <Text style={styles.message}>Save carefully your sequence of mnemonics:</Text>
                     {this.renderBody()}
                     <View style={styles.buttonsContainer}>
-                        <ButtonProceed onPress={this.onPressProceed} />
+                        {this.state.mnemonics && (
+                            <ButtonProceed onPress={this.onPressProceed} />
+                        )}
                     </View>
                 </View>
             </View>
