@@ -9,6 +9,8 @@ export const INITIAL_ROUTE = 'NoWallet';
 export default StackNavigator({
     NoWallet: { screen: Views.NoWallet },
     NewWallet: { screen: Views.NewWallet },
+    LoadMnemonics: { screen: Views.LoadMnemonics },
+    LoadPrivateKey: { screen: Views.LoadPrivateKey },
     LoadWallet: { screen: Views.LoadWallet },
     CreateMnemonics: { screen: Views.CreateMnemonics },
     ConfirmMnemonics: { screen: Views.ConfirmMnemonics },
