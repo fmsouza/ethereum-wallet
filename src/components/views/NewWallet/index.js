@@ -15,17 +15,14 @@ export class NewWallet extends React.Component {
 
     render() {
         return (
-            <View style={styles.background}>
-                <View style={styles.container}>
-                    <View />
-                    <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
-                    <View>
-                        <Text style={styles.message}>When creating a new wallet you will receive a sequence of words that represent your "personal password". Anyone with this sequence may be able to reconfigure your wallet in any new device. Keep it as secure as possible. Only you should have access to this information.</Text>
-                        <Text style={styles.message}>Write it somewhere safe so you can make sure you won't lose it, or you may lose permanently all your coins. There is no way to recover it later.</Text>
-                    </View>
-                    <View style={styles.buttonsContainer}>
-                        <Button onPress={this.onPressProceed}>Proceed</Button>
-                    </View>
+            <View style={styles.container}>
+                <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
+                <View>
+                    <Text style={styles.message}>When creating a new wallet you will receive a sequence of words that represent your "personal password". Anyone with this sequence may be able to reconfigure your wallet in any new device. Keep it as secure as possible. Only you should have access to this information.</Text>
+                    <Text style={styles.message}>Write it somewhere safe so you can make sure you won't lose it, or you may lose permanently all your coins. There is no way to recover it later.</Text>
+                </View>
+                <View style={styles.buttonsContainer}>
+                    <Button onPress={this.onPressProceed}>Proceed</Button>
                 </View>
             </View>
         );
@@ -33,16 +30,12 @@ export class NewWallet extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        backgroundColor: colors.primary,
-        justifyContent: 'flex-end',
-        padding: measures.defaultPadding
-    },
     container: {
-        alignItems: 'center',
+        backgroundColor: colors.splashscreenBackground,
+        alignItems: 'stretch',
         justifyContent: 'space-between',
-        flex: 1
+        flex: 1,
+        padding: measures.defaultPadding,
     },
     message: {
         color: colors.secondary,
@@ -52,12 +45,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 32
     },
     logo: {
+        alignSelf: 'center',
         width: 128,
         height: 128,
+        marginTop: 64
     },
     buttonsContainer: {
-        width: '100%',
-        justifyContent: 'flex-end',
-        height: 104
+        justifyContent: 'space-between',
+        height: 52
     }
 });

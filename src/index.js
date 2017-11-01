@@ -1,6 +1,7 @@
 import React from 'react';
-import { BackHandler, Platform, StatusBar, View } from 'react-native';
+import { BackHandler, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import autobind from 'autobind-decorator';
+import { colors } from './common/styles';
 import Router, { INITIAL_ROUTE } from './Router';
 
 const ANDROID_STATUSBAR = {
@@ -32,10 +33,19 @@ export default class Application extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={styles.container}>
                 <StatusBar {...ANDROID_STATUSBAR} />
                 <Router />
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.defaultBackground,
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center'
+    }
+});

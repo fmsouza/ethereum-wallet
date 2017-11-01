@@ -10,14 +10,11 @@ export class NoWallet extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.background}>
-                <View style={styles.container}>
-                    <View />
-                    <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
-                    <View style={styles.buttonsContainer}>
-                        <Button onPress={() => navigate('NewWallet')}>Create new wallet</Button>
-                        <Button onPress={() => navigate('LoadWallet')}>Load from existing wallet</Button>
-                    </View>
+            <View style={styles.container}>
+                <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
+                <View style={styles.buttonsContainer}>
+                    <Button onPress={() => navigate('NewWallet')}>Create new wallet</Button>
+                    <Button onPress={() => navigate('LoadWallet')}>Load from existing wallet</Button>
                 </View>
             </View>
         );
@@ -25,23 +22,20 @@ export class NoWallet extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        backgroundColor: colors.primary,
-        justifyContent: 'flex-end',
-        padding: measures.defaultPadding
-    },
     container: {
-        alignItems: 'center',
+        backgroundColor: colors.splashscreenBackground,
+        alignItems: 'stretch',
         justifyContent: 'space-between',
         flex: 1,
+        padding: measures.defaultPadding,
     },
     logo: {
+        alignSelf: 'center',
         width: 128,
-        height: 128
+        height: 128,
+        marginTop: 64
     },
     buttonsContainer: {
-        width: '100%',
         justifyContent: 'space-between',
         height: 104
     }

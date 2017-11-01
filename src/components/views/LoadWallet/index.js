@@ -10,48 +10,41 @@ export class LoadWallet extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.background}>
                 <View style={styles.container}>
-                    <View />
                     <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                     <View>
                         <Text style={styles.message}>Load the wallet from</Text>
-                    </View>
-                    <View style={styles.buttonsContainer}>
-                        <Button onPress={() => navigate('LoadPrivateKey')}>Private key</Button>
-                        <Button onPress={() => navigate('LoadMnemonics')}>Mnemonics</Button>
+                        <View style={styles.buttonsContainer}>
+                            <Button onPress={() => navigate('LoadPrivateKey')}>Private key</Button>
+                            <Button onPress={() => navigate('LoadMnemonics')}>Mnemonics</Button>
+                        </View>
                     </View>
                 </View>
-            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        backgroundColor: colors.primary,
-        justifyContent: 'flex-end',
-        padding: measures.defaultPadding
-    },
     container: {
-        alignItems: 'center',
+        backgroundColor: colors.splashscreenBackground,
+        alignItems: 'stretch',
         justifyContent: 'space-between',
-        flex: 1
+        flex: 1,
+        padding: measures.defaultPadding,
     },
     message: {
         color: colors.secondary,
         fontSize: 16,
         textAlign: 'center',
-        marginVertical: measures.defaultMargin,
-        marginHorizontal: 32
+        margin: measures.defaultMargin * 4,
     },
     logo: {
+        alignSelf: 'center',
         width: 128,
         height: 128,
+        marginTop: 64
     },
     buttonsContainer: {
-        width: '100%',
         justifyContent: 'space-between',
         height: 104
     }
