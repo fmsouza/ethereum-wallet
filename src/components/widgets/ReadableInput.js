@@ -35,6 +35,7 @@ export class ReadableInput extends React.Component {
                 <TextInput
                     style={styles.input}
                     autoFocus={this.props.autoFocus}
+                    autoCapitalize="none"
                     autoCorrect={false}
                     value={this.state.text}
                     onChangeText={this.onChangeText}
