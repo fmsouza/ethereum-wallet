@@ -1,27 +1,38 @@
 {
   "name": "EthereumWallet",
   "version": "0.1.0",
-  "private": true,
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
-  },
-  "jest": {
-    "preset": "jest-expo"
+    "postinstall": "react-native upgrade && react-native link",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "android-build": "cd android && ./gradlew assembleDebug && cd .. && cp android/app/build/outputs/apk/app-debug.apk BitWallet.apk",
+    "android-bundle": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug",
+    "android-clean": "cd android && ./gradlew clean && cd ..",
+    "android": "react-native run-android && adb logcat *:S ReactNative:V ReactNativeJS:V",
+    "ios": "react-native run-ios"
   },
   "dependencies": {
-    "expo": "21.0.0",
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.48.4",
-    "react-navigation": "1.0.0-beta.15"
+    "autobind-decorator": "2.1.0",
+    "ethers": "2.1.2",
+    "react": "16.0.0",
+    "react-native": "0.49.5",
+    "react-native-camera": "0.10.0",
+    "react-native-permissions": "1.0.1",
+    "react-native-qrcode-svg": "5.0.3",
+    "react-native-sensitive-info": "5.1.0",
+    "react-native-svg": "5.4.2",
+    "react-navigation": "1.0.0-beta.16"
   },
   "devDependencies": {
-    "react-native-scripts": "1.5.0",
-    "jest-expo": "21.0.2",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "babel-jest": "21.2.0",
+    "babel-plugin-module-resolver": "2.7.1",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-preset-react-native": "4.0.0",
+    "eslint-config-rallycoding": "3.2.0",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

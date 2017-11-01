@@ -1,14 +1,4 @@
 {
-  "expo": {
-    "name": "RN Seed Mobx",
-    "slug": "rn-seed-mobx",
-    "sdkVersion": "21.0.0",
-    "privacy": "public",
-    "version": "0.1.0",
-    "primaryColor": "#000000",
-    "androidStatusBar": {
-      "backgroundColor": "#000000",
-      "barStyle": "light-content"
-    }
-  }
+  "name": "EthereumWallet",
+  "displayName": "EthereumWallet"
 }

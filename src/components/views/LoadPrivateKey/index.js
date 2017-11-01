@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button, ReadableInput } from 'components/widgets';
-import { colors } from 'common/styles';
+import { colors, measures } from 'common/styles';
 
 export class LoadPrivateKey extends React.Component {
 
@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.primary,
         justifyContent: 'flex-end',
-        padding: 8,
-        paddingBottom: 32
+        padding: measures.defaultPadding
     },
     container: {
         alignItems: 'center',
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontSize: 16,
         textAlign: 'center',
-        marginVertical: 8,
+        marginVertical: measures.defaultMargin,
         marginHorizontal: 32
     },
     logo: {

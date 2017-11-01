@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
-import { colors } from 'common/styles';
+import { colors, measures } from 'common/styles';
+
+export const Button = ({ children, onPress }) => (
+    <TouchableHighlight style={styles.container} onPress={onPress} underlayColor={null}>
+        <Text style={styles.title} children={children} />
+    </TouchableHighlight>
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -10,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 2,
         borderColor: colors.secondary,
-        padding: 8,
+        padding: measures.defaultPadding,
         borderRadius: 4
     },
     title: {
@@ -18,9 +24,3 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 });
-
-export const Button = ({ children, onPress }) => (
-    <TouchableHighlight style={styles.container} onPress={onPress} underlayColor={null}>
-        <Text style={styles.title} children={children} />
-    </TouchableHighlight>
-);

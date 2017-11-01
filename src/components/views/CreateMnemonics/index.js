@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import autobind from 'autobind-decorator';
 import { Button, TextBullet } from 'components/widgets';
 import * as Utils from 'common/utils';
-import { colors } from 'common/styles';
+import { colors, measures } from 'common/styles';
 
 export class CreateMnemonics extends React.Component {
     
@@ -10,12 +11,14 @@ export class CreateMnemonics extends React.Component {
 
     state = { mnemonics: null }
 
-    onPressProceed = () => {
+    @autobind
+    onPressProceed() {
         const { mnemonics } = this.state;
         this.props.navigation.navigate('ConfirmMnemonics', { mnemonics });
     }
 
-    onPressReveal = () => {
+    @autobind
+    onPressReveal() {
         const mnemonics = Utils.generateMnemonic();
         this.setState({ mnemonics });
     }
@@ -59,8 +62,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.primary,
         justifyContent: 'flex-end',
-        padding: 8,
-        paddingBottom: 32
+        padding: measures.defaultPadding
     },
     container: {
         alignItems: 'center',
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontSize: 16,
         textAlign: 'center',
-        marginVertical: 8,
+        marginVertical: measures.defaultMargin,
         marginHorizontal: 32
     },
     mnemonicsContainer: {

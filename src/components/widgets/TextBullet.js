@@ -1,11 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from 'common/styles';
+import { colors, measures } from 'common/styles';
+
+export const TextBullet = ({ children }) => (
+    <View style={styles.container}>
+        <Text style={styles.label}>{children}</Text>
+    </View>
+);
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.secondary,
-        padding: 8,
+        padding: measures.defaultPadding,
         borderWidth: 1,
         borderColor: colors.secondary,
         borderRadius: 4
@@ -16,9 +22,3 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
 });
-
-export const TextBullet = ({ children }) => (
-    <View style={styles.container}>
-        <Text style={styles.label}>{children}</Text>
-    </View>
-);

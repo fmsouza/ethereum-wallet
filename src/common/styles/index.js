@@ -1,4 +1,4 @@
-export const colors = {
-    primary: '#3E7BE5',
-    secondary: '#FFFFFF'
-};
+import * as colors from './colors';
+import * as measures from './measures';
+
+export { colors, measures };

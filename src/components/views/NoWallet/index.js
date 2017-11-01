@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { Button } from 'components/widgets';
-import { colors } from 'common/styles';
+import { colors, measures } from 'common/styles';
 
 export class NoWallet extends React.Component {
 
@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.primary,
         justifyContent: 'flex-end',
-        padding: 8,
-        paddingBottom: 32
+        padding: measures.defaultPadding
     },
     container: {
         alignItems: 'center',
