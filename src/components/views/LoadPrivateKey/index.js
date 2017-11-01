@@ -1,7 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import autobind from 'autobind-decorator';
 import { Button, ReadableInput } from 'components/widgets';
 import { colors, measures } from 'common/styles';
+import * as Utils from 'common/utils';
 
 export class LoadPrivateKey extends React.Component {
 
@@ -9,8 +11,14 @@ export class LoadPrivateKey extends React.Component {
 
     state = { pk: '' };
 
+    onPressOpenWallet() {
+        const { pk } = this.state;
+        if (!pk) return;
+        const wallet = utils.loadWalletFromPrivateKey(pk);
+        this.props.navigation.navigate('WalletsOverview', { wallet });
+    }
+
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <View style={styles.background}>
                 <View style={styles.container}>
@@ -25,7 +33,7 @@ export class LoadPrivateKey extends React.Component {
                     <View style={styles.buttonsContainer}>
                         <Button
                             children="Open wallet"
-                            onPress={() => this.state.pk.length > 0 && navigate('WalletsOverview')} />
+                            onPress={this.onPressOpenWallet} />
                     </View>
                 </View>
             </View>

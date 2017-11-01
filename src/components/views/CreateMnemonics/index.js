@@ -19,7 +19,7 @@ export class CreateMnemonics extends React.Component {
 
     @autobind
     onPressReveal() {
-        const mnemonics = Utils.generateMnemonic();
+        const mnemonics = Utils.generateMnemonics();
         this.setState({ mnemonics });
     }
 

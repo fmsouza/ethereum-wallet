@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableHighlight, View, Text } from 'react-native';
 import { TextBullet } from 'components/widgets';
+import { colors } from 'common/styles';
 import * as Utils from 'common/utils';
 
 export default class ConfirmBox extends React.Component {
@@ -8,9 +9,7 @@ export default class ConfirmBox extends React.Component {
     state = { selectable: [], selected: [] };
 
     isValidSequence() {
-        const mnemonics = this.props.mnemonics.join(' ');
-        const selected = this.state.selected.join(' ');
-        return mnemonics === selected;
+        return this.props.mnemonics.equals(this.state.selected);
     }
 
     componentWillMount() {
@@ -53,9 +52,9 @@ export default class ConfirmBox extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Sequence:</Text>
+                <Text style={styles.text}>Sequence:</Text>
                 {this.renderSelected()}
-                <Text>Click on the words in the correct order:</Text>
+                <Text style={styles.text}>Click on the words in the correct order:</Text>
                 {this.renderSelectable()}
             </View>
         );
@@ -75,5 +74,8 @@ const styles = StyleSheet.create({
     },
     mnemonic: {
         margin: 4
+    },
+    text: {
+        color: colors.secondary
     }
 });

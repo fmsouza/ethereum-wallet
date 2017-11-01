@@ -21,7 +21,8 @@ export class ConfirmMnemonics extends React.Component {
     onPressConfirm() {
         if (this.refs.confirm.isValidSequence()) {
             const { mnemonics } = this.state;
-            this.props.navigation.navigate('WalletsOverview', { mnemonics });
+            const wallet = Utils.loadWalletFromMnemonics(mnemonics);
+            this.props.navigation.navigate('WalletsOverview', { wallet });
         }
     }
 
