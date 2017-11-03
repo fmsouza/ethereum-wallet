@@ -12,7 +12,7 @@ export class CreateWallet extends React.Component {
     
     @autobind
     onPressProceed() {
-        // this.props.navigation.navigate('CreateMnemonics');
+        this.props.navigation.navigate('CreateMnemonics');
     }
 
     render() {
