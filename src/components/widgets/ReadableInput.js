@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     input: {
         width: '90%',
         borderBottomWidth: 1,
-        borderBottomColor: colors.secondary,
+        borderBottomColor: colors.black,
         padding: 4,
         paddingLeft: 0,
         marginRight: 2,
-        color: colors.secondary
+        color: colors.black
     },
     cameraIcon: {
         width: 36,
