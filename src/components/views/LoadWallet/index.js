@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         padding: measures.defaultPadding,
     },
     message: {
-        color: colors.secondary,
+        color: colors.black,
         fontSize: 16,
         textAlign: 'center',
         margin: measures.defaultMargin * 4,

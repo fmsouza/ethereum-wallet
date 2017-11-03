@@ -26,7 +26,7 @@ export class SubmitableInput extends React.Component {
                     autoCorrect={false}
                     value={this.state.text}
                     onChangeText={this.onChangeText}
-                    placeholderTextColor={colors.secondary}
+                    placeholderTextColor={colors.black}
                     placeholder={this.props.placeholder} />
                 <TouchableWithoutFeedback onPress={this.onPressSend}>
                     <Image
@@ -47,11 +47,12 @@ const styles = StyleSheet.create({
     input: {
         width: '90%',
         borderBottomWidth: 1,
-        borderBottomColor: colors.secondary,
+        borderBottomColor: colors.black,
         padding: 4,
         paddingLeft: 0,
         marginRight: 2,
-        color: colors.secondary
+        textAlign: 'center',
+        color: colors.black
     },
     sendIcon: {
         width: 32,

@@ -11,6 +11,7 @@ const navigator = StackNavigator({
     CreateMnemonics: { screen: Views.CreateMnemonics },
     CreateWallet: { screen: Views.CreateWallet },
     ConfirmMnemonics: { screen: Views.ConfirmMnemonics },
+    LoadMnemonics: { screen: Views.LoadMnemonics },
     LoadWallet: { screen: Views.LoadWallet },
     NewWallet: { screen: Views.NewWallet },
     WalletsOverview: { screen: Views.WalletsOverview }
