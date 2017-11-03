@@ -4,8 +4,10 @@ import { Button } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 
 export class LoadWallet extends React.Component {
-
-    static navigationOptions = { header: null }
+    
+    static navigationOptions = ({ navigation, screenProps }) => ({
+        title: "Load Wallet"
+    });
 
     render() {
         const { navigate } = this.props.navigation;
@@ -26,7 +28,7 @@ export class LoadWallet extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.splashscreenBackground,
+        backgroundColor: colors.defaultBackground,
         alignItems: 'stretch',
         justifyContent: 'space-between',
         flex: 1,
@@ -45,7 +47,6 @@ const styles = StyleSheet.create({
         marginTop: 64
     },
     buttonsContainer: {
-        justifyContent: 'space-between',
-        height: 104
+        justifyContent: 'space-between'
     }
 });

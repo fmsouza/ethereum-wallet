@@ -1,12 +1,13 @@
 import React from 'react';
-import { BackHandler, Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { BackHandler, StatusBar, StyleSheet, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { colors } from './common/styles';
 import Router, { INITIAL_ROUTE } from './Router';
 
-const ANDROID_STATUSBAR = {
-    backgroundColor: "#000000",
-    barStyle: "light-content"
+const STATUSBAR_CONFIG = {
+    backgroundColor: colors.statusBar,
+    barStyle: "default",
+    translucent: false
 };
 
 export default class Application extends React.Component {
@@ -34,7 +35,7 @@ export default class Application extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar {...ANDROID_STATUSBAR} />
+                <StatusBar {...STATUSBAR_CONFIG} />
                 <Router />
             </View>
         );

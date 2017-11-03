@@ -4,20 +4,15 @@ import autobind from 'autobind-decorator';
 import { Button } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 
-export class NewWallet extends React.Component {
+export class CreateWallet extends React.Component {
     
     static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "New Wallet"
+        title: "Create Wallet"
     });
     
     @autobind
-    onPressLoad() {
-        this.props.navigation.navigate('LoadWallet');
-    }
-    
-    @autobind
-    onPressCreate() {
-        this.props.navigation.navigate('CreateWallet');
+    onPressProceed() {
+        // this.props.navigation.navigate('CreateMnemonics');
     }
 
     render() {
@@ -26,12 +21,12 @@ export class NewWallet extends React.Component {
                 <View style={styles.contentContainer}>
                     <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                     <View>
-                        <Text style={styles.message}>Do you already have a wallet to configure?</Text>
+                        <Text style={styles.message}>When creating a new wallet you will receive a sequence of mnemonics which represent your "personal password". Anyone with this sequence may be able to reconfigure your wallet in any new device. Keep it stored as secure as possible. Only you should have access to this information.</Text>
+                        <Text style={styles.message}>Write it somewhere safe so you can make sure you won't lose it, or you may lose permanently all your coins. There is no way to recover it later.</Text>
                     </View>
                 </View>
                 <View style={styles.buttonsContainer}>
-                    <Button onPress={this.onPressLoad}>Yes, load it</Button>
-                    <Button onPress={this.onPressCreate}>No, create new</Button>
+                    <Button onPress={this.onPressProceed}>Proceed</Button>
                 </View>
             </View>
         );

@@ -8,8 +8,9 @@ import { colors } from './common/styles';
 export const INITIAL_ROUTE = 'WalletsOverview';
 
 const navigator = StackNavigator({
-    NewWallet: { screen: Views.NewWallet },
+    CreateWallet: { screen: Views.CreateWallet },
     LoadWallet: { screen: Views.LoadWallet },
+    NewWallet: { screen: Views.NewWallet },
     WalletsOverview: { screen: Views.WalletsOverview }
 }, {
     initialRouteName: INITIAL_ROUTE,
