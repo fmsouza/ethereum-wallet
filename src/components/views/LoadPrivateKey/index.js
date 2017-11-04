@@ -13,6 +13,7 @@ export class LoadPrivateKey extends React.Component {
 
     state = { pk: '' };
 
+    @autobind
     onPressOpenWallet() {
         if (!this.state.pk) return;
         const wallet = Utils.loadWalletFromPrivateKey(this.state.pk);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { Icon } from 'components/widgets';
 import { colors } from 'common/styles';
 
 export class ReadableInput extends React.Component {
@@ -19,11 +20,12 @@ export class ReadableInput extends React.Component {
                     value={this.state.text}
                     onChangeText={this.onChangeText}
                     placeholder={this.props.placeholder} />
-                <TouchableWithoutFeedback onPress={this.onPressCamera}>
-                    <Image
-                        style={styles.cameraIcon}
-                        source={require('assets/img/ic_camera.png')} />
-                </TouchableWithoutFeedback>
+                <TouchableOpacity onPress={this.onPressCamera}>
+                    <Icon
+                        name="camera"
+                        size="large"
+                        color={colors.primary} />
+                </TouchableOpacity>
             </View>
         );
     }
@@ -43,10 +45,6 @@ const styles = StyleSheet.create({
         paddingLeft: 0,
         marginRight: 2,
         color: colors.black
-    },
-    cameraIcon: {
-        width: 36,
-        height: 36
     },
     fullScreen: {
         position: 'absolute',
