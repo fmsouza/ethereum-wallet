@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Icon } from 'components/widgets';
+import { StyleSheet, View } from 'react-native';
+import { HeaderIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 
 export class WalletsOverview extends React.Component {
@@ -8,14 +8,11 @@ export class WalletsOverview extends React.Component {
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: "Overview",
         headerRight: (
-            <TouchableOpacity onPress={() => navigation.navigate('NewWallet')}>
-                <View style={styles.headerButton}>
-                    <Icon
-                        name="add"
-                        size="large"
-                        color={colors.white} />
-                </View>
-            </TouchableOpacity>
+            <HeaderIcon
+                name="add"
+                size="large"
+                color={colors.white}
+                onPress={() => navigation.navigate('NewWallet')} />
         )
     });
 
@@ -32,8 +29,5 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.secondary,
         padding: measures.defaultPadding
-    },
-    headerButton: {
-        marginHorizontal: measures.defaultMargin
     }
 });
