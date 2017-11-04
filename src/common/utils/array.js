@@ -1,5 +1,7 @@
 export function shuffleArray(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    if (!(array instanceof Array)) throw new Error('The input is not an array.');
+    let tmpArray = [ ...array ];
+    var currentIndex = tmpArray.length, temporaryValue, randomIndex;
   
     // While there remain elements to shuffle...
     while (currentIndex !== 0) {
@@ -9,8 +11,8 @@ export function shuffleArray(array) {
         currentIndex -= 1;
     
         // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        [tmpArray[currentIndex], tmpArray[randomIndex]] = [tmpArray[randomIndex], tmpArray[currentIndex]];
     }
   
-    return array;
+    return tmpArray;
 }
