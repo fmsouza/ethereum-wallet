@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button } from 'components/widgets';
 import { colors, measures } from 'common/styles';
@@ -19,7 +19,6 @@ export class CreateWallet extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.contentContainer}>
-                    <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                     <View>
                         <Text style={styles.message}>When creating a new wallet you will receive a sequence of mnemonics which represent your "personal password". Anyone with this sequence may be able to reconfigure your wallet in any new device. Keep it stored as secure as possible. Only you should have access to this information.</Text>
                         <Text style={styles.message}>Write it somewhere safe so you can make sure you won't lose it, or you may lose permanently all your coins. There is no way to recover it later.</Text>
@@ -51,11 +50,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: measures.defaultMargin,
         marginHorizontal: 32
-    },
-    logo: {
-        alignSelf: 'center',
-        width: 128,
-        height: 128
     },
     buttonsContainer: {
         justifyContent: 'space-between'

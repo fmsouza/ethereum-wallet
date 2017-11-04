@@ -32,8 +32,6 @@ export class LoadMnemonics extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <View />
-                <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                 <View style={styles.body}>
                     <Text style={styles.message}>Type the mnemonics</Text>
                     <View style={styles.mnemonics}>
@@ -55,19 +53,15 @@ export class LoadMnemonics extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'space-between',
         flex: 1,
         backgroundColor: colors.defaultBackground
     },
     body: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '85%',
-        height: 300
-    },
-    input: {
-        width: '100%'
     },
     message: {
         color: colors.black,

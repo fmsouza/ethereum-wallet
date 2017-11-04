@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button } from 'components/widgets';
 import { colors, measures } from 'common/styles';
@@ -24,10 +24,7 @@ export class NewWallet extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.contentContainer}>
-                    <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
-                    <View>
-                        <Text style={styles.message}>Do you already have a wallet to configure?</Text>
-                    </View>
+                    <Text style={styles.message}>Do you already have a wallet to configure?</Text>
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button onPress={this.onPressLoad}>Yes, load it</Button>
@@ -56,11 +53,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: measures.defaultMargin,
         marginHorizontal: 32
-    },
-    logo: {
-        alignSelf: 'center',
-        width: 128,
-        height: 128
     },
     buttonsContainer: {
         justifyContent: 'space-between'

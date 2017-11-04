@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, ReadableInput } from 'components/widgets';
 import { colors, measures } from 'common/styles';
@@ -23,8 +23,6 @@ export class LoadPrivateKey extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View />
-                <Image style={styles.logo} source={require('assets/img/ethereum.png')} />
                 <View style={styles.body}>
                     <Text style={styles.message}>Private key</Text>
                     <ReadableInput
@@ -50,9 +48,9 @@ const styles = StyleSheet.create({
         padding: measures.defaultPadding
     },
     body: {
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        maxHeight: 300
+        justifyContent: 'center'
     },
     message: {
         color: colors.black,
@@ -60,10 +58,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: measures.defaultMargin,
         marginHorizontal: 32
-    },
-    logo: {
-        width: 128,
-        height: 128,
     },
     buttonsContainer: {
         width: '100%',
