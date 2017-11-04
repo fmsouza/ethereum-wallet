@@ -28,5 +28,3 @@ Array.prototype.equals = function (array) {
     }       
     return true;
 }
-// Hide method from for-in loops
-Object.defineProperty(Array.prototype, "equals", { enumerable: false });
