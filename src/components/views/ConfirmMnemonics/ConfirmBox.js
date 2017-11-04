@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, View, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import { TextBullet } from 'components/widgets';
 import { colors } from 'common/styles';
 import * as Utils from 'common/utils';
@@ -30,11 +30,11 @@ export default class ConfirmBox extends React.Component {
     }
     
     renderMnemonic = (mnemonic, index, selected) => (
-        <TouchableHighlight style={styles.mnemonic} key={index} onPress={() => this.onPressMnemonic(mnemonic, selected)}>
+        <TouchableOpacity style={styles.mnemonic} key={index} onPress={() => this.onPressMnemonic(mnemonic, selected)}>
             <View>
                 <TextBullet>{mnemonic}</TextBullet>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
     );
     
     renderSelected = () => (

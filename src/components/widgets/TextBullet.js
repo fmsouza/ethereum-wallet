@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.secondary,
         padding: measures.defaultPadding,
         borderWidth: 1,
-        borderColor: colors.secondary,
+        borderColor: colors.primary,
         borderRadius: 4
     },
     label: {

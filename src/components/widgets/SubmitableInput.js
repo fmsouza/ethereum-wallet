@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import autobind from 'autobind-decorator';
+import { Icon } from 'components/widgets';
 import { colors } from 'common/styles';
 
 export class SubmitableInput extends React.Component {
@@ -8,7 +10,8 @@ export class SubmitableInput extends React.Component {
 
     onChangeText = (text) => this.setState({ text });
 
-    onPressSend = () => {
+    @autobind
+    onPressSend() {
         let { text } = this.state;
         text = text.trim();
         if (text.length === 0) return;
@@ -28,11 +31,12 @@ export class SubmitableInput extends React.Component {
                     onChangeText={this.onChangeText}
                     placeholderTextColor={colors.black}
                     placeholder={this.props.placeholder} />
-                <TouchableWithoutFeedback onPress={this.onPressSend}>
-                    <Image
-                        style={styles.sendIcon}
-                        source={require('assets/img/ic_send.png')} />
-                </TouchableWithoutFeedback>
+                <TouchableOpacity onPress={this.onPressSend}>
+                    <Icon
+                        name="send"
+                        size="large"
+                        color={colors.black} />
+                </TouchableOpacity>
             </View>
         );
     }
@@ -53,9 +57,5 @@ const styles = StyleSheet.create({
         marginRight: 2,
         textAlign: 'center',
         color: colors.black
-    },
-    sendIcon: {
-        width: 32,
-        height: 32
     }
 });
