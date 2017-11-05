@@ -8,7 +8,8 @@
     "android-build": "cd android && ./gradlew assembleDebug && cd .. && cp android/app/build/outputs/apk/app-debug.apk BitWallet.apk",
     "android-bundle": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug",
     "android-clean": "cd android && ./gradlew clean && cd ..",
-    "android": "react-native run-android && adb logcat *:S ReactNative:V ReactNativeJS:V",
+    "android": "react-native run-android && npm run logcat",
+    "logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "ios": "react-native run-ios"
   },
   "dependencies": {
