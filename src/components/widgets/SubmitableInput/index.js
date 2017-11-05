@@ -6,7 +6,7 @@ import { colors } from 'common/styles';
 
 export class SubmitableInput extends React.Component {
 
-    state = { text: '', showCamera: false };
+    state = { text: '' };
 
     onChangeText = (text) => this.setState({ text });
 
