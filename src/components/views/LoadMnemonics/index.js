@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import { Button, SubmitableInput, TextBullet } from 'components/widgets';
+import { Button, InputWithIcon, TextBullet } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import * as Utils from 'common/utils';
 
@@ -37,9 +37,10 @@ export class LoadMnemonics extends React.Component {
                     <View style={styles.mnemonics}>
                         {this.state.mnemonics.map(this.renderMnemonic)}
                     </View>
-                    <SubmitableInput
+                    <InputWithIcon
+                        icon="send"
                         placeholder="Type the mnemonic here"
-                        onPressSave={text => this.setState({ mnemonics: this.state.mnemonics.concat([text]) })} />
+                        onPressIcon={text => this.setState({ mnemonics: this.state.mnemonics.concat([text]) })} />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button

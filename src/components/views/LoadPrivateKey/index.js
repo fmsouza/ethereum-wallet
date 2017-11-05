@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import { Button, ReadableInput } from 'components/widgets';
+import { Button, InputWithIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import * as Utils from 'common/utils';
 
@@ -20,14 +20,21 @@ export class LoadPrivateKey extends React.Component {
         this.props.navigation.navigate('WalletsOverview', { wallet, replaceRoute: true });
     }
 
+    @autobind
+    onPressCamera() {
+        console.log("Pressed the camera icon");
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.body}>
                     <Text style={styles.message}>Private key</Text>
-                    <ReadableInput
-                        placeholder="eg.: 3123012t3n1273v12n12b120b12731132b0t2"
-                        onChangeText={pk => this.setState({ pk })} />
+                    <InputWithIcon
+                        icon="camera"
+                        placeholder="eg.: 3123012f3b1273d12a12b120b12731132b0e2"
+                        onChangeText={pk => this.setState({ pk })}
+                        onPressIcon={this.onPressCamera} />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button

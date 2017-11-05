@@ -8,7 +8,12 @@ export class InputWithIcon extends React.Component {
 
     state = { text: '' };
 
-    onChangeText = (text) => this.setState({ text });
+    @autobind
+    onChangeText(text) {
+        const { onChangeText } = this.props;
+        this.setState({ text });
+        if (onChangeText) onChangeText(text);
+    }
 
     @autobind
     onPressIcon() {
@@ -20,20 +25,21 @@ export class InputWithIcon extends React.Component {
     }
 
     render() {
+        const { autoFocus, icon, placeholder } = this.props;
         return (
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
                     autoCapitalize="none"
-                    autoFocus={this.props.autoFocus}
+                    autoFocus={autoFocus}
                     autoCorrect={false}
                     value={this.state.text}
                     onChangeText={this.onChangeText}
                     placeholderTextColor={colors.black}
-                    placeholder={this.props.placeholder} />
+                    placeholder={placeholder} />
                 <TouchableOpacity onPress={this.onPressIcon}>
                     <Icon
-                        name="send"
+                        name={icon}
                         size="large"
                         color={colors.black} />
                 </TouchableOpacity>
