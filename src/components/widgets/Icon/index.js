@@ -9,13 +9,14 @@ function getSize(size) {
         case 'small': return measures.iconSizeSmall;
         case 'large': return measures.iconSizeLarge;
         default:
-        case 'medium': return measures.iconFontSize;
+        case 'medium': return measures.iconSizeMedium;
     }
 } 
 
 export const Icon = ({ name, size, color }) => {
+    if (!name) return null;
     name = (Platform.OS === 'ios') ? `ios-${name}` : `md-${name}`;
     size = getSize(size);
-    color = color || '#000';
+    color = color || '#000000';
     return <Ionicon name={name} size={size} color={color} />;
 };
