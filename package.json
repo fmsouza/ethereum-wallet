@@ -40,7 +40,6 @@
   },
   "jest": {
     "preset": "react-native",
-    "testRegex": "(/src/.*|\\.(test|spec))\\.js$",
     "setupFiles": [
       "<rootDir>/jest/setup.js"
     ]
