@@ -1,19 +1,19 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import _ from 'lodash';
 import { TextBullet } from 'components/widgets';
 import { colors } from 'common/styles';
-import * as Utils from 'common/utils';
 
 export default class ConfirmBox extends React.Component {
 
     state = { selectable: [], selected: [] };
 
     isValidSequence() {
-        return this.props.mnemonics.equals(this.state.selected);
+        return _.isEquals(this.props.mnemonics, this.state.selected);
     }
 
     componentWillMount() {
-        const selectable = Utils.shuffleArray([...this.props.mnemonics]);
+        const selectable = _.shuffle([...this.props.mnemonics]);
         this.setState({ selectable });
     }
 
