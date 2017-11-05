@@ -11,7 +11,7 @@ describe('<Button />', () => {
         expect(wrapper.find(Text).children().text()).toEqual('button label');
     });
     
-    it('should have call the `onPress` function when clicked', () => {
+    it('should call the `onPress` function when clicked', () => {
         const eventSpy = sinon.spy();
         const wrapper = shallow(<Button onPress={eventSpy} />);
         wrapper.simulate('press');
