@@ -1,30 +1,41 @@
 import React from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import autobind from 'autobind-decorator';
 import { Icon } from 'components/widgets';
 import { colors } from 'common/styles';
 
-export class ReadableInput extends React.Component {
+export class InputWithIcon extends React.Component {
 
-    state = { text: '', showCamera: false };
+    state = { text: '' };
 
     onChangeText = (text) => this.setState({ text });
+
+    @autobind
+    onPressIcon() {
+        let { text } = this.state;
+        text = text.trim();
+        if (text.length === 0) return;
+        this.props.onPressIcon(text);
+        this.onChangeText('');
+    }
 
     render() {
         return (
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
-                    autoFocus={this.props.autoFocus}
                     autoCapitalize="none"
+                    autoFocus={this.props.autoFocus}
                     autoCorrect={false}
                     value={this.state.text}
                     onChangeText={this.onChangeText}
+                    placeholderTextColor={colors.black}
                     placeholder={this.props.placeholder} />
-                <TouchableOpacity onPress={this.onPressCamera}>
+                <TouchableOpacity onPress={this.onPressIcon}>
                     <Icon
-                        name="camera"
+                        name="send"
                         size="large"
-                        color={colors.primary} />
+                        color={colors.black} />
                 </TouchableOpacity>
             </View>
         );
@@ -44,13 +55,7 @@ const styles = StyleSheet.create({
         padding: 4,
         paddingLeft: 0,
         marginRight: 2,
+        textAlign: 'center',
         color: colors.black
-    },
-    fullScreen: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        width: '100%',
-        height: '100%'
     }
 });
