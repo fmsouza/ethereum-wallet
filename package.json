@@ -42,7 +42,7 @@
   "jest": {
     "preset": "react-native",
     "setupFiles": [
-      "<rootDir>/jest/setup.js"
+      "<rootDir>/jest.config.js"
     ]
   }
 }
