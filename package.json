@@ -4,7 +4,8 @@
   "scripts": {
     "postinstall": "react-native upgrade && react-native link",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "android:build": "cd android && ./gradlew assembleDebug && cd .. && cp android/app/build/outputs/apk/app-debug.apk BitWallet.apk",
     "android:bundle": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug",
     "android:clean": "cd android && ./gradlew clean && cd ..",
@@ -41,8 +42,6 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFiles": [
-      "<rootDir>/jest.config.js"
-    ]
+    "setupTestFrameworkScriptFile": "<rootDir>/config/jest.config.js"
   }
 }
