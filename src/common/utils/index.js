@@ -1,1 +1,3 @@
-export * from './wallet';
+import * as WalletUtils from './wallet';
+
+export { WalletUtils };
