@@ -2,15 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button } from 'components/widgets';
-import * as Utils from 'common/utils';
+import { Wallet as WalletUtils } from 'common/utils';
 import { colors, measures } from 'common/styles';
+import { Wallets as WalletsActions } from 'common/actions';
 import ConfirmBox from './ConfirmBox';
 
 export class ConfirmMnemonics extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Create Wallet"
-    });
+    static navigationOptions = { title: "Create Wallet" };
 
     state = { mnemonics: null };
 
@@ -20,11 +19,15 @@ export class ConfirmMnemonics extends React.Component {
     }
 
     @autobind
-    onPressConfirm() {
-        if (this.refs.confirm.isValidSequence()) {
-            const { mnemonics } = this.state;
-            const wallet = Utils.loadWalletFromMnemonics(mnemonics);
-            this.props.navigation.navigate('WalletsOverview', { wallet, replaceRoute: true });
+    async onPressConfirm() {
+        if (!this.refs.confirm.isValidSequence()) return;
+        const { mnemonics } = this.state;
+        try {
+            const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
+            await WalletsActions.addWallet(wallet);
+            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+        } catch (e) {
+            console.warn(e);
         }
     }
 

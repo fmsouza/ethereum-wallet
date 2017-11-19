@@ -13,7 +13,7 @@ describe('WalletsActions', () => {
         }
     });
     
-    it('should fail to add a wallet if not ethers.Wallet instance', async function () {
+    it('should fail to add a wallet if not ethers.Wallet instance', async function() {
         const wallet = { privateKey: '54321', address: '123445' };
         try {
             await Action.addWallet(wallet);

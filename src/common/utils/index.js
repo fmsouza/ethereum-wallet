@@ -1,3 +1,3 @@
-import * as WalletUtils from './wallet';
+import * as Wallet from './wallet';
 
-export { WalletUtils };
+export { Wallet };

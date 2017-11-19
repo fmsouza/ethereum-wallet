@@ -9,7 +9,7 @@ export default class ConfirmBox extends React.Component {
     state = { selectable: [], selected: [] };
 
     isValidSequence() {
-        return _.isEquals(this.props.mnemonics, this.state.selected);
+        return JSON.stringify(this.props.mnemonics) === JSON.stringify(this.state.selected);
     }
 
     componentWillMount() {

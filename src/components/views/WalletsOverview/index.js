@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import NoWallets from './NoWallets';
 
+@inject('wallets')
+@observer
 export class WalletsOverview extends React.Component {
 
     static navigationOptions = ({ navigation, screenProps }) => ({
@@ -26,9 +29,10 @@ export class WalletsOverview extends React.Component {
     }
 
     render() {
+        const { wallets } = this.props;
         return (
             <View style={styles.background}>
-                {this.renderBody(this.state.wallets)}
+                {this.renderBody(wallets.list)}
             </View>
         );
     }

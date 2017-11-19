@@ -2,14 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, TextBullet } from 'components/widgets';
-import * as Utils from 'common/utils';
+import { Wallet as WalletUtils } from 'common/utils';
 import { colors, measures } from 'common/styles';
 
 export class CreateMnemonics extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Create Wallet"
-    });
+    static navigationOptions = { title: "Create Wallet" };
 
     state = { mnemonics: null }
 
@@ -21,7 +19,7 @@ export class CreateMnemonics extends React.Component {
 
     @autobind
     onPressReveal() {
-        const mnemonics = Utils.generateMnemonics();
+        const mnemonics = WalletUtils.generateMnemonics();
         this.setState({ mnemonics });
     }
 
