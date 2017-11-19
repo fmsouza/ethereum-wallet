@@ -1,4 +1,5 @@
 import { action, observable } from 'mobx';
+import ethers from 'ethers';
 
 const INITIAL = {
     list: [],
@@ -15,6 +16,7 @@ export class WalletsStore {
     }
 
     @action addWallet(wallet) {
+        if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid Wallet');
         this.list.push(wallet);
     }
     
