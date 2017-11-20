@@ -1,9 +1,10 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
+import { Wallets as WalletActions } from 'common/actions';
 import NoWallets from './NoWallets';
 import WalletCard from './WalletCard';
 
@@ -21,6 +22,14 @@ export class WalletsOverview extends React.Component {
                 onPress={() => navigation.navigate('NewWalletName')} />
         )
     });
+
+    async componentWillMount() {
+        try {
+            await WalletActions.loadWallets();
+        } catch (e) {
+            console.warn(e);
+        }
+    }
 
     @autobind
     onPressWallet(wallet) {
@@ -42,6 +51,7 @@ export class WalletsOverview extends React.Component {
         const { wallets } = this.props;
         return (
             <View style={styles.container}>
+                {wallets.loading && <ActivityIndicator loading />}
                 {this.renderBody(wallets.list)}
             </View>
         );

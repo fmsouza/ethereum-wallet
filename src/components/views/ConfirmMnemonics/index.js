@@ -27,6 +27,7 @@ export class ConfirmMnemonics extends React.Component {
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
             await WalletsActions.addWallet(walletName, wallet);
             this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+            await WalletsActions.saveWallets();
         } catch (e) {
             console.warn(e);
         }

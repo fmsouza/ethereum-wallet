@@ -23,6 +23,7 @@ export class LoadPrivateKey extends React.Component {
             const { walletName } = this.props.navigation.state.params;
             await WalletsActions.addWallet(walletName, wallet);
             this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+            await WalletsActions.saveWallets();
         } catch (e) {
             console.warn(e);
         }
