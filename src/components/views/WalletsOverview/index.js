@@ -20,8 +20,6 @@ export class WalletsOverview extends React.Component {
                 onPress={() => navigation.navigate('NewWalletName')} />
         )
     });
-    
-    state = { wallets: [] };
 
     renderItem = ({ item }) => <WalletCard wallet={item} />
 
@@ -37,7 +35,7 @@ export class WalletsOverview extends React.Component {
     render() {
         const { wallets } = this.props;
         return (
-            <View style={styles.background}>
+            <View style={styles.container}>
                 {this.renderBody(wallets.list)}
             </View>
         );
@@ -45,7 +43,7 @@ export class WalletsOverview extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    background: {
+    container: {
         flex: 1,
         padding: measures.defaultPadding,
         alignItems: 'stretch',
