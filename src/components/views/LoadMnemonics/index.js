@@ -3,7 +3,8 @@ import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, InputWithIcon, TextBullet } from 'components/widgets';
 import { colors, measures } from 'common/styles';
-import * as Utils from 'common/utils';
+import { Wallet as WalletUtils } from 'common/utils';
+import { Wallets as WalletsActions } from 'common/actions';
 
 export class LoadMnemonics extends React.Component {
     
@@ -14,11 +15,16 @@ export class LoadMnemonics extends React.Component {
     state = { mnemonics: [] };
     
     @autobind
-    onPressOpenWallet() {
-        if (this.state.mnemonics.length > 0) {
+    async onPressOpenWallet() {
+        if (!this.state.mnemonics.length) return;
+        try {
             const { mnemonics } = this.state;
-            const wallet = Utils.loadWalletFromMnemonics(mnemonics);
-            this.props.navigation.navigate('WalletsOverview', { wallet, replaceRoute: true });
+            const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
+            const { walletName } = this.props.navigation.state.params;
+            await WalletsActions.addWallet(walletName, wallet);
+            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+        } catch (e) {
+            console.warn(e);
         }
     }
     

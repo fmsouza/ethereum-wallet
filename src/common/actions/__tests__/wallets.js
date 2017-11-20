@@ -7,7 +7,7 @@ describe('WalletsActions', () => {
         const mnemonics = WalletUtils.generateMnemonics();
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
         try {
-            await Action.addWallet(wallet);
+            await Action.addWallet("walletName", wallet);
         } catch (e) {
             fail(e);
         }
@@ -16,7 +16,7 @@ describe('WalletsActions', () => {
     it('should fail to add a wallet if not ethers.Wallet instance', async function() {
         const wallet = { privateKey: '54321', address: '123445' };
         try {
-            await Action.addWallet(wallet);
+            await Action.addWallet("walletName", wallet);
             fail('Should have thrown an error.');
         }
         catch (e) {

@@ -17,7 +17,7 @@ export class WalletsOverview extends React.Component {
                 name="add"
                 size="large"
                 color={colors.white}
-                onPress={() => navigation.navigate('NewWallet')} />
+                onPress={() => navigation.navigate('NewWalletName')} />
         )
     });
     

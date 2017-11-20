@@ -22,9 +22,10 @@ export class ConfirmMnemonics extends React.Component {
     async onPressConfirm() {
         if (!this.refs.confirm.isValidSequence()) return;
         const { mnemonics } = this.state;
+        const { walletName } = this.props.navigation.state.params;
         try {
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
-            await WalletsActions.addWallet(wallet);
+            await WalletsActions.addWallet(walletName, wallet);
             this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
         } catch (e) {
             console.warn(e);

@@ -15,6 +15,7 @@ const navigator = StackNavigator({
     LoadPrivateKey: { screen: Views.LoadPrivateKey },
     LoadWallet: { screen: Views.LoadWallet },
     NewWallet: { screen: Views.NewWallet },
+    NewWalletName: { screen: Views.NewWalletName },
     WalletsOverview: { screen: Views.WalletsOverview }
 }, {
     initialRouteName: INITIAL_ROUTE,

@@ -6,18 +6,18 @@ import { colors, measures } from 'common/styles';
 
 export class NewWallet extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "New Wallet"
-    });
+    static navigationOptions = { title: "New Wallet" };
     
     @autobind
     onPressLoad() {
-        this.props.navigation.navigate('LoadWallet');
+        const { walletName } = this.props.navigation.state.params;
+        this.props.navigation.navigate('LoadWallet', { walletName });
     }
     
     @autobind
     onPressCreate() {
-        this.props.navigation.navigate('CreateWallet');
+        const { walletName } = this.props.navigation.state.params;
+        this.props.navigation.navigate('CreateWallet', { walletName });
     }
 
     render() {

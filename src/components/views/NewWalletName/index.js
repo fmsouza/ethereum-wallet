@@ -6,48 +6,33 @@ import { colors, measures } from 'common/styles';
 import { Wallet as WalletUtils } from 'common/utils';
 import { Wallets as WalletsActions } from 'common/actions';
 
-export class LoadPrivateKey extends React.Component {
+export class NewWalletName extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Load Wallet"
-    });
+    static navigationOptions = { title: "New Wallet Name" };
 
-    state = { pk: '' };
+    state = { walletName: '' };
 
     @autobind
-    async onPressOpenWallet() {
-        if (!this.state.pk) return;
-        
-        try {
-            const wallet = WalletUtils.loadWalletFromPrivateKey(this.state.pk);
-            const { walletName } = this.props.navigation.state.params;
-            await WalletsActions.addWallet(walletName, wallet);
-            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
-        } catch (e) {
-            console.warn(e);
-        }
-    }
-
-    @autobind
-    onPressCamera() {
-        console.log("Pressed the camera icon");
+    onPressContinue() {
+        const { walletName } = this.state;
+        if (!walletName) return;
+        this.props.navigation.navigate('NewWallet', { walletName });
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.body}>
-                    <Text style={styles.message}>Private key</Text>
-                    <InputWithIcon
-                        icon="camera"
-                        placeholder="eg.: 3123012f3b1273d12a12b120b12731132b0e2"
-                        onChangeText={pk => this.setState({ pk })}
-                        onPressIcon={this.onPressCamera} />
+                    <Text style={styles.message}>Give a name to the new wallet</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Ex.: Vacations fund"
+                        onChangeText={walletName => this.setState({ walletName })} />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button
-                        children="Open wallet"
-                        onPress={this.onPressOpenWallet} />
+                        children="Next"
+                        onPress={this.onPressContinue} />
                 </View>
             </View>
         );
@@ -57,7 +42,7 @@ export class LoadPrivateKey extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'space-between',
         backgroundColor: colors.defaultBackground,
         padding: measures.defaultPadding
@@ -78,5 +63,15 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         height: 52
+    },
+    input: {
+        width: '90%',
+        borderBottomWidth: 1,
+        borderBottomColor: colors.black,
+        padding: 4,
+        paddingLeft: 0,
+        marginRight: 2,
+        textAlign: 'center',
+        color: colors.black
     }
 });

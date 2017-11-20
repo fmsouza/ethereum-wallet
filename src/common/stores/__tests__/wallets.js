@@ -1,5 +1,5 @@
 import { WalletsStore } from '../wallets';
-import { WalletUtils } from 'common/utils';
+import { Wallet as WalletUtils } from 'common/utils';
 
 describe('WalletsStore', () => {
 
@@ -16,15 +16,16 @@ describe('WalletsStore', () => {
         const mnemonics = WalletUtils.generateMnemonics();
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
         expect(walletsStore.list.length).toBe(0);
-        walletsStore.addWallet(wallet);
+        walletsStore.addWallet("walletName", wallet);
         expect(walletsStore.list.length).toBe(1);
+        expect(walletsStore.list[0].name).toBe("walletName");
         expect(walletsStore.list[0].getAddress()).toBe(wallet.getAddress());
     });
     
     it('should be able to remove a wallet instance from the store list', () => {
         const mnemonics = WalletUtils.generateMnemonics();
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
-        walletsStore.addWallet(wallet);
+        walletsStore.addWallet("walletName", wallet);
         expect(walletsStore.list.length).toBe(1);
         walletsStore.removeWallet(wallet);
         expect(walletsStore.list.length).toBe(0);
@@ -34,7 +35,7 @@ describe('WalletsStore', () => {
         const mnemonics = WalletUtils.generateMnemonics();
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
         expect(walletsStore.list.length).toBe(0);
-        walletsStore.addWallet(wallet);
+        walletsStore.addWallet("walletName", wallet);
         walletsStore.isLoading(true);
         walletsStore.reset();
         expect(walletsStore.list.length).toBe(0);

@@ -15,8 +15,9 @@ export class WalletsStore {
         this.loading = Boolean(state);
     }
 
-    @action addWallet(wallet) {
+    @action addWallet(walletName, wallet) {
         if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid Wallet');
+        wallet.name = walletName;
         this.list.push(wallet);
     }
     

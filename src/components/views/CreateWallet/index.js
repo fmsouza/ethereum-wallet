@@ -6,13 +6,12 @@ import { colors, measures } from 'common/styles';
 
 export class CreateWallet extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Create Wallet"
-    });
+    static navigationOptions = { title: "Create Wallet" };
     
     @autobind
     onPressProceed() {
-        this.props.navigation.navigate('CreateMnemonics');
+        const { walletName } = this.props.navigation.state.params;
+        this.props.navigation.navigate('CreateMnemonics', { walletName });
     }
 
     render() {

@@ -16,7 +16,7 @@ export default class WalletCard extends React.Component {
                     <Icon name="wallet" size="large" type="ent" />
                 </View>
                 <View style={styles.middleColumn}>
-                    <Text style={styles.title}>Personal</Text>
+                    <Text style={styles.title}>{wallet.name}</Text>
                     <View style={styles.balanceContainer}>
                         <Text style={styles.balance}>{balance} ETH</Text>
                         {loading && <ActivityIndicator style={styles.refresh} animating />}

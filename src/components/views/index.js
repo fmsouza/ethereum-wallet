@@ -5,4 +5,5 @@ export * from './LoadMnemonics';
 export * from './LoadPrivateKey';
 export * from './LoadWallet';
 export * from './NewWallet';
+export * from './NewWalletName';
 export * from './WalletsOverview';

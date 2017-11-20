@@ -5,18 +5,20 @@ import { colors, measures } from 'common/styles';
 
 export class LoadWallet extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Load Wallet"
-    });
+    static navigationOptions = { title: "Load Wallet" };
 
     render() {
-        const { navigate } = this.props.navigation;
+        const { navigate, state: { params: { walletName } } } = this.props.navigation;
         return (
                 <View style={styles.container}>
                     <Text style={styles.message}>Load the wallet from</Text>
                     <View style={styles.buttonsContainer}>
-                        <Button onPress={() => navigate('LoadPrivateKey')}>Private key</Button>
-                        <Button onPress={() => navigate('LoadMnemonics')}>Mnemonics</Button>
+                        <Button
+                            children="Private key"
+                            onPress={() => navigate('LoadPrivateKey', { walletName })} />
+                        <Button
+                            children="Mnemonics"
+                            onPress={() => navigate('LoadMnemonics', { walletName })} />
                     </View>
                 </View>
         );
