@@ -6,10 +6,24 @@ import { Wallet as WalletUtils } from 'common/utils';
 
 export default class WalletCard extends React.Component {
 
-    state = { balance: 0 };
+    state = { balance: 0, loading: false };
+
+    get balance() {
+        return WalletUtils.formatBalance(this.state.balance);
+    }
+
+    componentDidMount() {
+        const { wallet } = this.props;
+        this.setState(
+            { loading: true },
+            () => wallet.getBalance()
+                .then((balance) => this.setState({ balance, loading: false }))
+        );
+    }
 
     render() {
         const { onPress, wallet } = this.props;
+        const { balance, loading } = this.state;
         return (
             <TouchableWithoutFeedback onPress={() => onPress(wallet)}>
                 <View style={styles.container}>
@@ -19,7 +33,8 @@ export default class WalletCard extends React.Component {
                     <View style={styles.middleColumn}>
                         <Text style={styles.title}>{wallet.name}</Text>
                         <View style={styles.balanceContainer}>
-                            <Text style={styles.balance}>{WalletUtils.formatBalance(balance)} ETH</Text>
+                            <Text style={styles.balance}>{this.balance} ETH</Text>
+                            {loading && <ActivityIndicator animating />}
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
@@ -62,10 +77,6 @@ const styles = StyleSheet.create({
         fontSize: measures.fontSizeMedium - 1,
         color: colors.gray,
         marginRight: measures.defaultMargin
-    },
-    refresh: {
-        width: measures.fontSizeMedium - 1,
-        height: measures.fontSizeMedium - 1
     },
     next: {
         color: colors.lightGray
