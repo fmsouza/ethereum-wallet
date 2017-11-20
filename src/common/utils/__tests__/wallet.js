@@ -91,4 +91,10 @@ describe('Wallet utils', () => {
         expect(WalletUtils.formatBalance('1000000000000000001')).toBe('1.000000000000000001');
         expect(WalletUtils.formatBalance('9984937331995')).toBe('0.000009984937331995');
     });
+
+    it('`reduceBigNumbers` function should return a BigNumber representing the sum of all the BigNumber array elements', function() {
+        const items = [ethers.utils.bigNumberify('1'), ethers.utils.bigNumberify('2'), ethers.utils.bigNumberify('3')];
+        const result = WalletUtils.reduceBigNumbers(items);
+        expect(result.toString()).toBe('6');
+    });
 });

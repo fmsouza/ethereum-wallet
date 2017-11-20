@@ -26,6 +26,14 @@ export class WalletsStore {
         this.list = this.list.filter(w => w.getAddress() !== wallet.getAddress());
     }
 
+    @action setBalance(address, amount) {
+        const wallet = this.list.find(wallet => wallet.getAddress() === address);
+        if (!wallet) throw new Error('Wallet not found');
+        wallet.balance = amount;
+        const otherWallets = this.list.filter(wallet => wallet.getAddress() !== address);
+        this.list = [...otherWallets, wallet];
+    }
+
     @action reset() {
         this.list = INITIAL.list;
         this.loading = INITIAL.loading;

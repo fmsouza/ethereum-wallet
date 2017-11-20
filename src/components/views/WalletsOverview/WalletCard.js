@@ -4,15 +4,15 @@ import { inject, observer } from 'mobx-react';
 import { Icon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import { Wallet as WalletUtils } from 'common/utils';
+import { Wallets as WalletActions } from 'common/actions';
 
 @inject('prices')
 @observer
 export default class WalletCard extends React.Component {
 
-    state = { balance: 0, loading: false };
-
     get balance() {
-        return Number(WalletUtils.formatBalance(this.state.balance));
+        if (!this.props.wallet.balance) return 0;
+        return Number(WalletUtils.formatBalance(this.props.wallet.balance));
     }
 
     get fiatBalance() {
@@ -20,19 +20,11 @@ export default class WalletCard extends React.Component {
     }
 
     componentDidMount() {
-        const { wallet } = this.props;
-        this.setState(
-            { loading: true },
-            () => wallet.getBalance()
-                .then(
-                    (balance) => this.setState({ balance, loading: false })
-                )
-        );
+        WalletActions.updateBalance(this.props.wallet);
     }
 
     render() {
         const { onPress, wallet } = this.props;
-        const { balance, loading } = this.state;
         return (
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.container}>
@@ -44,7 +36,6 @@ export default class WalletCard extends React.Component {
                         <Text style={styles.description}>{wallet.description}</Text>
                     </View>
                     <View style={styles.rightColumn}>
-                        {loading && <ActivityIndicator animating />}
                         <View style={styles.balanceContainer}>
                             <Text style={styles.balance}>{this.balance.toFixed(3)}</Text>
                             <Text style={styles.fiatBalance}>US$ {this.fiatBalance.toFixed(2)}</Text>

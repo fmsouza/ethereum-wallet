@@ -53,7 +53,7 @@ export class WalletsOverview extends React.Component {
         const { wallets } = this.props;
         return (
             <View style={styles.container}>
-                <TotalBalance />
+                <TotalBalance wallets={wallets.list} />
                 {wallets.loading && <ActivityIndicator loading />}
                 {this.renderBody(wallets.list)}
             </View>

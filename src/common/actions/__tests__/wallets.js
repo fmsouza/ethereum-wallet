@@ -1,5 +1,6 @@
 import * as Action from '../wallets';
-import { WalletUtils } from 'common/utils';
+import { Wallet as WalletUtils } from 'common/utils';
+import { wallets as WalletsStore } from 'common/stores';
 
 describe('WalletsActions', () => {
 
@@ -10,6 +11,8 @@ describe('WalletsActions', () => {
             await Action.addWallet("walletName", wallet);
         } catch (e) {
             fail(e);
+        } finally {
+            WalletsStore.reset();
         }
     });
     
@@ -21,6 +24,23 @@ describe('WalletsActions', () => {
         }
         catch (e) {
             expect(e.message).toEqual('Invalid Wallet');
+        } finally {
+            WalletsStore.reset();
+        }
+    });
+
+    it('should be able to update a wallet balance', async function() {
+        const mnemonics = WalletUtils.generateMnemonics();
+        const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
+        try {
+            await Action.addWallet("walletName", wallet);
+            await Action.updateBalance(wallet);
+            expect(WalletsStore.list[0].getAddress()).toBe(wallet.getAddress());
+            expect(WalletsStore.list[0].balance).toBeInstanceOf(Object);
+        } catch (e) {
+            fail(e);
+        } finally {
+            WalletsStore.reset();
         }
     });
 });

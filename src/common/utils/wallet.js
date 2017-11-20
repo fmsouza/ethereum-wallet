@@ -28,6 +28,11 @@ export function loadWalletFromPrivateKey(pk) {
     }
 }
 
-export function formatBalance(balance){
+export function formatBalance(balance) {
     return utils.formatEther(balance);
+}
+
+export function reduceBigNumbers(items) {
+    if (!(items instanceof Array)) throw new Error('The input is not an Array');
+    return items.reduce((prev, next) => prev.add(next), utils.bigNumberify('0'));
 }

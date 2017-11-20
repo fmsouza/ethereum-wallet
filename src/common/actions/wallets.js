@@ -18,6 +18,11 @@ export async function loadWallets() {
     WalletsStore.isLoading(false);
 }
 
+export async function updateBalance(wallet) {
+    const balance = await wallet.getBalance();
+    WalletsStore.setBalance(wallet.getAddress(), balance);
+}
+
 export async function saveWallets() {
     await WalletsService.saveWalletPKs(WalletsStore.list);
 }
