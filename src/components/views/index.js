@@ -6,4 +6,5 @@ export * from './LoadPrivateKey';
 export * from './LoadWallet';
 export * from './NewWallet';
 export * from './NewWalletName';
+export * from './WalletDetails';
 export * from './WalletsOverview';
