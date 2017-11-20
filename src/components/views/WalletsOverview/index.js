@@ -36,13 +36,13 @@ export class WalletsOverview extends React.Component {
         console.log(wallet);
     }
 
-    renderItem = ({ item }) => <WalletCard wallet={item} onPress={this.onPressWallet} />
+    renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.onPressWallet(item)} />
 
     renderBody(wallets) {
         return (!wallets.length) ? <NoWallets /> : (
             <FlatList
                 data={wallets}
-                keyExtractor={item => item.getAddress()}
+                keyExtractor={(item, index) => index}
                 renderItem={this.renderItem} />
         );
     }

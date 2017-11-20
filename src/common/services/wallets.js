@@ -7,6 +7,6 @@ export async function loadWalletPKs() {
 }
 
 export async function saveWalletPKs(wallets) {
-    const map = wallets.map(({ privateKey, name }) => ({ privateKey, name }));
+    const map = wallets.map(({ description, name, privateKey }) => ({ description, name, privateKey }));
     await StorageService.setItem(Wallet.STORAGE_KEY, JSON.stringify(map));
 }

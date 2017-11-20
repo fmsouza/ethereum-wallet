@@ -9,7 +9,7 @@ export default class WalletCard extends React.Component {
     state = { balance: 0, loading: false };
 
     get balance() {
-        return WalletUtils.formatBalance(this.state.balance);
+        return Number(WalletUtils.formatBalance(this.state.balance)).toFixed(3);
     }
 
     componentDidMount() {
@@ -17,7 +17,9 @@ export default class WalletCard extends React.Component {
         this.setState(
             { loading: true },
             () => wallet.getBalance()
-                .then((balance) => this.setState({ balance, loading: false }))
+                .then(
+                    (balance) => this.setState({ balance, loading: false })
+                )
         );
     }
 
@@ -25,20 +27,20 @@ export default class WalletCard extends React.Component {
         const { onPress, wallet } = this.props;
         const { balance, loading } = this.state;
         return (
-            <TouchableWithoutFeedback onPress={() => onPress(wallet)}>
+            <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.container}>
                     <View style={styles.leftColumn}>
                         <Icon name="wallet" size="large" type="ent" />
                     </View>
                     <View style={styles.middleColumn}>
                         <Text style={styles.title}>{wallet.name}</Text>
-                        <View style={styles.balanceContainer}>
-                            <Text style={styles.balance}>{this.balance} ETH</Text>
-                            {loading && <ActivityIndicator animating />}
-                        </View>
+                        <Text style={styles.description}>{wallet.description}</Text>
                     </View>
                     <View style={styles.rightColumn}>
-                        <Icon name="arrow-forward" style={styles.next} />
+                        <View style={styles.balanceContainer}>
+                            {loading && <ActivityIndicator animating />}
+                            <Text style={styles.balance}>{this.balance} ETH</Text>
+                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -54,19 +56,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: measures.defaultPadding,
         marginBottom: measures.defaultMargin,
-        height: 60
+        height: 70
     },
     leftColumn: {
-        flex: 1,
+        width: 40,
         alignItems: 'flex-start',
         justifyContent: 'center'
     },
     middleColumn: {
-        flex: 7
+        flex: 2
+    },
+    rightColumn: {
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        flexDirection: 'column'
     },
     title: {
         fontSize: measures.fontSizeMedium,
+        color: colors.gray,
         fontWeight: 'bold'
+    },
+    description: {
+        fontSize: measures.fontSizeMedium - 2,
+        color: colors.gray,
     },
     balanceContainer: {
         alignItems: 'center',
@@ -76,7 +89,7 @@ const styles = StyleSheet.create({
     balance: {
         fontSize: measures.fontSizeMedium - 1,
         color: colors.gray,
-        marginRight: measures.defaultMargin
+        marginLeft: measures.defaultMargin
     },
     next: {
         color: colors.lightGray

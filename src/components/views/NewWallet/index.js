@@ -10,14 +10,14 @@ export class NewWallet extends React.Component {
     
     @autobind
     onPressLoad() {
-        const { walletName } = this.props.navigation.state.params;
-        this.props.navigation.navigate('LoadWallet', { walletName });
+        const { walletName, walletDescription } = this.props.navigation.state.params;
+        this.props.navigation.navigate('LoadWallet', { walletName, walletDescription });
     }
     
     @autobind
     onPressCreate() {
-        const { walletName } = this.props.navigation.state.params;
-        this.props.navigation.navigate('CreateWallet', { walletName });
+        const { walletName, walletDescription } = this.props.navigation.state.params;
+        this.props.navigation.navigate('CreateWallet', { walletName, walletDescription });
     }
 
     render() {

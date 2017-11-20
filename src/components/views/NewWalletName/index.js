@@ -10,13 +10,13 @@ export class NewWalletName extends React.Component {
     
     static navigationOptions = { title: "New Wallet Name" };
 
-    state = { walletName: '' };
+    state = { walletName: '', walletDescription: '' };
 
     @autobind
     onPressContinue() {
-        const { walletName } = this.state;
+        const { walletName, walletDescription } = this.state;
         if (!walletName) return;
-        this.props.navigation.navigate('NewWallet', { walletName });
+        this.props.navigation.navigate('NewWallet', { walletName, walletDescription: walletDescription || '' });
     }
 
     render() {
@@ -28,6 +28,11 @@ export class NewWalletName extends React.Component {
                         style={styles.input}
                         placeholder="Ex.: Vacations fund"
                         onChangeText={walletName => this.setState({ walletName })} />
+                    <Text style={styles.message}>Give a description too (optional)</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Ex.: For spending during next vacations"
+                        onChangeText={walletDescription => this.setState({ walletDescription })} />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button

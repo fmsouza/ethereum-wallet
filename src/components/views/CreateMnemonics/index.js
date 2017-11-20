@@ -14,8 +14,8 @@ export class CreateMnemonics extends React.Component {
     @autobind
     onPressProceed() {
         const { mnemonics } = this.state;
-        const { walletName } = this.props.navigation.state.params;
-        this.props.navigation.navigate('ConfirmMnemonics', { mnemonics, walletName });
+        const { walletName, walletDescription } = this.props.navigation.state.params;
+        this.props.navigation.navigate('ConfirmMnemonics', { mnemonics, walletName, walletDescription });
     }
 
     @autobind

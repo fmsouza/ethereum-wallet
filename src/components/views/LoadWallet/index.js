@@ -8,17 +8,17 @@ export class LoadWallet extends React.Component {
     static navigationOptions = { title: "Load Wallet" };
 
     render() {
-        const { navigate, state: { params: { walletName } } } = this.props.navigation;
+        const { navigate, state: { params: { walletName, walletDescription } } } = this.props.navigation;
         return (
                 <View style={styles.container}>
                     <Text style={styles.message}>Load the wallet from</Text>
                     <View style={styles.buttonsContainer}>
                         <Button
                             children="Private key"
-                            onPress={() => navigate('LoadPrivateKey', { walletName })} />
+                            onPress={() => navigate('LoadPrivateKey', { walletName, walletDescription })} />
                         <Button
                             children="Mnemonics"
-                            onPress={() => navigate('LoadMnemonics', { walletName })} />
+                            onPress={() => navigate('LoadMnemonics', { walletName, walletDescription })} />
                     </View>
                 </View>
         );

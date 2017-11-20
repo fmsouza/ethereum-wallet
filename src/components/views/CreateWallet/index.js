@@ -10,8 +10,8 @@ export class CreateWallet extends React.Component {
     
     @autobind
     onPressProceed() {
-        const { walletName } = this.props.navigation.state.params;
-        this.props.navigation.navigate('CreateMnemonics', { walletName });
+        const { walletName, walletDescription } = this.props.navigation.state.params;
+        this.props.navigation.navigate('CreateMnemonics', { walletName, walletDescription });
     }
 
     render() {
