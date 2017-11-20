@@ -1,4 +1,5 @@
+import * as Price from './price';
 import * as Storage from './storage';
 import * as Wallets from './wallets';
 
-export { Storage, Wallets };
+export { Price, Storage, Wallets };

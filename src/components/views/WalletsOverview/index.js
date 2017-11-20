@@ -4,8 +4,9 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
-import { Wallets as WalletActions } from 'common/actions';
+import { Wallets as WalletActions, Prices as PricesActions } from 'common/actions';
 import NoWallets from './NoWallets';
+import TotalBalance from './TotalBalance';
 import WalletCard from './WalletCard';
 
 @inject('wallets')
@@ -26,6 +27,7 @@ export class WalletsOverview extends React.Component {
     async componentWillMount() {
         try {
             await WalletActions.loadWallets();
+            await PricesActions.getPrice();
         } catch (e) {
             console.warn(e);
         }
@@ -51,6 +53,7 @@ export class WalletsOverview extends React.Component {
         const { wallets } = this.props;
         return (
             <View style={styles.container}>
+                <TotalBalance />
                 {wallets.loading && <ActivityIndicator loading />}
                 {this.renderBody(wallets.list)}
             </View>

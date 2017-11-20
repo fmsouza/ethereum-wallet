@@ -1,4 +1,4 @@
-import wallets from '../stores/wallets';
+import * as Prices from './prices';
 import * as Wallets from './wallets';
 
-export { Wallets };
+export { Prices, Wallets };

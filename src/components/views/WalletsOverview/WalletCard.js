@@ -1,15 +1,22 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import { Icon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import { Wallet as WalletUtils } from 'common/utils';
 
+@inject('prices')
+@observer
 export default class WalletCard extends React.Component {
 
     state = { balance: 0, loading: false };
 
     get balance() {
-        return Number(WalletUtils.formatBalance(this.state.balance)).toFixed(3);
+        return Number(WalletUtils.formatBalance(this.state.balance));
+    }
+
+    get fiatBalance() {
+        return Number(this.props.prices.usd * this.balance);
     }
 
     componentDidMount() {
@@ -37,9 +44,10 @@ export default class WalletCard extends React.Component {
                         <Text style={styles.description}>{wallet.description}</Text>
                     </View>
                     <View style={styles.rightColumn}>
+                        {loading && <ActivityIndicator animating />}
                         <View style={styles.balanceContainer}>
-                            {loading && <ActivityIndicator animating />}
-                            <Text style={styles.balance}>{this.balance} ETH</Text>
+                            <Text style={styles.balance}>{this.balance.toFixed(3)}</Text>
+                            <Text style={styles.fiatBalance}>US$ {this.fiatBalance.toFixed(2)}</Text>
                         </View>
                     </View>
                 </View>
@@ -68,9 +76,8 @@ const styles = StyleSheet.create({
     },
     rightColumn: {
         flex: 1,
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'column'
+        justifyContent: 'flex-end',
+        flexDirection: 'row'
     },
     title: {
         fontSize: measures.fontSizeMedium,
@@ -82,12 +89,18 @@ const styles = StyleSheet.create({
         color: colors.gray,
     },
     balanceContainer: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        flexDirection: 'row'
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        flexDirection: 'column'
     },
     balance: {
         fontSize: measures.fontSizeMedium - 1,
+        color: colors.gray,
+        marginLeft: measures.defaultMargin,
+        fontWeight: 'bold'
+    },
+    fiatbalance: {
+        fontSize: measures.fontSizeMedium - 3,
         color: colors.gray,
         marginLeft: measures.defaultMargin
     },
