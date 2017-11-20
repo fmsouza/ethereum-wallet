@@ -2,10 +2,17 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
+import { Wallet as WalletUtils } from 'common/utils';
 
 export default class WalletCard extends React.Component {
 
     state = { balance: 0, loading: false };
+
+    componentDidMount() {
+        this.setState({ loading: true }, () => setTimeout(() => {
+            this.props.wallet.getBalance().then(balance => this.setState({ balance, loading: false }));
+        }, 1));
+    }
 
     render() {
         const { wallet } = this.props;
@@ -18,7 +25,7 @@ export default class WalletCard extends React.Component {
                 <View style={styles.middleColumn}>
                     <Text style={styles.title}>{wallet.name}</Text>
                     <View style={styles.balanceContainer}>
-                        <Text style={styles.balance}>{balance} ETH</Text>
+                        <Text style={styles.balance}>{WalletUtils.formatBalance(balance)} ETH</Text>
                         {loading && <ActivityIndicator style={styles.refresh} animating />}
                     </View>
                 </View>

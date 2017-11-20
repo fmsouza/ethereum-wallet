@@ -84,4 +84,11 @@ describe('Wallet utils', () => {
             fail('Should\'ve thrown an error');
         } catch(e) { expect(e.message).toEqual('invalid private key')};
     });
+
+    it('`formatBalance` function should return a formatted ETH balance string', function() {
+        expect(WalletUtils.formatBalance('998493733199591196')).toBe('0.998493733199591196');
+        expect(WalletUtils.formatBalance('1000000000000000000')).toBe('1.0');
+        expect(WalletUtils.formatBalance('1000000000000000001')).toBe('1.000000000000000001');
+        expect(WalletUtils.formatBalance('9984937331995')).toBe('0.000009984937331995');
+    });
 });

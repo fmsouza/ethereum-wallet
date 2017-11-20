@@ -27,3 +27,7 @@ export function loadWalletFromPrivateKey(pk) {
         throw new Error('invalid private key');
     }
 }
+
+export function formatBalance(balance){
+    return utils.formatEther(balance);
+}
