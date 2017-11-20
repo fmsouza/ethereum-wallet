@@ -47,7 +47,6 @@ export class WalletsOverview extends React.Component {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: colors.secondary,
         padding: measures.defaultPadding,
         alignItems: 'stretch',
         justifyContent: 'flex-start'
