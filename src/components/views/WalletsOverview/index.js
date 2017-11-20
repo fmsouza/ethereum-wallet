@@ -1,4 +1,5 @@
 import React from 'react';
+import autobind from 'autobind-decorator';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from 'components/widgets';
@@ -21,7 +22,12 @@ export class WalletsOverview extends React.Component {
         )
     });
 
-    renderItem = ({ item }) => <WalletCard wallet={item} />
+    @autobind
+    onPressWallet(wallet) {
+        console.log(wallet);
+    }
+
+    renderItem = ({ item }) => <WalletCard wallet={item} onPress={this.onPressWallet} />
 
     renderBody(wallets) {
         return (!wallets.length) ? <NoWallets /> : (
