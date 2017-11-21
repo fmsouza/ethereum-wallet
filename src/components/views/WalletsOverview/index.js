@@ -35,6 +35,7 @@ export class WalletsOverview extends React.Component {
 
     @autobind
     onPressWallet(wallet) {
+        WalletActions.selectWallet(wallet);
         this.props.navigation.navigate('WalletDetails', { wallet });
     }
 

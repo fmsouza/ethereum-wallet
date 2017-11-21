@@ -1,4 +1,4 @@
-import { wallets as WalletsStore } from 'common/stores';
+import { wallet as WalletStore, wallets as WalletsStore } from 'common/stores';
 import { Wallets as WalletsService } from 'common/services';
 import { Wallet as WalletUtils } from 'common/utils';
 
@@ -25,4 +25,8 @@ export async function updateBalance(wallet) {
 
 export async function saveWallets() {
     await WalletsService.saveWalletPKs(WalletsStore.list);
+}
+
+export function selectWallet(wallet) {
+    WalletStore.select(wallet);
 }
