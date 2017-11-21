@@ -23,10 +23,14 @@ export async function updateBalance(wallet) {
     WalletsStore.setBalance(wallet.getAddress(), balance);
 }
 
+export async function removeWallet(wallet) {
+    WalletsStore.removeWallet(wallet);
+}
+
 export async function saveWallets() {
     await WalletsService.saveWalletPKs(WalletsStore.list);
 }
 
-export function selectWallet(wallet) {
+export async function selectWallet(wallet) {
     WalletStore.select(wallet);
 }

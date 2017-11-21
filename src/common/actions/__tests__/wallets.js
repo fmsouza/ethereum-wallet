@@ -68,4 +68,19 @@ describe('WalletsActions', () => {
             WalletsStore.reset();
         }
     });
+
+    it('should remove an existing wallet from the store', async function() {
+        const mnemonics = WalletUtils.generateMnemonics();
+        const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
+        try {
+            await Action.addWallet("walletName", wallet);
+            expect(WalletsStore.list.length).toBe(1);
+            await Action.removeWallet(wallet);
+            expect(WalletsStore.list.length).toBe(0);
+        } catch (e) {
+            fail(e);
+        } finally {
+            WalletsStore.reset();
+        }
+    });
 });
