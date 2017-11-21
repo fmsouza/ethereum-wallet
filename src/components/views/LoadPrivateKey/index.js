@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, InputWithIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
@@ -8,16 +8,14 @@ import { Wallets as WalletsActions } from 'common/actions';
 
 export class LoadPrivateKey extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Load Wallet"
-    });
+    static navigationOptions = { title: 'Load Wallet' };
 
     state = { pk: '' };
 
     @autobind
     async onPressOpenWallet() {
         if (!this.state.pk) return;
-        
+        Keyboard.dismiss();
         try {
             const wallet = WalletUtils.loadWalletFromPrivateKey(this.state.pk);
             const { walletName, walletDescription } = this.props.navigation.state.params;

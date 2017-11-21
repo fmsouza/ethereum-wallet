@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, InputWithIcon, TextBullet } from 'components/widgets';
 import { colors, measures } from 'common/styles';
@@ -8,15 +8,14 @@ import { Wallets as WalletsActions } from 'common/actions';
 
 export class LoadMnemonics extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
-        title: "Load Wallet"
-    });
+    static navigationOptions = { title: 'Load Wallet' };
 
     state = { mnemonics: [] };
     
     @autobind
     async onPressOpenWallet() {
         if (!this.state.mnemonics.length) return;
+        Keyboard.dismiss();
         try {
             const { mnemonics } = this.state;
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);

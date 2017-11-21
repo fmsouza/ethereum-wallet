@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, InputWithIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
@@ -14,6 +14,7 @@ export class NewWalletName extends React.Component {
 
     @autobind
     onPressContinue() {
+        Keyboard.dismiss();
         const { walletName, walletDescription } = this.state;
         if (!walletName) return;
         this.props.navigation.navigate('NewWallet', { walletName, walletDescription: walletDescription || '' });
@@ -27,6 +28,7 @@ export class NewWalletName extends React.Component {
                     <TextInput
                         style={styles.input}
                         placeholder="Ex.: Vacations fund"
+                        underlineColorAndroid="transparent"
                         onChangeText={walletName => this.setState({ walletName })} />
                     <Text style={styles.message}>Give a description too (optional)</Text>
                     <TextInput
