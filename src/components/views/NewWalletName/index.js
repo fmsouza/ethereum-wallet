@@ -31,6 +31,7 @@ export class NewWalletName extends React.Component {
                     <Text style={styles.message}>Give a description too (optional)</Text>
                     <TextInput
                         style={styles.input}
+                        underlineColorAndroid="transparent"
                         placeholder="Ex.: For spending during next vacations"
                         onChangeText={walletDescription => this.setState({ walletDescription })} />
                 </View>

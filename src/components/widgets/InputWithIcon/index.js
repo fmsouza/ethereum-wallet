@@ -35,8 +35,9 @@ export class InputWithIcon extends React.Component {
                     autoCorrect={false}
                     value={this.state.text}
                     onChangeText={this.onChangeText}
-                    placeholderTextColor={colors.black}
-                    placeholder={placeholder} />
+                    underlineColorAndroid="transparent"
+                    placeholder={placeholder}
+                    placeholderTextColor={colors.black} />
                 <TouchableOpacity onPress={this.onPressIcon}>
                     <Icon
                         name={icon}
