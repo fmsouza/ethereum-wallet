@@ -1,10 +1,10 @@
-import * as Price from '../price';
+import * as Api from '../api';
 
-describe('PriceService', () => {
+describe('ApiService', () => {
 
     it('should be able to get the price conversion between ETH, USD, and EUR', async function() {
         try {
-            const result = await Price.getPrice();
+            const result = await Api.getPrice();
             expect(result.status).toBe(200);
             expect(result.data.USD).toBeDefined();
             expect(result.data.USD).not.toBeNaN();

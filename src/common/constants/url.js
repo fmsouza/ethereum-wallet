@@ -1,0 +1,1 @@
+export const CRYPTO_COMPARE = 'https://min-api.cryptocompare.com';
