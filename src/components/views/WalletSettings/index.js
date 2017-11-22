@@ -29,7 +29,7 @@ export class WalletSettings extends React.Component {
                 <ListItem onPress={this.onPressRemoveWallet}>
                     <View style={styles.itemContainer}>
                         <View style={styles.icon}>
-                            <Icon name="trash" />
+                            <Icon name='trash' />
                         </View>
                         <Text style={styles.itemTitle}>Remove wallet</Text>
                     </View>
