@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as Views from 'components/views';
 import { Button } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 
 export class LoadWallet extends React.Component {
     
-    static navigationOptions = { title: "Load Wallet" };
+    static navigationOptions = { title: 'Load Wallet' };
 
     render() {
         const { navigate, state: { params: { walletName, walletDescription } } } = this.props.navigation;
@@ -15,10 +16,10 @@ export class LoadWallet extends React.Component {
                     <View style={styles.buttonsContainer}>
                         <Button
                             children="Private key"
-                            onPress={() => navigate('LoadPrivateKey', { walletName, walletDescription })} />
+                            onPress={() => navigate(Views.LoadPrivateKey.name, { walletName, walletDescription })} />
                         <Button
                             children="Mnemonics"
-                            onPress={() => navigate('LoadMnemonics', { walletName, walletDescription })} />
+                            onPress={() => navigate(Views.LoadMnemonics.name, { walletName, walletDescription })} />
                     </View>
                 </View>
         );

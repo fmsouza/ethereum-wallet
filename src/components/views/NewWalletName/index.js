@@ -1,6 +1,7 @@
 import React from 'react';
 import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
+import * as Views from 'components/views';
 import { Button, InputWithIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import { Wallet as WalletUtils } from 'common/utils';
@@ -8,7 +9,7 @@ import { Wallets as WalletsActions } from 'common/actions';
 
 export class NewWalletName extends React.Component {
     
-    static navigationOptions = { title: "New Wallet Name" };
+    static navigationOptions = { title: 'New Wallet Name' };
 
     state = { walletName: '', walletDescription: '' };
 
@@ -17,7 +18,7 @@ export class NewWalletName extends React.Component {
         Keyboard.dismiss();
         const { walletName, walletDescription } = this.state;
         if (!walletName) return;
-        this.props.navigation.navigate('NewWallet', { walletName, walletDescription: walletDescription || '' });
+        this.props.navigation.navigate(Views.NewWallet.name, { walletName, walletDescription: walletDescription || '' });
     }
 
     render() {

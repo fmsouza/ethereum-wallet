@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
+import * as Views from 'components/views';
 import { Button, InputWithIcon, TextBullet } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import { Wallet as WalletUtils } from 'common/utils';
@@ -21,7 +22,7 @@ export class LoadMnemonics extends React.Component {
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
             const { walletName, walletDescription } = this.props.navigation.state.params;
             await WalletsActions.addWallet(walletName, wallet, walletDescription);
-            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+            this.props.navigation.navigate(Views.WalletsOverview.name, { replaceRoute: true });
             await WalletsActions.saveWallets();
         } catch (e) {
             console.warn(e);
@@ -35,7 +36,6 @@ export class LoadMnemonics extends React.Component {
     );
 
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={styles.body}>
@@ -44,13 +44,13 @@ export class LoadMnemonics extends React.Component {
                         {this.state.mnemonics.map(this.renderMnemonic)}
                     </View>
                     <InputWithIcon
-                        icon="send"
-                        placeholder="Type the mnemonic here"
+                        icon='send'
+                        placeholder='Type the mnemonic here'
                         onPressIcon={text => this.setState({ mnemonics: this.state.mnemonics.concat([text]) })} />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button
-                        children="Open wallet"
+                        children='Open wallet'
                         onPress={this.onPressOpenWallet} />
                 </View>
             </View>

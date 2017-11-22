@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
+import * as Views from 'components/views';
 import { Button } from 'components/widgets';
 import { Wallet as WalletUtils } from 'common/utils';
 import { colors, measures } from 'common/styles';
@@ -9,7 +10,7 @@ import ConfirmBox from './ConfirmBox';
 
 export class ConfirmMnemonics extends React.Component {
     
-    static navigationOptions = { title: "Create Wallet" };
+    static navigationOptions = { title: 'Create Wallet' };
 
     state = { mnemonics: null };
 
@@ -26,7 +27,7 @@ export class ConfirmMnemonics extends React.Component {
         try {
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
             await WalletsActions.addWallet(walletName, wallet, walletDescription);
-            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+            this.props.navigation.navigate(Views.WalletsOverview.name, { replaceRoute: true });
             await WalletsActions.saveWallets();
         } catch (e) {
             console.warn(e);
@@ -37,7 +38,7 @@ export class ConfirmMnemonics extends React.Component {
         return (
             <View style={styles.container}>
                 <View />
-                <ConfirmBox ref="confirm" mnemonics={this.state.mnemonics} />
+                <ConfirmBox ref='confirm' mnemonics={this.state.mnemonics} />
                 <View style={styles.buttonsContainer}>
                     <Button onPress={this.onPressConfirm}>Confirm & open wallet</Button>
                 </View>

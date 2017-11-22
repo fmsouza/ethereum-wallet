@@ -1,17 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
+import * as Views from 'components/views';
 import { Button } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 
 export class CreateWallet extends React.Component {
     
-    static navigationOptions = { title: "Create Wallet" };
+    static navigationOptions = { title: 'Create Wallet' };
     
     @autobind
     onPressProceed() {
         const { walletName, walletDescription } = this.props.navigation.state.params;
-        this.props.navigation.navigate('CreateMnemonics', { walletName, walletDescription });
+        this.props.navigation.navigate(Views.CreateMnemonics.name, { walletName, walletDescription });
     }
 
     render() {
