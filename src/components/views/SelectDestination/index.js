@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator';
 import { Button, InputWithIcon } from 'components/widgets';
 import { colors, measures } from 'common/styles';
 import CameraView from './CameraView';
+import Recents from './Recents';
 
 export class SelectDestination extends React.Component {
     
@@ -40,16 +41,16 @@ export class SelectDestination extends React.Component {
     
     @autobind
     onPressContinue() {
-        
+        console.log(this.state.address);
     }
 
     renderContent() {
-        if (this.state.showCamera) return (
+        if (!this.state.showCamera) return <Recents onPressItem={address => this.refs.input.onChangeText(address)} />;
+        return (
             <CameraView
                 onBarCodeRead={this.onCameraRead}
                 onPressClose={() => this.setState({ showCamera: false })} />
-        )
-        else return null;
+        );
     }
 
     render() {
