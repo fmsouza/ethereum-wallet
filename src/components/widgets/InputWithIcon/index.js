@@ -19,9 +19,7 @@ export class InputWithIcon extends React.Component {
     onPressIcon() {
         let { text } = this.state;
         text = text.trim();
-        if (text.length === 0) return;
         this.props.onPressIcon(text);
-        this.onChangeText('');
     }
 
     render() {
