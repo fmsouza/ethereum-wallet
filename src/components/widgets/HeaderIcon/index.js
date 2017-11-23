@@ -13,6 +13,6 @@ export const HeaderIcon = ({ onPress, ...props }) => (
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: measures.defaultMargin
+        marginHorizontal: measures.defaultMargin * 2
     }
 });
