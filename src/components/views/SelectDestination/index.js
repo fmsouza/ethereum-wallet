@@ -31,7 +31,6 @@ export class SelectDestination extends React.Component {
     
     @autobind
     onCameraRead({ type, data }) {
-        console.log(type, data);
         if (type === 'QR_CODE') {
             Vibration.vibrate();
             this.refs.input.onChangeText(data);
@@ -47,8 +46,8 @@ export class SelectDestination extends React.Component {
     renderContent() {
         if (this.state.showCamera) return (
             <CameraView
-                onPressClose={() => this.setState({ showCamera: false })}
-                onBarCodeRead={this.onCameraRead} />
+                onBarCodeRead={this.onCameraRead}
+                onPressClose={() => this.setState({ showCamera: false })} />
         )
         else return null;
     }
