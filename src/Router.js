@@ -25,7 +25,8 @@ const navigator = StackNavigator({
         headerStyle: {
             backgroundColor: colors.primary,
         },
-        headerTintColor: colors.secondary
+        headerTintColor: colors.secondary,
+        tintColor: colors.secondary
     }
 });
 
