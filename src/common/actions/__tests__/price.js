@@ -8,6 +8,7 @@ describe('PriceActions', () => {
             await Action.getPrice();
             expect(PricesStore.usd).toBeGreaterThan(0);
             expect(PricesStore.eur).toBeGreaterThan(0);
+            expect(PricesStore.brl).toBeGreaterThan(0);
         } catch (e) {
             fail(e);
         }
