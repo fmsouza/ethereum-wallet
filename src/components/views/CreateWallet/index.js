@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import * as Views from 'components/views';
-import { Button } from 'components/widgets';
-import { colors, measures } from 'common/styles';
+import * as Views from '@components/views';
+import { Button } from '@components/widgets';
+import { colors, measures } from '@common/styles';
 
 export class CreateWallet extends React.Component {
     

@@ -1,5 +1,5 @@
 import * as Action from '../prices';
-import { prices as PricesStore } from 'common/stores';
+import { prices as PricesStore } from '@common/stores';
 
 describe('PriceActions', () => {
 

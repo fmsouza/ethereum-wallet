@@ -1,5 +1,5 @@
 import * as StorageService from './storage';
-import { Wallet } from 'common/constants';
+import { Wallet } from '@common/constants';
 
 export async function loadWalletPKs() {
     const pks = await StorageService.getItem(Wallet.STORAGE_KEY);

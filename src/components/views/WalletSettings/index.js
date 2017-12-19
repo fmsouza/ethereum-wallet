@@ -2,9 +2,9 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
-import { Icon } from 'components/widgets';
-import { colors, measures } from 'common/styles';
-import { Wallets as WalletsActions } from 'common/actions';
+import { Icon } from '@components/widgets';
+import { colors, measures } from '@common/styles';
+import { Wallets as WalletsActions } from '@common/actions';
 import ListItem from './ListItem';
 
 @inject('wallet')

@@ -11,7 +11,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/dist/MaterialCommun
 import Octicon from 'react-native-vector-icons/dist/Octicons';
 import Zocial from 'react-native-vector-icons/dist/Zocial';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
-import { colors, measures } from 'common/styles';
+import { colors, measures } from '@common/styles';
 
 function getSize(size) {
     if ((size >>> 0) > 0) return size;

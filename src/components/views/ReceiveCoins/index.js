@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import QRCode from 'react-native-qrcode-svg';
-import { colors, measures } from 'common/styles';
+import { colors, measures } from '@common/styles';
 
 @inject('wallet')
 @observer

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from 'components/widgets';
-import { colors, measures } from 'common/styles';
+import { Icon } from '@components/widgets';
+import { colors, measures } from '@common/styles';
 
 export class NumberGrid extends React.Component {
 

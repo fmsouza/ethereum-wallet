@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import _ from 'lodash';
-import { TextBullet } from 'components/widgets';
-import { colors } from 'common/styles';
+import { TextBullet } from '@components/widgets';
+import { colors } from '@common/styles';
 
 export default class ConfirmBox extends React.Component {
 

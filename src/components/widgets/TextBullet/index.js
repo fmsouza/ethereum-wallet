@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors, measures } from 'common/styles';
+import { colors, measures } from '@common/styles';
 
 export const TextBullet = ({ children }) => (
     <View style={styles.container}>

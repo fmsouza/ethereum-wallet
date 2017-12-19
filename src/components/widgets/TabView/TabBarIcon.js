@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from 'components/widgets';
-import { colors } from 'common/styles';
+import { Icon } from '@components/widgets';
+import { colors } from '@common/styles';
 
 const getLabelColor = (active) => active ? styles.activeLabel : styles.label;
 

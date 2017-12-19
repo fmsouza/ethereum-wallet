@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import * as Views from 'components/views';
-import { Button } from 'components/widgets';
-import { Wallet as WalletUtils } from 'common/utils';
-import { colors, measures } from 'common/styles';
-import { Wallets as WalletsActions } from 'common/actions';
+import * as Views from '@components/views';
+import { Button } from '@components/widgets';
+import { Wallet as WalletUtils } from '@common/utils';
+import { colors, measures } from '@common/styles';
+import { Wallets as WalletsActions } from '@common/actions';
 import ConfirmBox from './ConfirmBox';
 
 export class ConfirmMnemonics extends React.Component {

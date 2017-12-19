@@ -1,6 +1,6 @@
 import React from 'react';
-import { TabView } from 'components/widgets';
-import { colors, measures } from 'common/styles';
+import { TabView } from '@components/widgets';
+import { colors, measures } from '@common/styles';
 import { ReceiveCoins, SendCoins, WalletExtract, WalletSettings } from '../index';
 
 export class WalletDetails extends React.Component {

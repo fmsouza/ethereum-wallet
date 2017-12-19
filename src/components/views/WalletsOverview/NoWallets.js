@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from 'common/styles';
+import { colors } from '@common/styles';
 
 export default () => (
     <View style={styles.container}>

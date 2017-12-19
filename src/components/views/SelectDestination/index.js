@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, Vibration, View } from 'react-native';
 import Permissions from 'react-native-permissions';
 import autobind from 'autobind-decorator';
-import { Button, InputWithIcon } from 'components/widgets';
-import { colors, measures } from 'common/styles';
+import { Button, InputWithIcon } from '@components/widgets';
+import { colors, measures } from '@common/styles';
 import CameraView from './CameraView';
 import Recents from './Recents';
 

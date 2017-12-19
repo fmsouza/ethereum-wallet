@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors, measures } from 'common/styles';
+import { colors, measures } from '@common/styles';
 import Balance from './Balance';
 
 export class WalletExtract extends React.Component {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import * as Views from 'components/views';
-import { Button, InputWithIcon } from 'components/widgets';
-import { colors, measures } from 'common/styles';
-import { Wallet as WalletUtils } from 'common/utils';
-import { Wallets as WalletsActions } from 'common/actions';
+import * as Views from '@components/views';
+import { Button, InputWithIcon } from '@components/widgets';
+import { colors, measures } from '@common/styles';
+import { Wallet as WalletUtils } from '@common/utils';
+import { Wallets as WalletsActions } from '@common/actions';
 
 export class LoadPrivateKey extends React.Component {
     

@@ -1,5 +1,5 @@
-import { Api as ApiService } from 'common/services';
-import { prices as PricesStore } from 'common/stores';
+import { Api as ApiService } from '@common/services';
+import { prices as PricesStore } from '@common/stores';
 
 export async function getPrice() {
     PricesStore.isLoading(true);

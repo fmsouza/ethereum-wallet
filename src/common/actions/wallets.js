@@ -1,6 +1,6 @@
-import { wallet as WalletStore, wallets as WalletsStore } from 'common/stores';
-import { Wallets as WalletsService } from 'common/services';
-import { Wallet as WalletUtils } from 'common/utils';
+import { wallet as WalletStore, wallets as WalletsStore } from '@common/stores';
+import { Wallets as WalletsService } from '@common/services';
+import { Wallet as WalletUtils } from '@common/utils';
 
 export async function addWallet(walletName, wallet, walletDescription = '') {
     WalletsStore.isLoading(true);

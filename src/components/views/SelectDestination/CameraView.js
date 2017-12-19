@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from 'components/widgets';
 import Camera from 'react-native-camera';
-import { colors } from 'common/styles';
+import { Icon } from '@components/widgets';
+import { colors } from '@common/styles';
 
 export default ({ onBarCodeRead, onPressClose }) => (
     <View style={styles.container}>

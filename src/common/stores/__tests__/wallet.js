@@ -1,5 +1,5 @@
 import { WalletStore } from '../wallet';
-import { Wallet as WalletUtils } from 'common/utils';
+import { Wallet as WalletUtils } from '@common/utils';
 
 describe('WalletStore', () => {
 

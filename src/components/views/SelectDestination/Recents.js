@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { colors, measures } from 'common/styles';
+import { colors, measures } from '@common/styles';
 
 const mockedItems = [
     { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b14' },

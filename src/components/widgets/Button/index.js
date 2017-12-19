@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { colors, measures } from 'common/styles';
+import { colors, measures } from '@common/styles';
 
 export const Button = ({ children, onPress }) => (
     <TouchableOpacity style={styles.container} onPress={onPress} underlayColor={null}>

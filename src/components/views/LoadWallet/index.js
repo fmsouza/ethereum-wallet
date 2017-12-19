@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as Views from 'components/views';
-import { Button } from 'components/widgets';
-import { colors, measures } from 'common/styles';
+import * as Views from '@components/views';
+import { Button } from '@components/widgets';
+import { colors, measures } from '@common/styles';
 
 export class LoadWallet extends React.Component {
     

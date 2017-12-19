@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { measures } from 'common/styles';
+import { measures } from '@common/styles';
 
 export default ({ children, title, onPress }) => (
     <TouchableWithoutFeedback onPress={onPress}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Icon } from 'components/widgets';
-import { measures } from 'common/styles';
+import { Icon } from '@components/widgets';
+import { measures } from '@common/styles';
 
 export const HeaderIcon = ({ onPress, ...props }) => (
     <TouchableOpacity onPress={onPress}>
