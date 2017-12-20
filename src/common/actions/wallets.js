@@ -1,5 +1,5 @@
 import { wallet as WalletStore, wallets as WalletsStore } from '@common/stores';
-import { Wallets as WalletsService } from '@common/services';
+import { Wallets as WalletsService, Api as ApiService } from '@common/services';
 import { Wallet as WalletUtils } from '@common/utils';
 
 export async function addWallet(walletName, wallet, walletDescription = '') {
@@ -33,4 +33,11 @@ export async function saveWallets() {
 
 export async function selectWallet(wallet) {
     WalletStore.select(wallet);
+}
+
+export async function updateHistory(wallet) {
+    WalletStore.isLoading(true);
+    const { data } = await ApiService.getHistory(wallet.getAddress());
+    if (data.status == 1) WalletStore.setHistory(data.result);
+    WalletStore.isLoading(false);
 }

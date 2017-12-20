@@ -83,4 +83,19 @@ describe('WalletsActions', () => {
             WalletsStore.reset();
         }
     });
+
+    it('should be able to update a wallet transactions history', async function() {
+        const mnemonics = WalletUtils.generateMnemonics();
+        const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
+        try {
+            await Action.addWallet("walletName", wallet);
+            await Action.updateHistory(wallet);
+            expect(WalletStore.history).toBeInstanceOf(Array);
+        } catch (e) {
+            fail(e);
+        } finally {
+            WalletStore.reset();
+            WalletsStore.reset();
+        }
+    });
 });
