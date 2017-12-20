@@ -2,7 +2,9 @@ import ethers from 'ethers';
 
 const { HDNode, providers, utils, Wallet } = ethers;
 
-const PROVIDER = providers.getDefaultProvider();
+const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby';
+
+const PROVIDER = providers.getDefaultProvider(network);
 
 export function generateMnemonics() {
     return HDNode.entropyToMnemonic(utils.randomBytes(16)).split(' ');
