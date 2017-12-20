@@ -22,10 +22,10 @@ export class WalletExtract extends React.Component {
         }
     }
 
-    renderItem = ({ item }) => <TransactionCard transaction={item} />
+    renderItem = (address) => ({ item }) => <TransactionCard transaction={item} walletAddress={address} />
 
     render() {
-        const { history, loading } = this.props.wallet;
+        const { item, history, loading } = this.props.wallet;
         return (
             <View style={styles.container}>
                 <Balance />
@@ -34,7 +34,7 @@ export class WalletExtract extends React.Component {
                         data={history.reverse()}
                         refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
                         keyExtractor={(item, index) => item.hash}
-                        renderItem={this.renderItem} />
+                        renderItem={this.renderItem(item.getAddress())} />
                 </View>
             </View>
         );
