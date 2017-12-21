@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
 
+@inject('prices')
+@observer
 export default class TransactionCard extends React.Component {
 
     get isReceiving() {
@@ -26,8 +29,12 @@ export default class TransactionCard extends React.Component {
         return (this.isReceiving) ? 'download' : 'upload';
     }
 
-    get amount() {
-        return WalletUtils.formatBalance(this.props.transaction.value);
+    get balance() {
+        return Number(WalletUtils.formatBalance(this.props.transaction.value));
+    }
+    
+    get fiatBalance() {
+        return Number(this.props.prices.usd * this.balance).toFixed(2);
     }
 
     get timestamp() {
@@ -68,8 +75,8 @@ export default class TransactionCard extends React.Component {
                             style={styles.amountLabel}
                             ellipsizeMode="tail"
                             numberOfLines={1}
-                            children={this.amount} />
-                        <Text style={styles.fiatLabel}>US$ 0</Text>
+                            children={this.balance.toFixed(4)} />
+                        <Text style={styles.fiatLabel}>US$ {this.fiatBalance}</Text>
                     </View>
                     <View style={styles.confirmationsContainer}>
                         {this.renderConfirmationStatus()}
@@ -109,7 +116,7 @@ const styles = StyleSheet.create({
     },
     rightColumn: {
         paddingHorizontal: measures.defaultPadding,
-        width: 100,
+        width: 120,
         flexDirection: 'row',
     },
     amountContainer: {
