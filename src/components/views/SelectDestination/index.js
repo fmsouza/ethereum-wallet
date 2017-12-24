@@ -1,56 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, Vibration, View } from 'react-native';
-import Permissions from 'react-native-permissions';
 import autobind from 'autobind-decorator';
-import { Button, InputWithIcon } from '@components/widgets';
+import { Button, Camera, InputWithIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
-import CameraView from './CameraView';
 import Recents from './Recents';
 
 export class SelectDestination extends React.Component {
     
     static navigationOptions = { title: 'Select destination' };
 
-    state = { address: '', showCamera: false };
-
-    @autobind
-    async onPressCamera() {
-        var status;
-        try {
-            status = await Permissions.check('camera');
-            if (status === 'authorized') this.setState({ showCamera: true });
-            else {
-                status = await Permissions.request('camera');
-                if (status === 'authorized') this.setState({ showCamera: true });
-                else throw new Error('Not allowed to use the camera.');
-            }
-        } catch (e) {
-            console.error(e);
-            this.setState({ showCamera: false });
-        }
-    }
-    
-    @autobind
-    onCameraRead({ type, data }) {
-        if (type === 'QR_CODE') {
-            Vibration.vibrate();
-            this.refs.input.onChangeText(data);
-            this.setState({ showCamera: false });
-        }
-    }
+    state = { address: '' };
     
     @autobind
     onPressContinue() {
         console.log(this.state.address);
-    }
-
-    renderContent() {
-        if (!this.state.showCamera) return <Recents onPressItem={address => this.refs.input.onChangeText(address)} />;
-        return (
-            <CameraView
-                onBarCodeRead={this.onCameraRead}
-                onPressClose={() => this.setState({ showCamera: false })} />
-        );
     }
 
     render() {
@@ -62,9 +25,16 @@ export class SelectDestination extends React.Component {
                     icon="qr-scanner"
                     placeholder="Destination address"
                     onChangeText={(address) => this.setState({ address })}
-                    onPressIcon={this.onPressCamera} />
-                <View style={styles.content} children={this.renderContent()} />
+                    onPressIcon={() => this.refs.camera.show()} />
+                <View style={styles.content}>
+                    <Recents onPressItem={address => this.refs.input.onChangeText(address)} />
+                </View>
                 <Button children="Continue" onPress={this.onPressContinue} />
+                <Camera
+                    ref="camera"
+                    modal
+                    onClose={() => this.refs.camera.hide()}
+                    onBarCodeRead={address => this.refs.input.onChangeText(address)} />
             </View>
         );
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import * as Views from '@components/views';
-import { Button, InputWithIcon } from '@components/widgets';
+import { Button, Camera, InputWithIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
 import { Wallets as WalletsActions } from '@common/actions';
@@ -28,27 +28,28 @@ export class LoadPrivateKey extends React.Component {
         }
     }
 
-    @autobind
-    onPressCamera() {
-        console.log("Pressed the camera icon");
-    }
-
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.body}>
                     <Text style={styles.message}>Private key</Text>
                     <InputWithIcon
-                        icon='camera'
-                        placeholder='eg.: 3123012f3b1273d12a12b120b12731132b0e2'
+                        ref='input'
+                        icon='qr-scanner'
+                        placeholder='eg.: 0xa80B875daC7fE18ed999218E3195022017f32Ac1'
                         onChangeText={pk => this.setState({ pk })}
-                        onPressIcon={this.onPressCamera} />
+                        onPressIcon={() => this.refs.camera.show()} />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button
                         children='Open wallet'
                         onPress={this.onPressOpenWallet} />
                 </View>
+                <Camera
+                    ref='camera'
+                    modal
+                    onClose={() => this.refs.camera.hide()}
+                    onBarCodeRead={data => this.refs.input.onChangeText(data)} />
             </View>
         );
     }
