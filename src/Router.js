@@ -8,9 +8,10 @@ import { colors } from './common/styles';
 export const INITIAL_ROUTE = Views.WalletsOverview.name;
 
 const navigator = StackNavigator({
+    [Views.ConfirmMnemonics.name]: { screen: Views.ConfirmMnemonics },
+    [Views.ConfirmTransaction.name]: { screen: Views.ConfirmTransaction },
     [Views.CreateMnemonics.name]: { screen: Views.CreateMnemonics },
     [Views.CreateWallet.name]: { screen: Views.CreateWallet },
-    [Views.ConfirmMnemonics.name]: { screen: Views.ConfirmMnemonics },
     [Views.LoadMnemonics.name]: { screen: Views.LoadMnemonics },
     [Views.LoadPrivateKey.name]: { screen: Views.LoadPrivateKey },
     [Views.LoadWallet.name]: { screen: Views.LoadWallet },
