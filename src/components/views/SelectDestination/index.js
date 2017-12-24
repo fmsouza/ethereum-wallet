@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, Camera, InputWithIcon } from '@components/widgets';
-import * as Views from '@components/views';
 import { colors, measures } from '@common/styles';
 import Recents from './Recents';
 
@@ -16,7 +15,7 @@ export class SelectDestination extends React.Component {
     onPressContinue() {
         const { amount } = this.props.navigation.state.params;
         const { address } = this.state;
-        this.props.navigation.navigate(Views.ConfirmTransaction.name, { address, amount });
+        this.props.navigation.navigate('ConfirmTransaction', { address, amount });
     }
 
     render() {

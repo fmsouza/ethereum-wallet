@@ -5,21 +5,21 @@ import NavigationActions from "react-navigation/lib/NavigationActions";
 import * as Views from './components/views';
 import { colors } from './common/styles';
 
-export const INITIAL_ROUTE = Views.WalletsOverview.name;
+export const INITIAL_ROUTE = 'WalletsOverview';
 
 const navigator = StackNavigator({
-    [Views.ConfirmMnemonics.name]: { screen: Views.ConfirmMnemonics },
-    [Views.ConfirmTransaction.name]: { screen: Views.ConfirmTransaction },
-    [Views.CreateMnemonics.name]: { screen: Views.CreateMnemonics },
-    [Views.CreateWallet.name]: { screen: Views.CreateWallet },
-    [Views.LoadMnemonics.name]: { screen: Views.LoadMnemonics },
-    [Views.LoadPrivateKey.name]: { screen: Views.LoadPrivateKey },
-    [Views.LoadWallet.name]: { screen: Views.LoadWallet },
-    [Views.NewWallet.name]: { screen: Views.NewWallet },
-    [Views.NewWalletName.name]: { screen: Views.NewWalletName },
-    [Views.SelectDestination.name]: { screen: Views.SelectDestination },
-    [Views.WalletDetails.name]: { screen: Views.WalletDetails },
-    [Views.WalletsOverview.name]: { screen: Views.WalletsOverview }
+    ConfirmMnemonics: { screen: Views.ConfirmMnemonics },
+    ConfirmTransaction: { screen: Views.ConfirmTransaction },
+    CreateMnemonics: { screen: Views.CreateMnemonics },
+    CreateWallet: { screen: Views.CreateWallet },
+    LoadMnemonics: { screen: Views.LoadMnemonics },
+    LoadPrivateKey: { screen: Views.LoadPrivateKey },
+    LoadWallet: { screen: Views.LoadWallet },
+    NewWallet: { screen: Views.NewWallet },
+    NewWalletName: { screen: Views.NewWalletName },
+    SelectDestination: { screen: Views.SelectDestination },
+    WalletDetails: { screen: Views.WalletDetails },
+    WalletsOverview: { screen: Views.WalletsOverview }
 }, {
     initialRouteName: INITIAL_ROUTE,
     navigationOptions: {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import * as Views from '@components/views';
 import { Button, NumberGrid } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 
@@ -36,7 +35,7 @@ export class SendCoins extends React.Component {
     onPressContinue() {
         const { amount } = this.state;
         if (!amount || Number(amount) === 0) return;
-        this.props.navigation.navigate(Views.SelectDestination.name, { amount });
+        this.props.navigation.navigate('SelectDestination', { amount });
     }
 
     render() {

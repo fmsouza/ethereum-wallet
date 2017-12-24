@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import * as Views from '@components/views';
 import { Button } from '@components/widgets';
 import { Wallet as WalletUtils } from '@common/utils';
 import { colors, measures } from '@common/styles';
@@ -27,7 +26,7 @@ export class ConfirmMnemonics extends React.Component {
         try {
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
             await WalletsActions.addWallet(walletName, wallet, walletDescription);
-            this.props.navigation.navigate(Views.WalletsOverview.name, { replaceRoute: true });
+            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
             await WalletsActions.saveWallets();
         } catch (e) {
             console.warn(e);

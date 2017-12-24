@@ -2,7 +2,6 @@ import React from 'react';
 import autobind from 'autobind-decorator';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import * as Views from '@components/views';
 import { HeaderIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallets as WalletActions, Prices as PricesActions } from '@common/actions';
@@ -21,7 +20,7 @@ export class WalletsOverview extends React.Component {
                 name='add'
                 size='large'
                 color={colors.white}
-                onPress={() => navigation.navigate(Views.NewWalletName.name)} />
+                onPress={() => navigation.navigate('NewWalletName')} />
         )
     });
 
@@ -37,7 +36,7 @@ export class WalletsOverview extends React.Component {
     @autobind
     onPressWallet(wallet) {
         WalletActions.selectWallet(wallet);
-        this.props.navigation.navigate(Views.WalletDetails.name, { wallet });
+        this.props.navigation.navigate('WalletDetails', { wallet });
     }
 
     renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.onPressWallet(item)} />

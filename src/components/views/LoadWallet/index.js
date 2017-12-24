@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as Views from '@components/views';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 
@@ -16,10 +15,10 @@ export class LoadWallet extends React.Component {
                     <View style={styles.buttonsContainer}>
                         <Button
                             children="Private key"
-                            onPress={() => navigate(Views.LoadPrivateKey.name, { walletName, walletDescription })} />
+                            onPress={() => navigate('LoadPrivateKey', { walletName, walletDescription })} />
                         <Button
                             children="Mnemonics"
-                            onPress={() => navigate(Views.LoadMnemonics.name, { walletName, walletDescription })} />
+                            onPress={() => navigate('LoadMnemonics', { walletName, walletDescription })} />
                     </View>
                 </View>
         );
