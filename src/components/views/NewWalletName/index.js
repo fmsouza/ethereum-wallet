@@ -18,7 +18,7 @@ export class NewWalletName extends React.Component {
         Keyboard.dismiss();
         const { walletName, walletDescription } = this.state;
         if (!walletName) return;
-        this.props.navigation.navigate(Views.NewWallet.name, { walletName, walletDescription: walletDescription || '' });
+        this.props.navigation.navigate(Views.NewWallet.name, { walletName, walletDescription });
     }
 
     render() {
