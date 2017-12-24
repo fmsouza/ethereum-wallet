@@ -97,4 +97,10 @@ describe('Wallet utils', () => {
         const result = WalletUtils.reduceBigNumbers(items);
         expect(result.toString()).toBe('6');
     });
+
+    it('`calculateFee` function should return a BigNumber representing the transaction fee', function() {
+        const txn = { gasUsed: '37164', gasPrice: '4000000000' };
+        const result = WalletUtils.calculateFee(txn);
+        expect(result.toString()).toBe('0.00014865600000000002');
+    });
 });
