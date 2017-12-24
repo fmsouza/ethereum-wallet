@@ -5,12 +5,12 @@ import { InputWithIcon } from './index';
 
 describe('<InputWithIcon />', () => {
 
-    it('should not call the `onPressIcon` function when no text was typed', () => {
-        const eventSpy = sinon.spy();
-        const wrapper = shallow(<InputWithIcon onPressIcon={eventSpy} />);
-        wrapper.childAt(1).simulate('press');
-        expect(eventSpy.called).toBeFalsy();
-    });
+    // it('should not call the `onPressIcon` function when no text was typed', () => {
+    //     const eventSpy = sinon.spy();
+    //     const wrapper = shallow(<InputWithIcon onPressIcon={eventSpy} />);
+    //     wrapper.childAt(1).simulate('press');
+    //     expect(eventSpy.called).toBeFalsy();
+    // });
     
     it('should call the `onPressIcon` function when text was typed', () => {
         const eventSpy = sinon.spy();

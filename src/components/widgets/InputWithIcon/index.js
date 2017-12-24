@@ -18,7 +18,6 @@ export class InputWithIcon extends React.Component {
     @autobind
     onPressIcon() {
         let { text } = this.state;
-        if (!text) return;
         text = text.trim();
         this.props.onPressIcon(text);
     }
