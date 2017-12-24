@@ -41,6 +41,7 @@ subprojects { subproject ->
         if(
             (subproject.name == 'react-native-camera') ||
             (subproject.name == 'react-native-permissions') ||
+            (subproject.name == 'react-native-snackbar') ||
             (subproject.name == 'react-native-qrcode-svg') ||
             (subproject.name == 'react-native-sensitive-info') ||
             (subproject.name == 'react-native-svg') ||
