@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
+import TransactionDetails from './TransactionDetails';
 
 @inject('prices')
 @observer
@@ -59,30 +60,36 @@ export default class TransactionCard extends React.Component {
     }
 
     render() {
-        const { transaction } = this.props;
+        const { transaction, walletAddress } = this.props;
         return (
-            <View style={styles.container}>
-                <View style={styles.leftColumn}>
-                    <Icon name={this.iconName} type="fe" />
-                </View>
-                <View style={styles.centerColumn}>
-                    {this.renderTransactionOperator()}
-                    <Text>{this.timestamp}</Text>
-                </View>
-                <View style={styles.rightColumn}>
-                    <View style={styles.amountContainer}>
-                        <Text
-                            style={styles.amountLabel}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            children={this.balance.toFixed(4)} />
-                        <Text style={styles.fiatLabel}>US$ {this.fiatBalance}</Text>
+            <TouchableHighlight onPress={() => this.refs.details.wrappedInstance.show()}>
+                <View style={styles.container}>
+                    <View style={styles.leftColumn}>
+                        <Icon name={this.iconName} type="fe" />
                     </View>
-                    <View style={styles.confirmationsContainer}>
-                        {this.renderConfirmationStatus()}
+                    <View style={styles.centerColumn}>
+                        {this.renderTransactionOperator()}
+                        <Text>{this.timestamp}</Text>
                     </View>
+                    <View style={styles.rightColumn}>
+                        <View style={styles.amountContainer}>
+                            <Text
+                                style={styles.amountLabel}
+                                ellipsizeMode="tail"
+                                numberOfLines={1}
+                                children={this.balance.toFixed(4)} />
+                            <Text style={styles.fiatLabel}>US$ {this.fiatBalance}</Text>
+                        </View>
+                        <View style={styles.confirmationsContainer}>
+                            {this.renderConfirmationStatus()}
+                        </View>
+                    </View>
+                    <TransactionDetails
+                        ref="details"
+                        transaction={transaction}
+                        walletAddress={walletAddress} />
                 </View>
-            </View>
+            </TouchableHighlight>
         );
     }
 }
