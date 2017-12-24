@@ -1,20 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Clipboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import autobind from 'autobind-decorator';
 import QRCode from 'react-native-qrcode-svg';
+import Snackbar from 'react-native-snackbar';
+import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 
 @inject('wallet')
 @observer
 export class ReceiveCoins extends React.Component {
 
+    @autobind
+    copyToClipboard() {
+        const { item } = this.props.wallet;
+        Clipboard.setString(item.getAddress());
+        Snackbar.show({
+            title: 'Copied to clipboard.',
+            duration: Snackbar.LENGTH_SHORT
+        });
+    }
+
+    renderColumn = (icon, label, action) => (
+        <TouchableWithoutFeedback onPress={action}>
+            <View style={styles.actionColumn}>
+                <Icon name={icon} style={styles.actionIcon} />
+                <Text style={styles.actionLabel}>{label}</Text>
+            </View>
+        </TouchableWithoutFeedback>
+    );
+
     render() {
         const { wallet: { item } } = this.props;
         return (
             <View style={styles.container}>
-                <Text style={styles.label}>Show the code below to receive coins</Text>
-                <QRCode size={256} value={item.getAddress()} />
-                <Text style={styles.label}>{item.getAddress()}</Text>
+                <Text style={styles.centered}>Show the code below to receive coins</Text>
+                <View style={styles.centered}>
+                    <QRCode size={256} value={item.getAddress()} />
+                </View>
+                <Text style={styles.centered}>{item.getAddress()}</Text>
+                <View style={styles.actions}>
+                    <Text style={styles.actionsLabel}>Or share with:</Text>
+                    <View style={styles.actionsBar}>
+                        {this.renderColumn('copy', 'Copy', this.copyToClipboard)}
+                    </View>
+                </View>
             </View>
         );
     }
@@ -24,8 +54,26 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'space-around',
         padding: measures.defaultPadding
+    },
+    actions: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: 80
+    },
+    actionsBar: {
+        flexDirection: 'row',
+        flex: 3
+    },
+    actionColumn: {
+        flexDirection: 'column',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    centered: {
+        alignSelf: 'center'
     }
 });

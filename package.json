@@ -2,16 +2,16 @@
   "name": "EthereumWallet",
   "version": "0.1.0",
   "scripts": {
-    "postinstall": "react-native upgrade && react-native link",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "test:watch": "jest --watch",
     "android:build": "cd android && ./gradlew assembleDebug && cd .. && cp android/app/build/outputs/apk/debug/app-debug.apk EthereumWallet.apk",
     "android:bundle": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug",
     "android:clean": "cd android && ./gradlew clean && cd ..",
-    "android": "react-native run-android && npm run logcat",
+    "android": "react-native run-android",
     "logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V",
-    "ios": "react-native run-ios"
+    "ios": "react-native run-ios",
+    "link": "react-native link"
   },
   "dependencies": {
     "autobind-decorator": "2.1.0",
@@ -26,6 +26,7 @@
     "react-native-permissions": "1.0.6",
     "react-native-qrcode-svg": "5.0.5",
     "react-native-sensitive-info": "5.1.0",
+    "react-native-snackbar": "0.4.4",
     "react-native-svg": "6.0.0",
     "react-native-vector-icons": "4.4.2",
     "react-navigation": "1.0.0-beta.22"
