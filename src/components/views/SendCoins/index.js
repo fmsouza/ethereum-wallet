@@ -9,7 +9,7 @@ export class SendCoins extends React.Component {
     @autobind
     onPressContinue() {
         const { amount } = this.refs.calc;
-        if (!amount || Number(amount) === 0) return;
+        if (!amount) return;
         this.props.navigation.navigate('SelectDestination', { amount });
     }
 
