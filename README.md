@@ -56,7 +56,7 @@ This project is set up to use [jest](https://facebook.github.io/jest/) for tests
 
 ## License
 
-TODO
+MIT
 
 
 ## Contribute
