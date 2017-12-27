@@ -1,6 +1,7 @@
 {
   "name": "EthereumWallet",
   "version": "0.1.0",
+  "license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
