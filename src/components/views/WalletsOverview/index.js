@@ -45,15 +45,13 @@ export class WalletsOverview extends React.Component {
 
     renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.onPressWallet(item)} />
 
-    renderBody({ list, loading }) {
-        return (!list.length && !loading) ? <NoWallets /> : (
-            <FlatList
-                data={list}
-                refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.populate()} />}
-                keyExtractor={(item, index) => index}
-                renderItem={this.renderItem} />
-        );
-    }
+    renderBody = ({ list, loading }) => (!list.length && !loading) ? <NoWallets /> : (
+        <FlatList
+            data={list}
+            refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.populate()} />}
+            keyExtractor={(item, index) => index}
+            renderItem={this.renderItem} />
+    );
 
     render() {
         const { wallets } = this.props;

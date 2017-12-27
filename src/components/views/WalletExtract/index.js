@@ -5,6 +5,7 @@ import { colors, measures } from '@common/styles';
 import { Wallets as WalletActions } from '@common/actions';
 import Balance from './Balance';
 import TransactionCard from './TransactionCard';
+import NoTransactions from './NoTransactions';
 
 @inject('wallet')
 @observer
@@ -24,18 +25,20 @@ export class WalletExtract extends React.Component {
 
     renderItem = (address) => ({ item }) => <TransactionCard transaction={item} walletAddress={address} />
 
+    renderBody = ({ item, history, loading }) =>  (!history.length && !loading) ? <NoTransactions /> : (
+        <FlatList
+            data={history}
+            refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
+            keyExtractor={(element, index) => element.hash}
+            renderItem={this.renderItem(item.getAddress())} />
+    );
+
     render() {
         const { item, history, loading } = this.props.wallet;
         return (
             <View style={styles.container}>
                 <Balance />
-                <View style={styles.historyContainer}>
-                    <FlatList
-                        data={history.reverse()}
-                        refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
-                        keyExtractor={(item, index) => item.hash}
-                        renderItem={this.renderItem(item.getAddress())} />
-                </View>
+                {this.renderBody(this.props.wallet)}
             </View>
         );
     }
@@ -47,9 +50,5 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flex: 1,
         padding: measures.defaultPadding
-    },
-    historyContainer: {
-        alignItems: 'stretch',
-        flex: 1
     }
 });
