@@ -1,6 +1,6 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
@@ -24,7 +24,11 @@ export class WalletsOverview extends React.Component {
         )
     });
 
-    async componentWillMount() {
+    componentWillMount() {
+        this.populate();
+    }
+
+    async populate() {
         try {
             await WalletActions.loadWallets();
             await PricesActions.getPrice();
@@ -41,10 +45,11 @@ export class WalletsOverview extends React.Component {
 
     renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.onPressWallet(item)} />
 
-    renderBody(wallets) {
-        return (!wallets.length) ? <NoWallets /> : (
+    renderBody({ list, loading }) {
+        return (!list.length && !loading) ? <NoWallets /> : (
             <FlatList
-                data={wallets}
+                data={list}
+                refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.populate()} />}
                 keyExtractor={(item, index) => index}
                 renderItem={this.renderItem} />
         );
@@ -55,8 +60,7 @@ export class WalletsOverview extends React.Component {
         return (
             <View style={styles.container}>
                 <TotalBalance wallets={wallets.list} />
-                {wallets.loading && <ActivityIndicator loading />}
-                {this.renderBody(wallets.list)}
+                {this.renderBody(wallets)}
             </View>
         );
     }
