@@ -38,17 +38,21 @@ Open your app in the iOS Simulator if you're on a Mac and have it installed. Dep
 
 Open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup). Depends on `npm start`.
 
-#### `npm run android-build`
+#### `npm run android:build`
 
-TODO
+Build the Android app and generate the APK to install on the device.
 
-#### `npm run android-bundle`
+#### `npm run android:bundle`
 
-TODO
+Bundles the ReactNative JavaScript code. Run it before running the build command to be able to run the test without depending on the development server.
 
-#### `npm run android-clean`
+#### `npm run android:generate-apk`
 
-TODO
+Bundle and build the Android app.
+
+#### `npm run android:clean`
+
+Clean the Android generated build files.
 
 ## Writing and Running Tests
 
