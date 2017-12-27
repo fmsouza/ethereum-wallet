@@ -14,7 +14,7 @@ export class Calculator extends React.Component {
     
     @autobind
     onPressNumber(number) {
-        this.refs.panel.onChange(number);
+        this.refs.panel.wrappedInstance.onChange(number);
     }
 
     render() {
