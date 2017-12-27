@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import autobind from 'autobind-decorator';
 import { colors, measures } from '@common/styles';
 
 @inject('prices')
@@ -11,10 +10,13 @@ export default class Panel extends React.Component {
     state = { amount: '' };
 
     get amount() {
-        return this.state.amount;
+        return this.state.amount || 0;
+    }
+
+    get fiatAmount() {
+        return (this.amount * this.props.prices.usd).toFixed(2);
     }
     
-    @autobind
     onChange(value) {
         let { amount } = this.state;
         switch (value) {
@@ -29,8 +31,7 @@ export default class Panel extends React.Component {
                 break;
 
             default:
-                if (amount === value) return;
-                else if (amount === '0') amount = value;
+                if (amount === '0') amount = value;
                 else amount += value;
                 break;
         }
@@ -40,8 +41,13 @@ export default class Panel extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                    <Text style={styles.txtAmount}>{this.state.amount || 0}</Text>
-                    <Text style={styles.subtitle}>ETH</Text>
+                <View style={styles.row}>
+                    <Text style={styles.amount}>{this.amount}</Text>
+                    <Text style={styles.unit}>ETH</Text>
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.fiat}>US$ {this.fiatAmount}</Text>
+                </View>
             </View>
         );
     }
@@ -51,14 +57,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-around'
     },
-    txtAmount: {
+    row: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
+    },
+    amount: {
         fontSize: measures.fontSizeLarge,
         fontWeight: 'bold'
     },
-    subtitle: {
+    unit: {
         fontSize: measures.fontSizeMedium,
-        color: colors.gray
+        color: colors.gray,
+        marginLeft: measures.defaultMargin
     }
 });
