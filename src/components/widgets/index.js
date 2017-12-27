@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Calculator';
 export * from './Camera';
 export * from './HeaderIcon';
 export * from './Icon';
