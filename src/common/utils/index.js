@@ -1,3 +1,4 @@
+import * as Transaction from './transaction';
 import * as Wallet from './wallet';
 
-export { Wallet };
+export { Transaction, Wallet };
