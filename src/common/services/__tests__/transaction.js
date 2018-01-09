@@ -69,6 +69,20 @@ describe('TransactionsService', () => {
     } catch (e) { expect(e.message).toBe('insufficient funds for gas * price + value'); }
   });
 
+  it('`sendTransaction` should send ether to some address when there are funds available', async function() {
+    const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8';
+    const wallet = WalletUtils.loadWalletFromPrivateKey(pk);
+    const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
+    const value = '0.002';
+    const transaction = TransactionUtils.createTransaction(to, value);
+    try {
+      const txn = await Transactions.sendTransaction(wallet, transaction);
+      expect(txn.from).toBe(wallet.getAddress());
+      expect(txn.to).toBe(to);
+      expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
+    } catch (e) { fail(e); }
+  });
+
   it('`sendEther` should break if the the destination address or the value are invalid', async function() {
     const mnemonics = WalletUtils.generateMnemonics();
     const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
