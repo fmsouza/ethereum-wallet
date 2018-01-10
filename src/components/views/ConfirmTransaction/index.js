@@ -1,17 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
+import { Transaction as TransactionActions } from '@common/actions';
 
+@inject('wallet')
+@observer
 export class ConfirmTransaction extends React.Component {
     
     static navigationOptions = { title: 'Confirm transaction' };
 
-    
+    state = { success: false, error: null };
+
     @autobind
-    onPressContinue() {
-        console.log("@TODO: should do the transaction");
+    async onPressContinue() {
+        const {
+            wallet: { wallet },
+            navigation: { state: { params: { address, amount } } }
+        } = this.props;
+        wallet.isLoading(true);
+        try {
+            const txn = await TransactionActions.sendEther(wallet, address, amount);
+            wallet.addPrendingTransaction(txn);
+            this.setState({ success: true });
+        } catch (error) {
+            console.warn(e);
+            this.setState({ error });
+        } finally {
+            wallet.isLoading(false);
+        }
     }
 
     render() {
