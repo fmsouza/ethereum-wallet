@@ -59,7 +59,7 @@ describe('WalletStore', () => {
         }
     });
 
-    it('should fail to update the txn history if the input is not an array of transactions', () => {
+    it('should fail to update the txn history if the input is not an array', () => {
         const mnemonics = WalletUtils.generateMnemonics();
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
         walletStore.select(wallet);
