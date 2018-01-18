@@ -1,8 +1,11 @@
+import { wallet as WalletStore } from '@common/stores';
 import { Wallet as WalletUtils, Transaction as TransactionUtils } from '@common/utils';
 import * as Transactions from '../transactions';
 import ethers from 'ethers';
 
 describe('TransactionsActions', () => {
+
+  beforeEach(() => WalletStore.reset());
 
   it('`sendEther` should break if the the destination address or the value are invalid', async function() {
     const mnemonics = WalletUtils.generateMnemonics();
@@ -19,6 +22,7 @@ describe('TransactionsActions', () => {
   });
 
   it('`sendEther` should send ether to some address when there are funds available', async function() {
+    jest.setTimeout(60000);
     const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8';
     const wallet = WalletUtils.loadWalletFromPrivateKey(pk);
     const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
@@ -28,6 +32,7 @@ describe('TransactionsActions', () => {
       expect(txn.from).toBe(wallet.getAddress());
       expect(txn.to).toBe(to);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
+      expect(WalletStore.history.length).toBe(1);
     } catch (e) { fail(e); }
   });
 
@@ -46,6 +51,7 @@ describe('TransactionsActions', () => {
   });
 
   it('`sendTransaction` should send ether to some address when there are funds available', async function() {
+    jest.setTimeout(60000);
     const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8';
     const wallet = WalletUtils.loadWalletFromPrivateKey(pk);
     const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
@@ -55,6 +61,7 @@ describe('TransactionsActions', () => {
       expect(txn.from).toBe(wallet.getAddress());
       expect(txn.to).toBe(to);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
+      expect(WalletStore.history.length).toBe(1);
     } catch (e) { fail(e); }
   });
 });
