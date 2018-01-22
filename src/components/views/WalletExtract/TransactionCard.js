@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
@@ -39,10 +40,7 @@ export default class TransactionCard extends React.Component {
     }
 
     get timestamp() {
-        const { timeStamp } = this.props.transaction;
-        const timestamp = Number(timeStamp) * 1000;
-        const date = new Date(timestamp);
-        return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+        return moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss');
     }
 
     renderTransactionOperator = () => (
