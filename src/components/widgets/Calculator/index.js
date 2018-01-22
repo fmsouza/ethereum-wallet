@@ -9,7 +9,7 @@ export class Calculator extends React.Component {
 
 
     get amount() {
-        return this.refs.panel.amount;
+        return this.refs.panel.wrappedInstance.amount;
     }
     
     @autobind
