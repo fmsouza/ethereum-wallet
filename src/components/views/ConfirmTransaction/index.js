@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Transaction as TransactionActions } from '@common/actions';
+import { Image as ImageUtils } from '@common/utils';
 
 @inject('wallet')
 @observer
@@ -38,6 +39,9 @@ export class ConfirmTransaction extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
+                    <Image
+                        style={{ width: 100, height: 100 }}
+                        source={{ uri: ImageUtils.generateAvatar(address) }} />
                     <Text>Wallet address</Text>
                     <Text>{address}</Text>
                     <Text>Amount</Text>

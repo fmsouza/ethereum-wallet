@@ -19,6 +19,7 @@
     "autobind-decorator": "2.1.0",
     "axios": "0.17.1",
     "ethers": "2.2.3",
+    "identicon.js": "2.3.1",
     "mobx": "3.4.1",
     "mobx-react": "4.3.5",
     "moment": "2.20.1",
