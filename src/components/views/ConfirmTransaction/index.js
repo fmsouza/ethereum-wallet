@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
@@ -15,8 +15,14 @@ export class ConfirmTransaction extends React.Component {
 
     state = { success: false, error: null };
 
+    get actionButton() {
+        const buttonConfig = (this.state.success || this.state.error) ?
+            { title: 'Return to wallet', action: this.onPressReturn } : { title: 'Confirm & send', action: this.onPressSend };
+         return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
+    }
+
     @autobind
-    async onPressContinue() {
+    async onPressSend() {
         const {
             wallet: { wallet },
             navigation: { state: { params: { address, amount } } }
@@ -34,20 +40,41 @@ export class ConfirmTransaction extends React.Component {
         }
     }
 
+    @autobind
+    onPressReturn() {
+        this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+    }
+
+    renderSuccess = () => this.state.success && (
+        <View style={styles.successContainer}></View>
+    );
+
+    renderError = () => this.state.error && (
+        <View style={styles.errorContainer}></View>
+    );
+
     render() {
         const { address, amount } = this.props.navigation.state.params;
         return (
             <View style={styles.container}>
-                <View style={styles.content}>
-                    <Image
-                        style={{ width: 100, height: 100 }}
-                        source={{ uri: ImageUtils.generateAvatar(address) }} />
-                    <Text>Wallet address</Text>
-                    <Text>{address}</Text>
+                <ScrollView contentContainerStyle={styles.content}>
+                    <View style={styles.row}>
+                        <Image style={styles.avatar}
+                            source={{ uri: ImageUtils.generateAvatar(address) }} />
+                        <View style={styles.textColumn}>
+                            <Text style={styles.title}>Wallet address</Text>
+                            <Text style={styles.value}
+                                numberOfLines={1}
+                                ellipsizeMode="middle"
+                                children={address} />
+                        </View>
+                    </View>
                     <Text>Amount</Text>
                     <Text>{amount}</Text>
-                </View>
-                <Button children="Confirm & send" onPress={this.onPressContinue} />
+                    {this.renderSuccess()}
+                    {this.renderError()}
+                </ScrollView>
+                {this.actionButton}
             </View>
         );
     }
@@ -62,7 +89,24 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'flex-start'
+    },
+    row: {
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start'
+    },
+    title: {
+        fontSize: measures.fontSizeMedium + 1,
+        fontWeight: 'bold'
+    },
+    value: {
+        fontSize: measures.fontSizeMedium,
+        width: 200
+    },
+    avatar: {
+        width: 100,
+        height: 100
     }
 });
