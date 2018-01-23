@@ -25,9 +25,9 @@ export class WalletExtract extends React.Component {
 
     renderItem = (address) => ({ item }) => <TransactionCard transaction={item} walletAddress={address} />
 
-    renderBody = ({ item, history, loading }) =>  (!history.length && !loading) ? <NoTransactions /> : (
+    renderBody = ({ item, history, loading, pendingTransactions }) =>  (!history.length && !loading) ? <NoTransactions /> : (
         <FlatList
-            data={history.reverse()}
+            data={pendingTransactions.concat(history.reverse())}
             refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
             keyExtractor={(element, index) => element.hash}
             renderItem={this.renderItem(item.getAddress())} />

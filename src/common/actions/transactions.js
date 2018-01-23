@@ -1,24 +1,23 @@
+import ethers from 'ethers';
 import { wallet as WalletStore } from '@common/stores';
 import { Transactions as TransactionsService } from '@common/services';
-import { Transaction as TransactionUtils } from '@common/utils';
 
-export async function sendEther(wallet, destination, amount) {
-  WalletStore.isLoading(true);
-  txn = await TransactionsService.sendEther(wallet, destination, amount);
-  WalletStore.isLoading(false);
-  WalletStore.addPendingTransaction(txn);
+async function waitForTransaction(wallet, txn) {
   txn = await wallet.provider.waitForTransaction(txn.hash);
   WalletStore.moveToHistory(txn);
+}
+
+export async function sendEther(wallet, destination, amount, options) {
+  txn = await TransactionsService.sendEther(wallet, destination, amount, options);
+  WalletStore.addPendingTransaction(txn);
+  waitForTransaction(wallet, txn);
   return txn;
 }
 
-export async function sendTransaction(wallet, destination, amount) {
-  let txn = TransactionUtils.createTransaction(destination, amount);
-  WalletStore.isLoading(true);
+export async function sendTransaction(wallet, txn) {
+  if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid wallet');
   txn = await TransactionsService.sendTransaction(wallet, txn);
-  WalletStore.isLoading(false);
   WalletStore.addPendingTransaction(txn);
-  txn = await wallet.provider.waitForTransaction(txn.hash);
-  WalletStore.moveToHistory(txn);
+  waitForTransaction(wallet, txn);
   return txn;
 }

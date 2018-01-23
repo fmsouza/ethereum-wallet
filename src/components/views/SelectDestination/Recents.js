@@ -3,19 +3,7 @@ import { FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'reac
 import { colors, measures } from '@common/styles';
 
 const mockedItems = [
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b14' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b15' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b16' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b17' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b18' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b19' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b10' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b11' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b12' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b13' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b21' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b22' },
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b23' }
+    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b14' }
 ];
 
 export default class Recents extends React.Component {

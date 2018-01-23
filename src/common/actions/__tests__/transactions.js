@@ -36,16 +36,16 @@ describe('TransactionsActions', () => {
     } catch (e) { fail(e); }
   });
 
-  it('`sendTransaction` should break if the the wallet, destination address or the value are invalid', async function() {
+  it('`sendTransaction` should break if the the wallet or the transaction is invalid', async function() {
     const mnemonics = WalletUtils.generateMnemonics();
     const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
     try {
-      await Transactions.sendTransaction(null, '0x12345', '5.0');
+      await Transactions.sendTransaction(null);
       fail('should have thrown an Error.');
     } catch (e) { expect(e.message).toBe('Invalid wallet'); }
 
     try {
-      await Transactions.sendEther(wallet, null, '5.0');
+      await Transactions.sendEther(wallet, {});
       fail('should have thrown an Error.');
     } catch (e) { expect(e.message).toBe('Invalid destination address'); }
   });
@@ -56,8 +56,9 @@ describe('TransactionsActions', () => {
     const wallet = WalletUtils.loadWalletFromPrivateKey(pk);
     const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
     const value = '0.002';
+    let txn = TransactionUtils.createTransaction(to, value);
     try {
-      const txn = await Transactions.sendTransaction(wallet, to, value);
+      txn = await Transactions.sendTransaction(wallet, txn);
       expect(txn.from).toBe(wallet.getAddress());
       expect(txn.to).toBe(to);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());

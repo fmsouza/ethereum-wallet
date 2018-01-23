@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
-import { Transaction as TransactionActions } from '@common/actions';
+import { Transactions as TransactionActions } from '@common/actions';
 import { Image as ImageUtils, Transaction as TransactionUtils, Wallet as WalletUtils } from '@common/utils';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
@@ -18,6 +18,7 @@ export class ConfirmTransaction extends React.Component {
     state = { txn: null, error: null };
 
     get actionButton() {
+        if (this.props.wallet.loading) return <ActivityIndicator loading />;
         const buttonConfig = ((this.state.txn && this.state.txn.hash) || this.state.error) ?
             { title: 'Return to wallet', action: this.onPressReturn } : { title: 'Confirm & send', action: this.onPressSend };
          return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
@@ -26,6 +27,11 @@ export class ConfirmTransaction extends React.Component {
     get estimatedFee() {
         const estimate = WalletUtils.estimateFee(this.state.txn);
         return WalletUtils.formatBalance(estimate);
+    }
+    
+    get fiatAmount() {
+        const { txn } = this.state;
+        return Number(this.props.prices.usd * Number(WalletUtils.formatBalance(txn.value))).toFixed(2);
     }
     
     get fiatEstimatedFee() {
@@ -45,8 +51,7 @@ export class ConfirmTransaction extends React.Component {
         const { wallet } = this.props;
         wallet.isLoading(true);
         try {
-            const txn = await TransactionActions.sendTransaction(wallet, this.state.txn);
-            wallet.addPrendingTransaction(txn);
+            const txn = await TransactionActions.sendTransaction(wallet.item, this.state.txn);
             this.setState({ txn });
         } catch (error) {
             this.setState({ error });
@@ -77,8 +82,8 @@ export class ConfirmTransaction extends React.Component {
                             source={{ uri: ImageUtils.generateAvatar(txn.to) }} />
                     </View>
                     <View style={styles.textColumn}>
-                        <Text style={styles.title}>Amount</Text>
-                        <Text style={styles.value}>{WalletUtils.formatBalance(txn.value)}</Text>
+                        <Text style={styles.title}>Amount (ETH)</Text>
+                        <Text style={styles.value}>{WalletUtils.formatBalance(txn.value)} (US$ {this.fiatAmount})</Text>
                     </View>
                     <View style={styles.textColumn}>
                         <Text style={styles.title}>Estimated fee (ETH)</Text>

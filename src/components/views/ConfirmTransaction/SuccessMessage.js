@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
 
 export default ({ txn }) => (!txn || !txn.hash) ? null : (
   <View style={styles.container}>
-    <Text style={styles.title}>Success</Text>
-    <Text style={styles.message}></Text>
+    <Text style={styles.title}>Transaction successful</Text>
+    <Text style={styles.message}>
+      Your transaction was sent successfully and now is waiting for confirmation. Please wait.
+    </Text>
   </View>
 );
