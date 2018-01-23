@@ -1,11 +1,13 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Transaction as TransactionActions } from '@common/actions';
-import { Image as ImageUtils } from '@common/utils';
+import { Image as ImageUtils, Transaction as TransactionUtils } from '@common/utils';
+import ErrorMessage from './ErrorMessage';
+import SuccessMessage from './SuccessMessage';
 
 @inject('wallet')
 @observer
@@ -13,27 +15,31 @@ export class ConfirmTransaction extends React.Component {
     
     static navigationOptions = { title: 'Confirm transaction' };
 
-    state = { success: false, error: null };
+    state = { txn: null, error: null };
 
     get actionButton() {
-        const buttonConfig = (this.state.success || this.state.error) ?
+        const buttonConfig = ((this.state.txn && this.state.txn.hash) || this.state.error) ?
             { title: 'Return to wallet', action: this.onPressReturn } : { title: 'Confirm & send', action: this.onPressSend };
          return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
     }
 
-    @autobind
-    async onPressSend() {
+    componentWillMount() {
         const {
-            wallet: { wallet },
             navigation: { state: { params: { address, amount } } }
         } = this.props;
+        const txn = TransactionUtils.createTransaction(address, amount);
+        this.setState({ txn });
+    }
+
+    @autobind
+    async onPressSend() {
+        const { wallet: { wallet } } = this.props;
         wallet.isLoading(true);
         try {
-            const txn = await TransactionActions.sendEther(wallet, address, amount);
+            const txn = await TransactionActions.sendTransaction(wallet, this.state.txn);
             wallet.addPrendingTransaction(txn);
-            this.setState({ success: true });
+            this.setState({ txn });
         } catch (error) {
-            console.warn(e);
             this.setState({ error });
         } finally {
             wallet.isLoading(false);
@@ -45,19 +51,11 @@ export class ConfirmTransaction extends React.Component {
         this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
     }
 
-    renderSuccess = () => this.state.success && (
-        <View style={styles.successContainer}></View>
-    );
-
-    renderError = () => this.state.error && (
-        <View style={styles.errorContainer}></View>
-    );
-
     render() {
         const { address, amount } = this.props.navigation.state.params;
         return (
             <View style={styles.container}>
-                <ScrollView contentContainerStyle={styles.content}>
+                <View style={styles.content}>
                     <View style={styles.row}>
                         <Image style={styles.avatar}
                             source={{ uri: ImageUtils.generateAvatar(address) }} />
@@ -71,9 +69,9 @@ export class ConfirmTransaction extends React.Component {
                     </View>
                     <Text>Amount</Text>
                     <Text>{amount}</Text>
-                    {this.renderSuccess()}
-                    {this.renderError()}
-                </ScrollView>
+                </View>
+                <SuccessMessage txn={this.state.txn} />
+                <ErrorMessage error={this.state.error} />
                 {this.actionButton}
             </View>
         );
