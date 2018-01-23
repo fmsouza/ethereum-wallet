@@ -42,3 +42,7 @@ export function reduceBigNumbers(items) {
 export function calculateFee({ gasUsed, gasPrice }) {
     return gasUsed * Number(formatBalance(gasPrice));
 }
+
+export function estimateFee({ gasLimit, gasPrice }) {
+    return utils.bigNumberify(String(gasLimit)).mul(String(gasPrice));
+}

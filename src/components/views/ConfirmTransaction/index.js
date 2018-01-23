@@ -5,11 +5,11 @@ import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Transaction as TransactionActions } from '@common/actions';
-import { Image as ImageUtils, Transaction as TransactionUtils } from '@common/utils';
+import { Image as ImageUtils, Transaction as TransactionUtils, Wallet as WalletUtils } from '@common/utils';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 
-@inject('wallet')
+@inject('prices', 'wallet')
 @observer
 export class ConfirmTransaction extends React.Component {
     
@@ -23,6 +23,15 @@ export class ConfirmTransaction extends React.Component {
          return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
     }
 
+    get estimatedFee() {
+        const estimate = WalletUtils.estimateFee(this.state.txn);
+        return WalletUtils.formatBalance(estimate);
+    }
+    
+    get fiatEstimatedFee() {
+        return Number(this.props.prices.usd * Number(this.estimatedFee)).toFixed(2);
+    }
+
     componentWillMount() {
         const {
             navigation: { state: { params: { address, amount } } }
@@ -33,7 +42,7 @@ export class ConfirmTransaction extends React.Component {
 
     @autobind
     async onPressSend() {
-        const { wallet: { wallet } } = this.props;
+        const { wallet } = this.props;
         wallet.isLoading(true);
         try {
             const txn = await TransactionActions.sendTransaction(wallet, this.state.txn);
@@ -52,26 +61,32 @@ export class ConfirmTransaction extends React.Component {
     }
 
     render() {
-        const { address, amount } = this.props.navigation.state.params;
+        const { estimatedGas, error, txn } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.row}>
-                        <Image style={styles.avatar}
-                            source={{ uri: ImageUtils.generateAvatar(address) }} />
                         <View style={styles.textColumn}>
                             <Text style={styles.title}>Wallet address</Text>
                             <Text style={styles.value}
                                 numberOfLines={1}
                                 ellipsizeMode="middle"
-                                children={address} />
+                                children={txn.to} />
                         </View>
+                        <Image style={styles.avatar}
+                            source={{ uri: ImageUtils.generateAvatar(txn.to) }} />
                     </View>
-                    <Text>Amount</Text>
-                    <Text>{amount}</Text>
+                    <View style={styles.textColumn}>
+                        <Text style={styles.title}>Amount</Text>
+                        <Text style={styles.value}>{WalletUtils.formatBalance(txn.value)}</Text>
+                    </View>
+                    <View style={styles.textColumn}>
+                        <Text style={styles.title}>Estimated fee (ETH)</Text>
+                        <Text style={styles.value}>{this.estimatedFee} (US$ {this.fiatEstimatedFee})</Text>
+                    </View>
                 </View>
-                <SuccessMessage txn={this.state.txn} />
-                <ErrorMessage error={this.state.error} />
+                <SuccessMessage txn={txn} />
+                <ErrorMessage error={error} />
                 {this.actionButton}
             </View>
         );
@@ -93,7 +108,10 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'space-between'
+    },
+    textColumn: {
+        marginVertical: measures.defaultMargin
     },
     title: {
         fontSize: measures.fontSizeMedium + 1,
