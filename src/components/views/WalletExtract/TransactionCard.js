@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'row',
         backgroundColor: colors.secondary,
-        height: 80,
+        height: 64,
         marginBottom: measures.defaultMargin,
     },
     leftColumn: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     },
     centerColumn: {
         flex: 1,
-        height: 80,
+        height: 64,
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'center'
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     rightColumn: {
         paddingHorizontal: measures.defaultPadding,
-        width: 120,
+        width: 150,
         flexDirection: 'row',
     },
     amountContainer: {
