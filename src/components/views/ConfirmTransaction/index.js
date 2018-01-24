@@ -62,7 +62,8 @@ export class ConfirmTransaction extends React.Component {
 
     @autobind
     onPressReturn() {
-        this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
+        const { wallet } = this.props;
+        this.props.navigation.navigate('WalletDetails', { wallet: wallet.item, replaceRoute: true, leave: 2 });
     }
 
     render() {

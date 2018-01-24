@@ -39,8 +39,9 @@ navigator.router.getStateForAction = (action, inputState) => {
     // fix it up if applicable
     if (state && action.type === NavigationActions.NAVIGATE) {
         if (action.params && action.params.replaceRoute) {
+            const leave = action.params.leave || 1;
             delete action.params.replaceRoute;
-            while (state.routes.length > 1 && state.index > 0) {
+            while (state.routes.length > leave && state.index > 0) {
                 const oldIndex = state.index - 1;
                 // remove one that we are replacing
                 state.routes.splice(oldIndex, 1);
