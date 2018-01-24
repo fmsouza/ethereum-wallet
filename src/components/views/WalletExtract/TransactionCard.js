@@ -40,7 +40,8 @@ export default class TransactionCard extends React.Component {
     }
 
     get timestamp() {
-        return moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss');
+        return (this.props.transaction.timeStamp) ?
+            moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending';
     }
 
     renderTransactionOperator = () => (
