@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, Vibration, View } from 'react-native';
-import CameraView from 'react-native-camera';
+import { RNCamera } from 'react-native-camera';
 import Modal from 'react-native-modal';
 import Permissions from 'react-native-permissions';
 import autobind from 'autobind-decorator';
@@ -44,7 +44,7 @@ export class Camera extends React.Component {
 
     renderView = (onClose) => (
         <View style={styles.container}>
-            <CameraView
+            <RNCamera
                 style={styles.camera}
                 barCodeTypes={['qr']}
                 onBarCodeRead={this.onBarCodeRead} />
