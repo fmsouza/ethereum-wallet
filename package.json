@@ -43,7 +43,7 @@
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "eslint-config-rallycoding": "3.2.0",
-    "haul": "1.0.0-beta.12",
+    "haul": "1.0.0-beta.13",
     "jest": "22.1.4",
     "jsdom": "11.6.0",
     "react-native-mock-render": "0.0.19",
