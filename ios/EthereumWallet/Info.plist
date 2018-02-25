@@ -65,5 +65,7 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This operation requires access to your camera.</string>
 </dict>
 </plist>
