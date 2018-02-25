@@ -26,7 +26,7 @@
     "react": "16.2.0",
     "react-native": "0.52.1",
     "react-native-camera": "1.0.1",
-    "react-native-modal": "4.1.1",
+    "react-native-modal": "5.1.0",
     "react-native-permissions": "1.1.1",
     "react-native-qrcode-svg": "5.0.6",
     "react-native-sensitive-info": "5.1.0",
