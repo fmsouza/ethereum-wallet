@@ -7,7 +7,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
-import org.reactnative.camera.RNCameraPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -31,8 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new SvgPackage(),
             new SnackbarPackage(),
-            new RNSensitiveInfoPackage(),
-            new RNCameraPackage()
+            new RNSensitiveInfoPackage()
       );
     }
 

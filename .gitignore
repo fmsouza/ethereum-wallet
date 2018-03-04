@@ -53,6 +53,3 @@ buck-out/
 */fastlane/screenshots
 
 *.apk
-# Haul
-#
-haul-debug.log
