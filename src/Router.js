@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import NavigationActions from "react-navigation/lib/NavigationActions";
+import { NavigationActions, StackNavigator } from 'react-navigation';
 import * as Views from './components/views';
 import { colors } from './common/styles';
 
