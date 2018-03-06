@@ -68,7 +68,7 @@ export class ConfirmTransaction extends React.Component {
 
     render() {
         const { estimatedGas, error, txn } = this.state;
-        return (
+        return (!txn) ? null : (
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.row}>
