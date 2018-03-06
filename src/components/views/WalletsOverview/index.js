@@ -9,7 +9,7 @@ import NoWallets from './NoWallets';
 import TotalBalance from './TotalBalance';
 import WalletCard from './WalletCard';
 
-@inject('wallets')
+@inject('prices', 'wallets')
 @observer
 export class WalletsOverview extends React.Component {
 
@@ -41,6 +41,7 @@ export class WalletsOverview extends React.Component {
 
     @autobind
     onPressWallet(wallet) {
+        if (this.props.prices.loading || this.props.wallets.loading) return;
         WalletActions.selectWallet(wallet);
         this.props.navigation.navigate('WalletDetails', { wallet });
     }
