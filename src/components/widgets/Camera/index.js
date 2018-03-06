@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, Vibration, View } from 'react-native';
-// import { RNCamera } from 'react-native-camera';
+import { RNCamera } from 'react-native-camera';
 import Modal from 'react-native-modal';
 import Permissions from 'react-native-permissions';
 import autobind from 'autobind-decorator';
@@ -13,19 +13,19 @@ export class Camera extends React.Component {
 
     @autobind
     async show() {
-        // var status;
-        // try {
-        //     status = await Permissions.check('camera');
-        //     if (status === 'authorized') this.setState({ isModalVisible: true });
-        //     else {
-        //         status = await Permissions.request('camera');
-        //         if (status === 'authorized') this.setState({ isModalVisible: true });
-        //         else throw new Error('Not allowed to use the camera.');
-        //     }
-        // } catch (e) {
-        //     console.error(e);
-        //     this.setState({ isModalVisible: false });
-        // }
+        var status;
+        try {
+            status = await Permissions.check('camera');
+            if (status === 'authorized') this.setState({ isModalVisible: true });
+            else {
+                status = await Permissions.request('camera');
+                if (status === 'authorized') this.setState({ isModalVisible: true });
+                else throw new Error('Not allowed to use the camera.');
+            }
+        } catch (e) {
+            console.error(e);
+            this.setState({ isModalVisible: false });
+        }
     }
 
     @autobind
@@ -43,17 +43,16 @@ export class Camera extends React.Component {
     }
 
     renderView = (onClose) => (
-        null
-        // <View style={styles.container}>
-        //     <RNCamera
-        //         style={styles.camera}
-        //         barCodeTypes={['qr']}
-        //         onBarCodeRead={this.onBarCodeRead} />
-        //     <TouchableWithoutFeedback onPress={onClose}>
-        //         <Icon name='close' color={colors.white} style={styles.closeIcon} />
-        //     </TouchableWithoutFeedback>
-        //     <View style={styles.marker} />
-        // </View>
+        <View style={styles.container}>
+            <RNCamera
+                style={styles.camera}
+                barCodeTypes={['qr']}
+                onBarCodeRead={this.onBarCodeRead} />
+            <TouchableWithoutFeedback onPress={onClose}>
+                <Icon name='close' color={colors.white} style={styles.closeIcon} />
+            </TouchableWithoutFeedback>
+            <View style={styles.marker} />
+        </View>
     );
 
     render() {
