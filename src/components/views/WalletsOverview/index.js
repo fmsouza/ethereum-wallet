@@ -54,6 +54,7 @@ export class WalletsOverview extends React.Component {
 
     renderBody = (list) => (!list.length && !this.loading) ? <NoWallets /> : (
         <FlatList
+            style={styles.content}
             data={list}
             refreshControl={<RefreshControl refreshing={this.loading} onRefresh={() => this.populate()} />}
             keyExtractor={(item, index) => String(index)}
@@ -77,5 +78,8 @@ const styles = StyleSheet.create({
         padding: measures.defaultPadding,
         alignItems: 'stretch',
         justifyContent: 'flex-start'
+    },
+    content: {
+        marginTop: measures.defaultMargin
     }
 });

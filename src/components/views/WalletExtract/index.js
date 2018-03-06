@@ -27,6 +27,7 @@ export class WalletExtract extends React.Component {
 
     renderBody = ({ item, history, loading, pendingTransactions }) =>  (!history.length && !loading) ? <NoTransactions /> : (
         <FlatList
+            style={styles.content}
             data={pendingTransactions.concat(history.reverse())}
             refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
             keyExtractor={(element, index) => element.hash}
@@ -50,5 +51,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flex: 1,
         padding: measures.defaultPadding
+    },
+    content: {
+        marginTop: measures.defaultMargin
     }
 });
