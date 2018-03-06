@@ -5,7 +5,8 @@ import App from './src';
 YellowBox.ignoreWarnings([
   'Warning: componentWillMount',
   'Warning: componentWillReceiveProps',
-  'Module RCTImageLoader'
+  'Module RCTImageLoader',
+  'Class RCTCxxModule was not exported'
 ]);
 
 AppRegistry.registerComponent('EthereumWallet', () => App);
