@@ -24,6 +24,10 @@ export class WalletsOverview extends React.Component {
         )
     });
 
+    get loading() {
+        return this.props.prices.loading || this.props.wallets.loading;
+    }
+
     componentDidMount() {
         this.populate();
     }
@@ -41,17 +45,17 @@ export class WalletsOverview extends React.Component {
 
     @autobind
     onPressWallet(wallet) {
-        if (this.props.prices.loading || this.props.wallets.loading) return;
+        if (this.loading) return;
         WalletActions.selectWallet(wallet);
         this.props.navigation.navigate('WalletDetails', { wallet });
     }
 
     renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.onPressWallet(item)} />
 
-    renderBody = ({ list, loading }) => (!list.length && !loading) ? <NoWallets /> : (
+    renderBody = (list) => (!list.length && !this.loading) ? <NoWallets /> : (
         <FlatList
             data={list}
-            refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.populate()} />}
+            refreshControl={<RefreshControl refreshing={this.loading} onRefresh={() => this.populate()} />}
             keyExtractor={(item, index) => String(index)}
             renderItem={this.renderItem} />
     );
@@ -61,7 +65,7 @@ export class WalletsOverview extends React.Component {
         return (
             <View style={styles.container}>
                 <TotalBalance wallets={wallets.list} />
-                {this.renderBody(wallets)}
+                {this.renderBody(wallets.list)}
             </View>
         );
     }
