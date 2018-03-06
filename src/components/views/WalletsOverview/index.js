@@ -49,7 +49,7 @@ export class WalletsOverview extends React.Component {
         <FlatList
             data={list}
             refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.populate()} />}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => String(index)}
             renderItem={this.renderItem} />
     );
 
