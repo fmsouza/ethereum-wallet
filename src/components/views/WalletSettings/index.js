@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { Icon } from '@components/widgets';
@@ -12,7 +12,7 @@ import ListItem from './ListItem';
 export class WalletSettings extends React.Component {
 
     @autobind
-    async onPressRemoveWallet() {
+    async removeWallet() {
         try {
             const { wallet } = this.props;
             await WalletsActions.removeWallet(wallet.item);
@@ -23,10 +23,22 @@ export class WalletSettings extends React.Component {
         }
     }
 
+    confirmRemoveWallet() {
+        Alert.alert(
+            'Remove wallet',
+            'This action cannot be undone. Are you sure?',
+            [
+                { text: 'Cancel', onPress: () => {}, style: 'cancel' },
+                { text: 'Remove', onPress: () => this.removeWallet() }
+            ],
+            { cancelable: false }
+        );
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
-                <ListItem onPress={this.onPressRemoveWallet}>
+                <ListItem onPress={() => this.confirmRemoveWallet()}>
                     <View style={styles.itemContainer}>
                         <View style={styles.icon}>
                             <Icon name='trash' />
