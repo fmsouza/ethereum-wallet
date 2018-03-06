@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button, InputWithIcon, TextBullet } from '@components/widgets';
 import { colors, measures } from '@common/styles';
@@ -27,11 +27,19 @@ export class LoadMnemonics extends React.Component {
             console.warn(e);
         }
     }
+
+    removeMnemonic(mnemonic) {
+        let { mnemonics } = this.state;
+        mnemonics = mnemonics.filter(m => m !== mnemonic);
+        this.setState({ mnemonics });
+    }
     
     renderMnemonic = (mnemonic, index) => (
-        <View style={styles.mnemonic} key={index}>
-            <TextBullet>{mnemonic}</TextBullet>
-        </View>
+        <TouchableWithoutFeedback key={index} onPress={() => this.removeMnemonic(mnemonic)}>
+            <View style={styles.mnemonic}>
+                <TextBullet>{mnemonic}</TextBullet>
+            </View>
+        </TouchableWithoutFeedback>
     );
 
     render() {
