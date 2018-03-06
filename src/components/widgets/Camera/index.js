@@ -7,6 +7,8 @@ import autobind from 'autobind-decorator';
 import { Icon } from '@components/widgets';
 import { colors } from '@common/styles';
 
+const { BarCodeType } = RNCamera.Constants;
+
 export class Camera extends React.Component {
 
     state = { isModalVisible: false };
@@ -46,7 +48,7 @@ export class Camera extends React.Component {
         <View style={styles.container}>
             <RNCamera
                 style={styles.camera}
-                barCodeTypes={['qr']}
+                barCodeTypes={[BarCodeType.qr]}
                 onBarCodeRead={this.onBarCodeRead} />
             <TouchableWithoutFeedback onPress={onClose}>
                 <Icon name='close' color={colors.white} style={styles.closeIcon} />
