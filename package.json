@@ -13,8 +13,7 @@
     "android:generate-apk": "npm run android:bundle && npm run android:build",
     "android": "react-native run-android",
     "logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V",
-    "ios": "react-native run-ios",
-    "link": "react-native link"
+    "ios": "react-native run-ios"
   },
   "dependencies": {
     "autobind-decorator": "2.1.0",
