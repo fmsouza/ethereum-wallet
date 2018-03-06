@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { StyleSheet, ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Modal from 'react-native-modal';
 import moment from 'moment';
@@ -46,6 +46,10 @@ export default class TransactionDetails extends React.Component {
             moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending';
     }
 
+    get transactionError() {
+        return Number(this.props.transaction.isError) > 0 ? 'Yes' : 'No';
+    }
+
     show() {
         this.setState({ show: true });
     }
@@ -64,6 +68,13 @@ export default class TransactionDetails extends React.Component {
 
     renderBody = (transaction) => (
         <View style={styles.container}>
+            <View style={styles.header}>
+                <TouchableWithoutFeedback onPress={() => this.hide()}>
+                    <View>
+                        <Icon name="close" size="large" />
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
             <ScrollView contentContainerStyle={styles.content}>
                 <View style={styles.row}>
                     <Text style={styles.label}>From:</Text>
@@ -115,7 +126,7 @@ export default class TransactionDetails extends React.Component {
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.label}>Error:</Text>
-                    <Text style={styles.value}>{Number(transaction.isError) > 0 ? 'Yes' : 'No'}</Text>
+                    <Text style={styles.value}>{this.transactionError}</Text>
                 </View>
             </ScrollView>
         </View>
@@ -135,12 +146,19 @@ export default class TransactionDetails extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        maxHeight: 400
+        backgroundColor: colors.white,
+        paddingHorizontal: measures.defaultPadding,
+        maxHeight: 400,
+        borderRadius: 4
+    },
+    header: {
+        paddingVertical: measures.defaultPadding,
+        alignItems: 'flex-end',
+        justifyContent: 'center'
     },
     content: {
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        padding: measures.defaultPadding,
         backgroundColor: colors.secondary
     },
     row: {
