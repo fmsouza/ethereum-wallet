@@ -13,7 +13,7 @@ export class ConfirmMnemonics extends React.Component {
 
     state = { mnemonics: null };
 
-    componentWillMount() {
+    componentDidMount() {
         const { mnemonics } = this.props.navigation.state.params;
         this.setState({ mnemonics });
     }

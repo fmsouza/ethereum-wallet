@@ -24,7 +24,7 @@ export class WalletsOverview extends React.Component {
         )
     });
 
-    componentWillMount() {
+    componentDidMount() {
         this.populate();
     }
 

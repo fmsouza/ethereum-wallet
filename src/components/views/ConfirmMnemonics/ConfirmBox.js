@@ -12,7 +12,7 @@ export default class ConfirmBox extends React.Component {
         return JSON.stringify(this.props.mnemonics) === JSON.stringify(this.state.selected);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const selectable = _.shuffle([...this.props.mnemonics]);
         this.setState({ selectable });
     }

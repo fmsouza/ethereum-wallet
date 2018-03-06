@@ -14,7 +14,7 @@ const STATUSBAR_CONFIG = {
 
 export default class Application extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
 

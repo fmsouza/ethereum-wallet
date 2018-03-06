@@ -38,7 +38,7 @@ export class ConfirmTransaction extends React.Component {
         return Number(this.props.prices.usd * Number(this.estimatedFee)).toFixed(2);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {
             navigation: { state: { params: { address, amount } } }
         } = this.props;

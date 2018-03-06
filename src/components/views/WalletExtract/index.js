@@ -11,7 +11,7 @@ import NoTransactions from './NoTransactions';
 @observer
 export class WalletExtract extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.updateHistory();
     }
 
