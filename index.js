@@ -6,7 +6,8 @@ YellowBox.ignoreWarnings([
   'Warning: componentWillMount',
   'Warning: componentWillReceiveProps',
   'Module RCTImageLoader',
-  'Class RCTCxxModule was not exported'
+  'Class RCTCxxModule was not exported',
+  'Remote debugger'
 ]);
 
 AppRegistry.registerComponent('EthereumWallet', () => App);
