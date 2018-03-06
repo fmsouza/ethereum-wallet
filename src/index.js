@@ -8,7 +8,7 @@ import * as stores from './common/stores';
 
 const STATUSBAR_CONFIG = {
     backgroundColor: colors.statusBar,
-    barStyle: "default",
+    barStyle: 'light-content',
     translucent: false
 };
 
