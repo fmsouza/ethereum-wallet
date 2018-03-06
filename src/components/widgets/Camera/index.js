@@ -37,7 +37,7 @@ export class Camera extends React.Component {
 
     @autobind
     onBarCodeRead({ type, data }) {
-        if (type === 'QR_CODE') {
+        if (type === BarCodeType.qr) {
             Vibration.vibrate();
             this.hide();
             this.props.onBarCodeRead(data);
