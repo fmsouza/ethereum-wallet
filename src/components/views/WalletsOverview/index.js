@@ -30,8 +30,10 @@ export class WalletsOverview extends React.Component {
 
     async populate() {
         try {
-            await WalletActions.loadWallets();
-            await PricesActions.getPrice();
+            await Promise.all([
+                WalletActions.loadWallets(),
+                PricesActions.getPrice()
+            ]);
         } catch (e) {
             console.warn(e);
         }
