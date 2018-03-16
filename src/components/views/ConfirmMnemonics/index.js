@@ -11,7 +11,7 @@ export class ConfirmMnemonics extends React.Component {
     
     static navigationOptions = { title: 'Create Wallet' };
 
-    state = { mnemonics: null };
+    state = { mnemonics: [] };
 
     componentDidMount() {
         const { mnemonics } = this.props.navigation.state.params;
