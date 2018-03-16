@@ -9,7 +9,7 @@ export class CreateMnemonics extends React.Component {
     
     static navigationOptions = { title: 'Create Wallet' };
 
-    state = { mnemonics: null }
+    state = { mnemonics: null };
 
     @autobind
     onPressProceed() {
