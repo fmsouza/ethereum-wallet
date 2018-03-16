@@ -36,8 +36,7 @@ describe('ApiService', () => {
             const response = await Api.getHistory(walletAddress);
             expect(response.status).toBe(200);
             expect(response.data.status).toBe('0');
-            expect(response.data.result).toBeInstanceOf(Array);
-            expect(response.data.result.length).toBe(0);
+            expect(response.data.result).toBe('Error! Invalid address format');
         } catch (e) {
             fail(e);
         }
