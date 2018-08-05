@@ -2,7 +2,6 @@ import ethers from 'ethers';
 import Snackbar from 'react-native-snackbar';
 import { wallet as WalletStore } from '@common/stores';
 import { Transactions as TransactionsService } from '@common/services';
-import { colors } from '@common/styles';
 
 async function waitForTransaction(wallet, txn) {
   txn = await wallet.provider.waitForTransaction(txn.hash);
