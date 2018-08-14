@@ -8,6 +8,11 @@
         "@components": "./src/components"
       }
     }],
-    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-transform-runtime", {
+      "helpers": true,
+      "polyfill": false,
+      "regenerator": false
+    }]
   ]
 }
