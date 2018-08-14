@@ -8,6 +8,6 @@
         "@components": "./src/components"
       }
     }],
-    "transform-decorators-legacy"
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
   ]
 }
