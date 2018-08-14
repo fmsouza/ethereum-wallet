@@ -13,11 +13,11 @@ export default class ConfirmBox extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
+        const newState = { ...prevState };
         if (!prevState.selectable.length && !prevState.selected.length) {
-            const selectable = _.shuffle([...nextProps.mnemonics]);
-            return { ...prevState, selectable };
+            newState.selectable = _.shuffle([...nextProps.mnemonics]);
         }
-        return prevState;
+        return newState;
     }
 
     onPressMnemonic(mnemonic, isSelected) {
