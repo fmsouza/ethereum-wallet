@@ -1,16 +1,16 @@
 import ethers from 'ethers';
-import Snackbar from 'react-native-snackbar';
+import { notify } from './general';
 import { wallet as WalletStore } from '@common/stores';
 import { Transactions as TransactionsService } from '@common/services';
 
 async function waitForTransaction(wallet, txn) {
-  txn = await wallet.provider.waitForTransaction(txn.hash);
+  await wallet.provider.waitForTransaction(txn.hash);
   WalletStore.moveToHistory(txn);
-  Snackbar.show({ title: 'Transaction confirmed', duration: Snackbar.LENGTH_SHORT });
+  notify('Transaction confirmed');
 }
 
 export async function sendEther(wallet, destination, amount, options) {
-  txn = await TransactionsService.sendEther(wallet, destination, amount, options);
+  const txn = await TransactionsService.sendEther(wallet, destination, amount, options);
   WalletStore.addPendingTransaction(txn);
   waitForTransaction(wallet, txn);
   return txn;
