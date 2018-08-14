@@ -1,6 +1,5 @@
 import React from 'react';
 import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import { Button, Camera, InputWithIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
@@ -12,7 +11,6 @@ export class LoadPrivateKey extends React.Component {
 
     state = { pk: '' };
 
-    @autobind
     async onPressOpenWallet() {
         if (!this.state.pk) return;
         Keyboard.dismiss();
@@ -42,7 +40,7 @@ export class LoadPrivateKey extends React.Component {
                 <View style={styles.buttonsContainer}>
                     <Button
                         children='Open wallet'
-                        onPress={this.onPressOpenWallet} />
+                        onPress={() => this.onPressOpenWallet()} />
                 </View>
                 <Camera
                     ref='camera'

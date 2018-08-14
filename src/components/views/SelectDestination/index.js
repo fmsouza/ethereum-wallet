@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import { Button, Camera, InputWithIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import Recents from './Recents';
@@ -11,7 +10,6 @@ export class SelectDestination extends React.Component {
 
     state = { address: '' };
     
-    @autobind
     onPressContinue() {
         const { amount } = this.props.navigation.state.params;
         const { address } = this.state;
@@ -31,7 +29,7 @@ export class SelectDestination extends React.Component {
                 <View style={styles.content}>
                     <Recents onPressItem={address => this.refs.input.onChangeText(address)} />
                 </View>
-                <Button children="Continue" onPress={this.onPressContinue} />
+                <Button children="Continue" onPress={() =>this.onPressContinue()} />
                 <Camera
                     ref="camera"
                     modal

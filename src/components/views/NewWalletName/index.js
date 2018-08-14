@@ -1,6 +1,5 @@
 import React from 'react';
 import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import { Button, InputWithIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
@@ -12,7 +11,6 @@ export class NewWalletName extends React.Component {
 
     state = { walletName: '', walletDescription: '' };
 
-    @autobind
     onPressContinue() {
         Keyboard.dismiss();
         const { walletName, walletDescription } = this.state;
@@ -40,7 +38,7 @@ export class NewWalletName extends React.Component {
                 <View style={styles.buttonsContainer}>
                     <Button
                         children="Next"
-                        onPress={this.onPressContinue} />
+                        onPress={() => this.onPressContinue()} />
                 </View>
             </View>
         );

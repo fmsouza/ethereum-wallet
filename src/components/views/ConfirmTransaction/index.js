@@ -1,7 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Transactions as TransactionActions } from '@common/actions';
@@ -20,7 +19,7 @@ export class ConfirmTransaction extends React.Component {
     get actionButton() {
         if (this.props.wallet.loading) return <ActivityIndicator loading />;
         const buttonConfig = ((this.state.txn && this.state.txn.hash) || this.state.error) ?
-            { title: 'Return to wallet', action: this.onPressReturn } : { title: 'Confirm & send', action: this.onPressSend };
+            { title: 'Return to wallet', action: () => this.onPressReturn() } : { title: 'Confirm & send', action: this.onPressSend };
          return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
     }
 
@@ -46,7 +45,6 @@ export class ConfirmTransaction extends React.Component {
         this.setState({ txn });
     }
 
-    @autobind
     async onPressSend() {
         const { wallet } = this.props;
         wallet.isLoading(true);
@@ -60,7 +58,6 @@ export class ConfirmTransaction extends React.Component {
         }
     }
 
-    @autobind
     onPressReturn() {
         const { wallet } = this.props;
         this.props.navigation.navigate('WalletDetails', { wallet: wallet.item, replaceRoute: true, leave: 2 });

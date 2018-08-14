@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { Wallet as WalletUtils } from '@common/utils';
 import { colors, measures } from '@common/styles';
@@ -18,7 +17,6 @@ export class ConfirmMnemonics extends React.Component {
         this.setState({ mnemonics });
     }
 
-    @autobind
     async onPressConfirm() {
         if (!this.refs.confirm.isValidSequence()) return;
         const { mnemonics } = this.state;
@@ -39,7 +37,7 @@ export class ConfirmMnemonics extends React.Component {
                 <View />
                 <ConfirmBox ref='confirm' mnemonics={this.state.mnemonics} />
                 <View style={styles.buttonsContainer}>
-                    <Button onPress={this.onPressConfirm}>Confirm & open wallet</Button>
+                    <Button onPress={() =>this.onPressConfirm()}>Confirm & open wallet</Button>
                 </View>
             </View>
         );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import { Icon } from '@components/widgets';
 import { colors } from '@common/styles';
 
@@ -8,14 +7,12 @@ export class InputWithIcon extends React.Component {
 
     state = { text: '' };
 
-    @autobind
     onChangeText(text) {
         const { onChangeText } = this.props;
         this.setState({ text });
         if (onChangeText) onChangeText(text);
     }
 
-    @autobind
     onPressIcon() {
         let { text } = this.state;
         text = text.trim();
@@ -32,11 +29,11 @@ export class InputWithIcon extends React.Component {
                     autoFocus={autoFocus}
                     autoCorrect={false}
                     value={this.state.text}
-                    onChangeText={this.onChangeText}
+                    onChangeText={(text) => this.onChangeText(text)}
                     underlineColorAndroid="transparent"
                     placeholder={placeholder}
                     placeholderTextColor={colors.black} />
-                <TouchableOpacity onPress={this.onPressIcon}>
+                <TouchableOpacity onPress={() => this.onPressIcon()}>
                     <Icon
                         name={icon}
                         size="large"

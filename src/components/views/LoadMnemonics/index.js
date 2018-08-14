@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import { Button, InputWithIcon, TextBullet } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
@@ -11,8 +10,7 @@ export class LoadMnemonics extends React.Component {
     static navigationOptions = { title: 'Load Wallet' };
 
     state = { mnemonics: [] };
-    
-    @autobind
+
     async onPressOpenWallet() {
         if (!this.state.mnemonics.length) return;
         Keyboard.dismiss();
@@ -58,7 +56,7 @@ export class LoadMnemonics extends React.Component {
                 <View style={styles.buttonsContainer}>
                     <Button
                         children='Open wallet'
-                        onPress={this.onPressOpenWallet} />
+                        onPress={() => this.onPressOpenWallet()} />
                 </View>
             </View>
         );

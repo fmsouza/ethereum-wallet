@@ -1,7 +1,6 @@
 import React from 'react';
 import { Clipboard, Share, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import autobind from 'autobind-decorator';
 import QRCode from 'react-native-qrcode-svg';
 import Snackbar from 'react-native-snackbar';
 import { Icon } from '@components/widgets';
@@ -11,7 +10,6 @@ import { colors, measures } from '@common/styles';
 @observer
 export class ReceiveCoins extends React.Component {
 
-    @autobind
     copyToClipboard() {
         const { item } = this.props.wallet;
         Clipboard.setString(item.getAddress());
@@ -21,7 +19,6 @@ export class ReceiveCoins extends React.Component {
         });
     }
 
-    @autobind
     share() {
         const { item } = this.props.wallet;
         Share.share({
@@ -50,8 +47,8 @@ export class ReceiveCoins extends React.Component {
                 <Text style={styles.centered}>{item.getAddress()}</Text>
                 <View style={styles.actions}>
                     <View style={styles.actionsBar}>
-                        {this.renderColumn('copy', 'Copy', this.copyToClipboard)}
-                        {this.renderColumn('share', 'Share', this.share)}
+                        {this.renderColumn('copy', 'Copy', () => this.copyToClipboard())}
+                        {this.renderColumn('share', 'Share', () => this.share())}
                     </View>
                 </View>
             </View>

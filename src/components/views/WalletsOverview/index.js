@@ -1,5 +1,4 @@
 import React from 'react';
-import autobind from 'autobind-decorator';
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from '@components/widgets';
@@ -43,7 +42,6 @@ export class WalletsOverview extends React.Component {
         }
     }
 
-    @autobind
     onPressWallet(wallet) {
         if (this.loading) return;
         WalletActions.selectWallet(wallet);

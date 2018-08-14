@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import autobind from 'autobind-decorator';
 import TabBar from './TabBar';
 
 export class TabView extends React.Component {
 
     state = { active: 0 };
 
-    @autobind
     onPressItem(id) {
         const active = this.props.tabs.findIndex(tab => tab.id === id);
         this.setState({ active });
@@ -19,7 +17,7 @@ export class TabView extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.body} children={tabs[active].content} />
-                <TabBar active={active} tabs={tabs} onPressTabItem={this.onPressItem} />
+                <TabBar active={active} tabs={tabs} onPressTabItem={(id) => this.onPressItem(id)} />
             </View>
         );
     }

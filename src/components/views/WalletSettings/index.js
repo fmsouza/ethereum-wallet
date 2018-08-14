@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import autobind from 'autobind-decorator';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallets as WalletsActions } from '@common/actions';
@@ -11,7 +10,6 @@ import ListItem from './ListItem';
 @observer
 export class WalletSettings extends React.Component {
 
-    @autobind
     async removeWallet() {
         try {
             const { wallet } = this.props;
@@ -21,6 +19,11 @@ export class WalletSettings extends React.Component {
         } catch (e) {
             console.warn(e);
         }
+    }
+
+    showPK() {
+        const { wallet } = this.props;
+        this.props.navigation.push('ShowPrivateKey', { wallet: wallet.item });
     }
 
     confirmRemoveWallet() {
@@ -35,6 +38,18 @@ export class WalletSettings extends React.Component {
         );
     }
 
+    confirmExportPK() {
+        Alert.alert(
+            'Export private key',
+            'Make sure you are alone and no one else will see your private key.',
+            [
+                { text: 'Cancel', onPress: () => {}, style: 'cancel' },
+                { text: 'Continue', onPress: () => this.showPK() }
+            ],
+            { cancelable: false }
+        );
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -44,6 +59,14 @@ export class WalletSettings extends React.Component {
                             <Icon name='trash' />
                         </View>
                         <Text style={styles.itemTitle}>Remove wallet</Text>
+                    </View>
+                </ListItem>
+                <ListItem onPress={() => this.confirmExportPK()}>
+                    <View style={styles.itemContainer}>
+                        <View style={styles.icon}>
+                            <Icon name='trash' />
+                        </View>
+                        <Text style={styles.itemTitle}>Export private key</Text>
                     </View>
                 </ListItem>
             </ScrollView>
