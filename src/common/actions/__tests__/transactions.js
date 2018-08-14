@@ -3,6 +3,9 @@ import { Wallet as WalletUtils, Transaction as TransactionUtils } from '@common/
 import * as Transactions from '../transactions';
 import ethers from 'ethers';
 
+const WALLET_PK = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8';
+const DESTINATION_ADDRESS = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
+
 describe('TransactionsActions', () => {
 
   beforeEach(() => WalletStore.reset());
@@ -23,14 +26,12 @@ describe('TransactionsActions', () => {
 
   it('`sendEther` should send ether to some address when there are funds available', async function() {
     jest.setTimeout(60000);
-    const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8';
-    const wallet = WalletUtils.loadWalletFromPrivateKey(pk);
-    const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
+    const wallet = WalletUtils.loadWalletFromPrivateKey(WALLET_PK);
     const value = '0.002';
     try {
-      const txn = await Transactions.sendEther(wallet, to, value);
+      const txn = await Transactions.sendEther(wallet, DESTINATION_ADDRESS, value);
       expect(txn.from).toBe(wallet.getAddress());
-      expect(txn.to).toBe(to);
+      expect(txn.to).toBe(DESTINATION_ADDRESS);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
       expect(WalletStore.history.length).toBe(1);
     } catch (e) { fail(e); }
@@ -52,15 +53,13 @@ describe('TransactionsActions', () => {
 
   it('`sendTransaction` should send ether to some address when there are funds available', async function() {
     jest.setTimeout(60000);
-    const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8';
-    const wallet = WalletUtils.loadWalletFromPrivateKey(pk);
-    const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14';
+    const wallet = WalletUtils.loadWalletFromPrivateKey(WALLET_PK);
     const value = '0.002';
-    let txn = TransactionUtils.createTransaction(to, value);
+    let txn = TransactionUtils.createTransaction(DESTINATION_ADDRESS, value);
     try {
       txn = await Transactions.sendTransaction(wallet, txn);
       expect(txn.from).toBe(wallet.getAddress());
-      expect(txn.to).toBe(to);
+      expect(txn.to).toBe(DESTINATION_ADDRESS);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
       expect(WalletStore.history.length).toBe(1);
     } catch (e) { fail(e); }
