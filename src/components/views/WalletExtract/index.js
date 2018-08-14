@@ -1,7 +1,7 @@
 import React from 'react';
-import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { colors, measures } from '@common/styles';
+import { measures } from '@common/styles';
 import { Wallets as WalletActions } from '@common/actions';
 import Balance from './Balance';
 import TransactionCard from './TransactionCard';
@@ -28,14 +28,13 @@ export class WalletExtract extends React.Component {
     renderBody = ({ item, history, loading, pendingTransactions }) =>  (!history.length && !loading) ? <NoTransactions /> : (
         <FlatList
             style={styles.content}
-            data={pendingTransactions.concat(history.reverse())}
+            data={pendingTransactions.concat(history.slice().reverse())}
             refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
-            keyExtractor={(element, index) => element.hash}
+            keyExtractor={(element) => element.hash}
             renderItem={this.renderItem(item.getAddress())} />
     );
 
     render() {
-        const { item, history, loading } = this.props.wallet;
         return (
             <View style={styles.container}>
                 <Balance />
