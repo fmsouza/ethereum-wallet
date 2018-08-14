@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text } from 'react-native';
-import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import { TextBullet } from './index';
 

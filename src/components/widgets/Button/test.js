@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text } from 'react-native';
-import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import { Button } from './index';
 
@@ -12,9 +11,9 @@ describe('<Button />', () => {
     });
     
     it('should call the `onPress` function when clicked', () => {
-        const eventSpy = sinon.spy();
-        const wrapper = shallow(<Button onPress={eventSpy} />);
+        const onPress = jest.fn();
+        const wrapper = shallow(<Button onPress={onPress} />);
         wrapper.simulate('press');
-        expect(eventSpy.called).toBeTruthy();
+        expect(onPress).toBeCalled();
     });
 });
