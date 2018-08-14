@@ -23,7 +23,7 @@ export class WalletSettings extends React.Component {
 
     showPK() {
         const { wallet } = this.props;
-        this.props.navigation.push('ShowPrivateKey', { wallet: wallet.item });
+        this.props.navigation.push('ShowPrivateKey', { wallet });
     }
 
     confirmRemoveWallet() {
@@ -53,20 +53,20 @@ export class WalletSettings extends React.Component {
     render() {
         return (
             <ScrollView style={styles.container}>
+                <ListItem onPress={() => this.confirmExportPK()}>
+                    <View style={styles.itemContainer}>
+                        <View style={styles.icon}>
+                            <Icon name='database-export' type='mdc' />
+                        </View>
+                        <Text style={styles.itemTitle}>Export private key</Text>
+                    </View>
+                </ListItem>
                 <ListItem onPress={() => this.confirmRemoveWallet()}>
                     <View style={styles.itemContainer}>
                         <View style={styles.icon}>
                             <Icon name='trash' />
                         </View>
                         <Text style={styles.itemTitle}>Remove wallet</Text>
-                    </View>
-                </ListItem>
-                <ListItem onPress={() => this.confirmExportPK()}>
-                    <View style={styles.itemContainer}>
-                        <View style={styles.icon}>
-                            <Icon name='trash' />
-                        </View>
-                        <Text style={styles.itemTitle}>Export private key</Text>
                     </View>
                 </ListItem>
             </ScrollView>

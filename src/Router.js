@@ -17,6 +17,7 @@ const navigator = StackNavigator({
     NewWallet: { screen: Views.NewWallet },
     NewWalletName: { screen: Views.NewWalletName },
     SelectDestination: { screen: Views.SelectDestination },
+    ShowPrivateKey: { screen: Views.ShowPrivateKey },
     WalletDetails: { screen: Views.WalletDetails },
     WalletsOverview: { screen: Views.WalletsOverview }
 }, {

@@ -9,6 +9,7 @@ export * from './NewWallet';
 export * from './NewWalletName';
 export * from './ReceiveCoins';
 export * from './SendCoins';
+export * from './ShowPrivateKey';
 export * from './SelectDestination';
 export * from './WalletDetails';
 export * from './WalletExtract';
