@@ -1,11 +1,10 @@
 import React from 'react';
 import { TabView } from '@components/widgets';
-import { colors, measures } from '@common/styles';
 import { ReceiveCoins, SendCoins, WalletExtract, WalletSettings } from '../index';
 
 export class WalletDetails extends React.Component {
     
-    static navigationOptions = ({ navigation, screenProps }) => ({
+    static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.wallet.name
     });
 
