@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from '@components/widgets';
 import { Wallet as WalletUtils } from '@common/utils';
 import { colors, measures } from '@common/styles';
-import { Wallets as WalletsActions } from '@common/actions';
+import { General as GeneralActions, Wallets as WalletsActions } from '@common/actions';
 import ConfirmBox from './ConfirmBox';
 
 export class ConfirmMnemonics extends React.Component {
@@ -26,7 +26,7 @@ export class ConfirmMnemonics extends React.Component {
             this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
             await WalletsActions.saveWallets();
         } catch (e) {
-            console.warn(e);
+            GeneralActions.notify(e.message, 'long');
         }
     }
 

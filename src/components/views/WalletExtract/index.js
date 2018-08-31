@@ -6,6 +6,7 @@ import { Wallets as WalletActions } from '@common/actions';
 import Balance from './Balance';
 import TransactionCard from './TransactionCard';
 import NoTransactions from './NoTransactions';
+import { GeneralActions } from '@common/actions';
 
 @observer(['wallet'])
 export class WalletExtract extends React.Component {
@@ -18,7 +19,7 @@ export class WalletExtract extends React.Component {
         try {
             await WalletActions.updateHistory(this.props.wallet.item);
         } catch (e) {
-            console.warn(e);
+            GeneralActions.notify(e.message, 'long');
         }
     }
 

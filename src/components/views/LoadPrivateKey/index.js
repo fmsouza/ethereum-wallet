@@ -3,7 +3,7 @@ import { Keyboard, StyleSheet, Text, View } from 'react-native';
 import { Button, Camera, InputWithIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
-import { Wallets as WalletsActions } from '@common/actions';
+import { General as GeneralActions, Wallets as WalletsActions } from '@common/actions';
 
 export class LoadPrivateKey extends React.Component {
     
@@ -21,7 +21,7 @@ export class LoadPrivateKey extends React.Component {
             this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
             await WalletsActions.saveWallets();
         } catch (e) {
-            console.warn(e);
+            GeneralActions.notify(e.message, 'long');
         }
     }
 

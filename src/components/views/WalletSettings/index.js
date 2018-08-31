@@ -3,7 +3,7 @@ import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
-import { Wallets as WalletsActions } from '@common/actions';
+import { General as GeneralActions, Wallets as WalletsActions } from '@common/actions';
 import ListItem from './ListItem';
 
 @observer(['wallet'])
@@ -16,7 +16,7 @@ export class WalletSettings extends React.Component {
             this.props.navigation.goBack();
             await WalletsActions.saveWallets();
         } catch (e) {
-            console.warn(e);
+            GeneralActions.notify(e.message, 'long');
         }
     }
 

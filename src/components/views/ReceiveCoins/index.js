@@ -2,8 +2,8 @@ import React from 'react';
 import { Clipboard, Share, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { observer } from 'mobx-react';
 import QRCode from 'react-native-qrcode-svg';
-import Snackbar from 'react-native-snackbar';
 import { Icon } from '@components/widgets';
+import { General as GeneralActions } from '@common/actions';
 import { colors, measures } from '@common/styles';
 
 @observer(['wallet'])
@@ -12,10 +12,7 @@ export class ReceiveCoins extends React.Component {
     copyToClipboard() {
         const { item } = this.props.wallet;
         Clipboard.setString(item.getAddress());
-        Snackbar.show({
-            title: 'Copied to clipboard.',
-            duration: Snackbar.LENGTH_SHORT
-        });
+        GeneralActions.notify('Copied to clipboard', 'short');
     }
 
     share() {
