@@ -15,11 +15,16 @@ export class RecentsStore {
     }
 
     @action addAddress(address) {
+        const index = this.list.findIndex(a => a === address);
+        if (index > -1) return;
         this.list.push(address);
     }
 
     @action loadAddresses(addresses) {
-        this.list = addresses;
+        this.list = [];
+        for (let address of addresses) {
+            this.addAddress(address);
+        }
     }
 
     @action reset() {

@@ -18,9 +18,23 @@ describe('RecentsStore', () => {
             expect(recentsStore.list[0]).toBe('0x12345');
         });
         
+        it('should be filter repeated addresses', () => {
+            expect(recentsStore.list.length).toBe(0);
+            recentsStore.addAddress('0x12345');
+            expect(recentsStore.list.length).toBe(1);
+            recentsStore.addAddress('0x12345');
+            expect(recentsStore.list.length).toBe(1);
+        });
+        
         it('should be able to update the state with a list of addresses', () => {
             expect(recentsStore.list.length).toBe(0);
-            recentsStore.loadAddresses(['0x12345', '54321']);
+            recentsStore.loadAddresses(['0x12345', '0x54321']);
+            expect(recentsStore.list.length).toBe(2);
+        });
+        
+        it('should avoid adding duplicates when updating the state with a list of addresses', () => {
+            expect(recentsStore.list.length).toBe(0);
+            recentsStore.loadAddresses(['0x12345', '0x54321', '0x12345']);
             expect(recentsStore.list.length).toBe(2);
         });
         
