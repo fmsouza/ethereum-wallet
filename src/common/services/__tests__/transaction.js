@@ -2,7 +2,7 @@ import { Wallet as WalletUtils, Transaction as TransactionUtils } from '@common/
 import * as Transactions from '../transactions';
 import ethers from 'ethers';
 
-describe('TransactionsService', () => {
+describe.skip('TransactionsService', () => {
 
   it('`sendTransaction` should break if the wallet is invalid', async function() {
     const wallet = null;
