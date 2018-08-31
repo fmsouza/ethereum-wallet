@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
 import { Wallets as WalletActions } from '@common/actions';
 
-@observer(['prices'])
+@inject('prices')
+@observer
 export default class WalletCard extends React.Component {
 
     get balance() {

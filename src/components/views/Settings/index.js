@@ -1,12 +1,13 @@
 import React from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { General as GeneralActions } from '@common/actions';
 import ListItem from './ListItem';
 
-@observer(['wallet'])
+@inject('wallet')
+@observer
 export class Settings extends React.Component {
 
     static navigationOptions = ({ navigation, screenProps }) => ({

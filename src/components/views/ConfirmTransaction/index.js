@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { Button } from '@components/widgets';
 import { measures } from '@common/styles';
 import { Recents as RecentsActions, Transactions as TransactionActions } from '@common/actions';
@@ -8,7 +8,8 @@ import { Image as ImageUtils, Transaction as TransactionUtils, Wallet as WalletU
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 
-@observer(['prices', 'wallet'])
+@inject('prices', 'wallet')
+@observer
 export class ConfirmTransaction extends React.Component {
     
     static navigationOptions = { title: 'Confirm transaction' };

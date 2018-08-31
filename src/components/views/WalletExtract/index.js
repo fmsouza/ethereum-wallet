@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { measures } from '@common/styles';
 import { Wallets as WalletActions } from '@common/actions';
 import Balance from './Balance';
@@ -8,7 +8,8 @@ import TransactionCard from './TransactionCard';
 import NoTransactions from './NoTransactions';
 import { GeneralActions } from '@common/actions';
 
-@observer(['wallet'])
+@inject('wallet')
+@observer
 export class WalletExtract extends React.Component {
 
     componentDidMount() {

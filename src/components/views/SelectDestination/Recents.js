@@ -1,11 +1,12 @@
 import React from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { colors, measures } from '@common/styles';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { General as GeneralActions, Recents as RecentsActions } from '@common/actions';
 import NoRecents from './NoRecents';
 
-@observer(['recents'])
+@inject('recents')
+@observer
 export default class Recents extends React.Component {
 
     componentDidMount() {

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Clipboard, Share, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import QRCode from 'react-native-qrcode-svg';
 import { Icon } from '@components/widgets';
 import { General as GeneralActions } from '@common/actions';
 import { colors, measures } from '@common/styles';
 
-@observer(['wallet'])
+@inject('wallet')
+@observer
 export class ReceiveCoins extends React.Component {
 
     copyToClipboard() {
