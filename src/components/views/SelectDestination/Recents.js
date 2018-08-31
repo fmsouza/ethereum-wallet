@@ -2,20 +2,28 @@ import React from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { colors, measures } from '@common/styles';
 import { observer } from 'mobx-react';
-import { Recents as RecentsActions } from '@common/actions';
+import { General as GeneralActions, Recents as RecentsActions } from '@common/actions';
 import NoRecents from './NoRecents';
 
 @observer(['recents'])
 export default class Recents extends React.Component {
 
     componentDidMount() {
-        RecentsActions.loadRecents();
+        this.loadRecents();
+    }
+
+    async loadRecents() {
+        try {
+            await RecentsActions.loadRecents();
+        } catch (e) {
+            GeneralActions.notify(e.message, 'long');
+        }
     }
 
     renderRecent = ({ item }) => (
-        <TouchableWithoutFeedback onPress={() => this.props.onPressItem(item.address)}>
+        <TouchableWithoutFeedback onPress={() => this.props.onPressItem(item)}>
             <View style={styles.itemContainer}>
-                <Text style={styles.itemTitle}>{item.address}</Text>
+                <Text style={styles.itemTitle}>{item}</Text>
             </View>
         </TouchableWithoutFeedback>
     );
@@ -24,7 +32,7 @@ export default class Recents extends React.Component {
         <FlatList
             style={styles.listContainer}
             data={recents}
-            keyExtractor={item => item.address}
+            keyExtractor={item => item}
             renderItem={this.renderRecent} />
     );
 
