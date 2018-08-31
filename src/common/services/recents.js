@@ -7,5 +7,5 @@ export async function loadRecentAddresses() {
 }
 
 export async function saveRecentAddresses(recents) {
-    await StorageService.setItem(Wallet.STORAGE_KEY, JSON.stringify(recents));
+    await StorageService.setItem(Recents.STORAGE_KEY, JSON.stringify(recents));
 }
