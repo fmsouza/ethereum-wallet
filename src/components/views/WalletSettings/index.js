@@ -1,13 +1,12 @@
 import React from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallets as WalletsActions } from '@common/actions';
 import ListItem from './ListItem';
 
-@inject('wallet')
-@observer
+@observer(['wallet'])
 export class WalletSettings extends React.Component {
 
     async removeWallet() {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Calculator } from '@components/widgets';
-import { colors, measures } from '@common/styles';
+import { colors } from '@common/styles';
 
 export class SendCoins extends React.Component {
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { measures } from '@common/styles';
 
-export default ({ children, title, onPress }) => (
+export default ({ children, onPress }) => (
     <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.container} children={children} />
     </TouchableWithoutFeedback>

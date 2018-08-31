@@ -1,9 +1,7 @@
 import React from 'react';
 import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Button, InputWithIcon } from '@components/widgets';
+import { Button } from '@components/widgets';
 import { colors, measures } from '@common/styles';
-import { Wallet as WalletUtils } from '@common/utils';
-import { Wallets as WalletsActions } from '@common/actions';
 
 export class NewWalletName extends React.Component {
     

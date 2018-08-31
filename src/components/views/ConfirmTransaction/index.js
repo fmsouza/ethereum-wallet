@@ -1,15 +1,14 @@
 import React from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { Button } from '@components/widgets';
-import { colors, measures } from '@common/styles';
+import { measures } from '@common/styles';
 import { Transactions as TransactionActions } from '@common/actions';
 import { Image as ImageUtils, Transaction as TransactionUtils, Wallet as WalletUtils } from '@common/utils';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 
-@inject('prices', 'wallet')
-@observer
+@observer(['prices', 'wallet'])
 export class ConfirmTransaction extends React.Component {
     
     static navigationOptions = { title: 'Confirm transaction' };

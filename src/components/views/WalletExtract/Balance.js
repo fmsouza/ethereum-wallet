@@ -1,15 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
 
-@inject('prices', 'wallet')
-@observer
+@observer(['prices', 'wallet'])
 export default class Balance extends React.Component {
 
     get balance() {
-        const { wallet: { item } } = this.props;
+        const { item } = this.props.wallet;
         return Number(WalletUtils.formatBalance(item.balance));
     }
     
