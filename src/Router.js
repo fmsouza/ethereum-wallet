@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform, StatusBar } from 'react-native';
 import { NavigationActions, StackNavigator } from 'react-navigation';
 import * as Views from './components/views';
 import { colors } from './common/styles';
@@ -17,6 +16,7 @@ const navigator = StackNavigator({
     NewWallet: { screen: Views.NewWallet },
     NewWalletName: { screen: Views.NewWalletName },
     SelectDestination: { screen: Views.SelectDestination },
+    Settings: { screen: Views.Settings },
     ShowPrivateKey: { screen: Views.ShowPrivateKey },
     WalletDetails: { screen: Views.WalletDetails },
     WalletsOverview: { screen: Views.WalletsOverview }
