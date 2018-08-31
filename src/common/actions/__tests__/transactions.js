@@ -24,7 +24,7 @@ describe('TransactionsActions', () => {
     } catch (e) { expect(e.message).toBe('Invalid destination address'); }
   });
 
-  it('`sendEther` should send ether to some address when there are funds available', async function() {
+  it.skip('`sendEther` should send ether to some address when there are funds available', async function() {
     jest.setTimeout(60000);
     const wallet = WalletUtils.loadWalletFromPrivateKey(WALLET_PK);
     const value = '0.002';
@@ -51,7 +51,7 @@ describe('TransactionsActions', () => {
     } catch (e) { expect(e.message).toBe('Invalid destination address'); }
   });
 
-  it('`sendTransaction` should send ether to some address when there are funds available', async function() {
+  it.skip('`sendTransaction` should send ether to some address when there are funds available', async function() {
     jest.setTimeout(60000);
     const wallet = WalletUtils.loadWalletFromPrivateKey(WALLET_PK);
     const value = '0.002';

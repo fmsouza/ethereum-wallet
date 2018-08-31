@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { InputWithIcon } from './index';
 
-describe('<InputWithIcon />', () => {
+describe.skip('<InputWithIcon />', () => {
     
     it('should call the `onPressIcon` function when text was typed', () => {
         const onPressIcon = jest.fn();
