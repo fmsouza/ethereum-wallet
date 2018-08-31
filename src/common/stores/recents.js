@@ -22,9 +22,7 @@ export class RecentsStore {
 
     @action loadAddresses(addresses) {
         this.list = [];
-        for (let address of addresses) {
-            this.addAddress(address);
-        }
+        addresses.forEach(address => this.addAddress(address));
     }
 
     @action reset() {
