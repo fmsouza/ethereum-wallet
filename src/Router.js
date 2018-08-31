@@ -6,6 +6,7 @@ import { colors } from './common/styles';
 export const INITIAL_ROUTE = 'WalletsOverview';
 
 const navigator = StackNavigator({
+    ChangeCurrency: { screen: Views.ChangeCurrency },
     ConfirmMnemonics: { screen: Views.ConfirmMnemonics },
     ConfirmTransaction: { screen: Views.ConfirmTransaction },
     CreateMnemonics: { screen: Views.CreateMnemonics },

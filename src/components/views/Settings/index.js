@@ -14,11 +14,8 @@ export class Settings extends React.Component {
         title: 'Settings'
     });
 
-    get items() {
-        return [
-            { title: 'Change currency', iconName: 'attach-money', iconType: 'md', action: () => {} },
-            { title: 'Erase all data', iconName: 'trash', iconType: '', action: () => this.confirmErase() },
-        ];
+    goToChangeCurrencyPage() {
+        this.props.navigation.navigate('ChangeCurrency');
     }
 
     eraseAllData() {
@@ -38,7 +35,7 @@ export class Settings extends React.Component {
         );
     }
 
-    renderItems = () => this.items.map((item, index) => (
+    renderItems = (items) => items.map((item, index) => (
         <ListItem onPress={item.action} key={index}>
             <View style={styles.itemContainer}>
                 <View style={styles.icon}>
@@ -52,7 +49,10 @@ export class Settings extends React.Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                {this.renderItems()}
+                {this.renderItems([
+                    { title: 'Change currency', iconName: 'attach-money', iconType: 'md', action: () => this.goToChangeCurrencyPage() },
+                    { title: 'Erase all data', iconName: 'trash', iconType: '', action: () => this.confirmErase() },
+                ])}
             </ScrollView>
         );
     }

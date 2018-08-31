@@ -1,3 +1,4 @@
+export * from './ChangeCurrency';
 export * from './ConfirmMnemonics';
 export * from './ConfirmTransaction';
 export * from './CreateMnemonics';
