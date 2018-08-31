@@ -3,7 +3,7 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { Button } from '@components/widgets';
 import { measures } from '@common/styles';
-import { Transactions as TransactionActions } from '@common/actions';
+import { Recents as RecentsActions, Transactions as TransactionActions } from '@common/actions';
 import { Image as ImageUtils, Transaction as TransactionUtils, Wallet as WalletUtils } from '@common/utils';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
@@ -37,9 +37,7 @@ export class ConfirmTransaction extends React.Component {
     }
 
     componentDidMount() {
-        const {
-            navigation: { state: { params: { address, amount } } }
-        } = this.props;
+        const { address, amount } = this.props.navigation.state.params;
         const txn = TransactionUtils.createTransaction(address, amount);
         this.setState({ txn });
     }
@@ -50,6 +48,7 @@ export class ConfirmTransaction extends React.Component {
         try {
             const txn = await TransactionActions.sendTransaction(wallet.item, this.state.txn);
             this.setState({ txn });
+            RecentsActions.saveAddressToRecents(txn.to);
         } catch (error) {
             this.setState({ error });
         } finally {
