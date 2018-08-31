@@ -7,3 +7,10 @@ export function loadRecents(store=RecentsStore, service=RecentsService) {
     store.loadAddresses(recents);
     store.isLoading(false);
 }
+
+export function saveAddressToRecents(address, store=RecentsStore, service=RecentsService) {
+    store.isLoading(true);
+    store.addAddress(address);
+    service.saveRecentAddresses(store.list);
+    store.isLoading(false);
+}
