@@ -1,14 +1,16 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { colors, measures } from '@common/styles';
+import { observer } from 'mobx-react';
+import { Recents as RecentsActions } from '@common/actions';
+import NoRecents from './NoRecents';
 
-const mockedItems = [
-    { address: '0x407428BF09ea7Dac2824A64AfE88171041a02b14' }
-];
-
+@observer(['recents'])
 export default class Recents extends React.Component {
 
-    state = { items: mockedItems };
+    componentDidMount() {
+        RecentsActions.loadRecents();
+    }
 
     renderRecent = ({ item }) => (
         <TouchableWithoutFeedback onPress={() => this.props.onPressItem(item.address)}>
@@ -18,20 +20,15 @@ export default class Recents extends React.Component {
         </TouchableWithoutFeedback>
     );
 
-    renderList() {
-        if (this.state.items.length > 0) return (
-            <FlatList
-                style={styles.listContainer}
-                data={this.state.items}
-                keyExtractor={item => item.address}
-                renderItem={this.renderRecent} />
-        );
-        else return (
-            <View style={styles.noItems}>
-                <Text style={styles.title}>You didn't sent anything yet.</Text>
-            </View>
-        );
-    }
+    renderList = (recents) => (!recents.length) ? <NoRecents /> : (
+        <FlatList
+            style={styles.listContainer}
+            data={recents}
+            keyExtractor={item => item.address}
+            renderItem={this.renderRecent} />
+    );
+
+    renderBody = ({ loading, list }) => loading ? <ActivityIndicator /> : this.renderList(list);
 
     render() {
         return (
@@ -39,7 +36,7 @@ export default class Recents extends React.Component {
                 <View style={styles.header}>
                     <Text style={styles.title}>Recent destinations</Text>
                 </View>
-                {this.renderList()}
+                {this.renderBody(this.props.recents)}
             </View>
         );
     }
