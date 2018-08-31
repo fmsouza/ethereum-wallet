@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Icon } from '@components/widgets';
-import { colors, measures } from '@common/styles';
+import { StyleSheet, View } from 'react-native';
+import { colors } from '@common/styles';
 import TabBarIcon from './TabBarIcon';
 
 export default class TabBar extends React.Component {
