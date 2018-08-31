@@ -12,17 +12,23 @@ describe('RecentsStore', () => {
         });
     
         it('should be able to add a new address to the store list', () => {
-            expect(recentsStore.addresses.length).toBe(0);
+            expect(recentsStore.list.length).toBe(0);
             recentsStore.addAddress('0x12345');
-            expect(recentsStore.addresses.length).toBe(1);
-            expect(recentsStore.addresses[0]).toBe('0x12345');
+            expect(recentsStore.list.length).toBe(1);
+            expect(recentsStore.list[0]).toBe('0x12345');
+        });
+        
+        it('should be able to update the state with a list of addresses', () => {
+            expect(recentsStore.list.length).toBe(0);
+            recentsStore.loadAddresses(['0x12345', '54321']);
+            expect(recentsStore.list.length).toBe(2);
         });
         
         it('should be able to reset the store state', () => {
             recentsStore.isLoading(true);
             recentsStore.addAddress('0x12345');
             recentsStore.reset();
-            expect(recentsStore.addresses.length).toBe(0);
+            expect(recentsStore.list.length).toBe(0);
             expect(recentsStore.loading).toBe(false);
         });
 });

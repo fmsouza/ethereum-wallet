@@ -1,13 +1,13 @@
 import { action, observable } from 'mobx';
 
 const INITIAL = {
-    addresses: [],
+    list: [],
     loading: false
 };
 
 export class RecentsStore {
 
-    @observable addresses = INITIAL.addresses;
+    @observable list = INITIAL.list;
     @observable loading = INITIAL.loading;
 
     @action isLoading(state) {
@@ -15,11 +15,15 @@ export class RecentsStore {
     }
 
     @action addAddress(address) {
-        this.addresses.push(address);
+        this.list.push(address);
+    }
+
+    @action loadAddresses(addresses) {
+        this.list = addresses;
     }
 
     @action reset() {
-        this.addresses = INITIAL.addresses;
+        this.list = INITIAL.list;
         this.loading = INITIAL.loading;
     }
 }
