@@ -1,3 +1,5 @@
+import * as store from '@common/stores';
+
 export async function notify(title, duration, driver=require('react-native-snackbar')) {
     switch (duration) {
 
@@ -16,4 +18,11 @@ export async function notify(title, duration, driver=require('react-native-snack
     }
     
     driver.show({ title, duration });
+}
+
+export function eraseAllData() {
+    store.prices.reset();
+    store.recents.reset();
+    store.wallet.reset();
+    store.wallets.reset();
 }
