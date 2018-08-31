@@ -15,10 +15,18 @@ export class ConfirmTransaction extends React.Component {
 
     state = { txn: null, error: null };
 
+    get returnButton() {
+        return { title: 'Return to wallet', action: () => this.onPressReturn() };
+    }
+
+    get confirmButton() {
+        return { title: 'Confirm & send', action: () => this.onPressSend() };
+    }
+
     get actionButton() {
         if (this.props.wallet.loading) return <ActivityIndicator loading />;
         const buttonConfig = ((this.state.txn && this.state.txn.hash) || this.state.error) ?
-            { title: 'Return to wallet', action: () => this.onPressReturn() } : { title: 'Confirm & send', action: this.onPressSend };
+            this.returnButton : this.confirmButton;
          return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
     }
 
@@ -62,7 +70,7 @@ export class ConfirmTransaction extends React.Component {
     }
 
     render() {
-        const { estimatedGas, error, txn } = this.state;
+        const { error, txn } = this.state;
         return (!txn) ? null : (
             <View style={styles.container}>
                 <View style={styles.content}>
