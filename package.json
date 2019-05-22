@@ -1,6 +1,6 @@
 {
   "name": "EthereumWallet",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "postinstall": "./config/postinstall.sh",
@@ -17,46 +17,43 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
-    "axios": "0.18.0",
-    "ethers": "3.0.27",
-    "identicon.js": "2.3.2",
-    "mobx": "5.1.0",
-    "mobx-react": "5.2.5",
-    "moment": "2.22.2",
-    "react": "16.4.2",
-    "react-native": "0.56.0",
-    "react-native-camera": "1.2.0",
-    "react-native-modal": "6.5.0",
-    "react-native-permissions": "1.1.1",
-    "react-native-qrcode-svg": "5.1.0",
-    "react-native-sensitive-info": "5.2.4",
-    "react-native-snackbar": "0.5.0",
-    "react-native-svg": "6.5.2",
-    "react-native-vector-icons": "5.0.0",
-    "react-navigation": "2.12.1"
+    "axios": "^0.18.0",
+    "babel-core": "7.0.0-bridge.0",
+    "ethers": "^3.0.29",
+    "identicon.js": "^2.3.3",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.4",
+    "moment": "^2.24.0",
+    "react": "16.8.3",
+    "react-native": "0.59.8",
+    "react-native-camera": "^2.9.0",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-modal": "^11.0.1",
+    "react-native-permissions": "^1.1.1",
+    "react-native-qrcode-svg": "^5.1.2",
+    "react-native-sensitive-info": "^5.4.1",
+    "react-native-snackbar": "^0.5.5",
+    "react-native-svg": "^9.4.0",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.47",
-    "@babel/plugin-proposal-decorators": "7.0.0-beta.47",
-    "@babel/plugin-transform-runtime": "7.0.0-beta.47",
-    "@babel/runtime": "7.0.0-beta.47",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "23.4.2",
-    "babel-plugin-module-resolver": "3.1.1",
-    "babel-preset-react-native": "5.0.2",
-    "enzyme": "3.5.0",
-    "enzyme-adapter-react-16": "1.3.0",
-    "eslint-config-rallycoding": "3.2.0",
-    "jest": "23.5.0",
-    "jsdom": "12.0.0",
-    "react-native-mock-render": "0.1.1",
-    "react-test-renderer": "16.4.2"
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-preset-react-native": "^4.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.1",
+    "eslint-config-rallycoding": "^3.2.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-native-mock-render": "^0.1.3",
+    "react-test-renderer": "^16.8.6"
   },
   "jest": {
-    "preset": "react-native",
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    },
-    "setupTestFrameworkScriptFile": "<rootDir>/config/jest.config.js"
+    "preset": "react-native"
   }
 }

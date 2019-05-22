@@ -1,6 +1,11 @@
+/**
+ * @format
+ */
+
 import { AppRegistry, YellowBox } from 'react-native';
-import './src/common/utils/shims';
 import App from './src';
+import './src/common/utils/shims';
+import { name as appName } from './app.json';
 
 YellowBox.ignoreWarnings([
   'Warning: componentWillMount',
@@ -10,4 +15,4 @@ YellowBox.ignoreWarnings([
   'Remote debugger'
 ]);
 
-AppRegistry.registerComponent('EthereumWallet', () => App);
+AppRegistry.registerComponent(appName, () => App);
