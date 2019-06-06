@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 import { AppRegistry, YellowBox } from 'react-native';
 import App from './src';
 import './src/common/utils/shims';
