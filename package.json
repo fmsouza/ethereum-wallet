@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "postinstall": "./config/postinstall.sh",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "upgrade": "react-native upgrade && react-native link",
     "test": "jest",
