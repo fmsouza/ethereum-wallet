@@ -6,6 +6,10 @@ export async function loadRecentAddresses() {
     return recents ? JSON.parse(recents) : [];
 }
 
-export async function saveRecentAddresses(recents) {
-    await StorageService.setItem(Recents.STORAGE_KEY, JSON.stringify(recents));
+export function saveRecentAddresses(recents) {
+    return StorageService.setItem(Recents.STORAGE_KEY, JSON.stringify(recents));
+}
+
+export function removeRecentAddresses() {
+    return StorageService.deleteItem(Recents.STORAGE_KEY);
 }

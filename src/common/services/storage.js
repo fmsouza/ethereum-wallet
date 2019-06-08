@@ -8,3 +8,7 @@ export function getItem(key) {
 export function setItem(key, value) {
     return SensitiveInfoStorage.setItem(key, value || '', Storage.CONFIG);
 }
+
+export function deleteItem(key) {
+    return SensitiveInfoStorage.deleteItem(key, Storage.CONFIG);
+}
