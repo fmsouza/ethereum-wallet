@@ -28,10 +28,10 @@ export async function eraseAllData() {
 }
 
 function cleanStorage() {
-    return [
+    return Promise.all([
         RecentsService.removeRecentAddresses(),
         WalletsService.deleteWalletPKs()
-    ];
+    ]);
 }
 
 function cleanStores() {
