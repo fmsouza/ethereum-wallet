@@ -19,7 +19,7 @@ describe('TransactionsActions', () => {
     } catch (e) { expect(e.message).toBe('Invalid wallet'); }
 
     try {
-      await Transactions.sendEther(wallet, {});
+      await Transactions.sendTransaction(wallet, {});
       fail('should have thrown an Error.');
     } catch (e) { expect(e.message).toBe('Invalid destination address'); }
   });

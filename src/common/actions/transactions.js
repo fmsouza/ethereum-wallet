@@ -9,13 +9,6 @@ async function waitForTransaction(wallet, txn) {
   notify('Transaction confirmed');
 }
 
-export async function sendEther(wallet, destination, amount, options) {
-  const txn = await TransactionsService.sendEther(wallet, destination, amount, options);
-  WalletStore.addPendingTransaction(txn);
-  waitForTransaction(wallet, txn);
-  return txn;
-}
-
 export async function sendTransaction(wallet, txn) {
   if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid wallet');
   txn = await TransactionsService.sendTransaction(wallet, txn);
