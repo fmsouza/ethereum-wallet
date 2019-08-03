@@ -30,7 +30,7 @@ describe('TransactionsActions', () => {
     const value = '0.002';
     try {
       const txn = await Transactions.sendEther(wallet, DESTINATION_ADDRESS, value);
-      expect(txn.from).toBe(wallet.getAddress());
+      expect(txn.from).toBe(wallet.address);
       expect(txn.to).toBe(DESTINATION_ADDRESS);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
       expect(WalletStore.history.length).toBe(1);
@@ -58,7 +58,7 @@ describe('TransactionsActions', () => {
     let txn = TransactionUtils.createTransaction(DESTINATION_ADDRESS, value);
     try {
       txn = await Transactions.sendTransaction(wallet, txn);
-      expect(txn.from).toBe(wallet.getAddress());
+      expect(txn.from).toBe(wallet.address);
       expect(txn.to).toBe(DESTINATION_ADDRESS);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
       expect(WalletStore.history.length).toBe(1);

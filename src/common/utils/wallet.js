@@ -19,9 +19,8 @@ export function loadWalletFromMnemonics(mnemonics) {
     else if (mnemonics instanceof Array)
         mnemonics = mnemonics.join(' ');
 
-    const wallet = Wallet.fromMnemonic(mnemonics);
-    wallet.provider = PROVIDER;
-    return wallet;
+    const { privateKey } = Wallet.fromMnemonic(mnemonics);
+    return new Wallet(privateKey, PROVIDER);
 }
 
 export function loadWalletFromPrivateKey(pk) {

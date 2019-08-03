@@ -62,7 +62,7 @@ describe.skip('TransactionsService', () => {
   it('`sendTransaction` should break if the the wallet has no funds to make the transaction', async function() {
     const mnemonics = WalletUtils.generateMnemonics();
     const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
-    const txn = TransactionUtils.createTransaction(wallet.getAddress(), '5.0');
+    const txn = TransactionUtils.createTransaction(wallet.address, '5.0');
     try {
       await Transactions.sendTransaction(wallet, txn);
       fail('should have thrown an Error.');
@@ -77,7 +77,7 @@ describe.skip('TransactionsService', () => {
     const transaction = TransactionUtils.createTransaction(to, value);
     try {
       const txn = await Transactions.sendTransaction(wallet, transaction);
-      expect(txn.from).toBe(wallet.getAddress());
+      expect(txn.from).toBe(wallet.address);
       expect(txn.to).toBe(to);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
     } catch (e) { fail(e); }
@@ -104,7 +104,7 @@ describe.skip('TransactionsService', () => {
     const value = '0.002';
     try {
       const txn = await Transactions.sendEther(wallet, to, value);
-      expect(txn.from).toBe(wallet.getAddress());
+      expect(txn.from).toBe(wallet.address);
       expect(txn.to).toBe(to);
       expect(txn.value.toString()).toBe(ethers.utils.parseEther(value).toString());
     } catch (e) { fail(e); }

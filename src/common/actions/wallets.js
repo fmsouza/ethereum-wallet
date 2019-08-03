@@ -20,7 +20,7 @@ export async function loadWallets() {
 
 export async function updateBalance(wallet) {
     const balance = await wallet.getBalance();
-    WalletsStore.setBalance(wallet.getAddress(), balance);
+    WalletsStore.setBalance(wallet.address, balance);
 }
 
 export async function removeWallet(wallet) {
@@ -37,7 +37,7 @@ export async function selectWallet(wallet) {
 
 export async function updateHistory(wallet) {
     WalletStore.isLoading(true);
-    const { data } = await ApiService.getHistory(wallet.getAddress());
+    const { data } = await ApiService.getHistory(wallet.address);
     if (data.status == 1) WalletStore.setHistory(data.result);
     WalletStore.isLoading(false);
 }
