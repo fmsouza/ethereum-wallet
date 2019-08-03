@@ -21,7 +21,7 @@ describe('TransactionsActions', () => {
     try {
       await Transactions.sendTransaction(wallet, {});
       fail('should have thrown an Error.');
-    } catch (e) { expect(e.message).toBe('Invalid destination address'); }
+    } catch (e) { expect(e.message).toBe('Invalid transaction'); }
   });
 
   it('`sendTransaction` should send ether to some address when there are funds available', async function() {
