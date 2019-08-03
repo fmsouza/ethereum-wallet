@@ -12,7 +12,7 @@
     "android:clean": "cd android && ./gradlew clean && cd ..",
     "android:generate-apk": "npm run android:bundle && npm run android:build",
     "android": "react-native run-android",
-    "logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V",
+    "android:logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "ios": "react-native run-ios"
   },
   "dependencies": {

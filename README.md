@@ -7,11 +7,14 @@ This project is a Ethereum Wallet built on top of ReactNative.
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
   * [npm test](#npm-test)
+  * [npm test:ci](#npm-test-ci)
+  * [npm test:watch](#npm-test-watch)
   * [npm run ios](#npm-run-ios)
   * [npm run android](#npm-run-android)
-  * [npm run android-build](#npm-run-android-build)
-  * [npm run android-bundle](#npm-run-android-bundle)
-  * [npm run android-clean](#npm-run-android-clean)
+  * [npm run android:build](#npm-run-android-build)
+  * [npm run android:bundle](#npm-run-android-bundle)
+  * [npm run android:clean](#npm-run-android-clean)
+  * [npm run android:logcat](#npm-run-android-logcat)
 * [Writing and Running Tests](#writing-and-running-tests)
 * [License](#license)
 * [Contribute](#contribute)
@@ -29,6 +32,14 @@ Runs Packager to provide your app in development mode.
 #### `npm test`
 
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
+
+#### `npm run test:ci`
+
+Runs all the tests in CI mode, which does some optimizations and optputs code coverage information.
+
+#### `npm run test:watch`
+
+Runs the tests in watch mode, so whenever you change your code the involved tests will run again.
 
 #### `npm run ios`
 
@@ -53,6 +64,10 @@ Bundle and build the Android app.
 #### `npm run android:clean`
 
 Clean the Android generated build files.
+
+#### `npm run android:logcat`
+
+Outputs the Android logcat to the cli, so you can see native the logs in runtime.
 
 ## Writing and Running Tests
 
