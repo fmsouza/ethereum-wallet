@@ -1,4 +1,4 @@
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 import { Transaction as TransactionUtils, Wallet as WalletUtils } from '@common/utils';
 
 const { Wallet, utils } = ethers;

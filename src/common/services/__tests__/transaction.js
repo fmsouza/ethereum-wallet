@@ -1,6 +1,6 @@
 import { Wallet as WalletUtils, Transaction as TransactionUtils } from '@common/utils';
 import * as Transactions from '../transactions';
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 
 describe.skip('TransactionsService', () => {
 

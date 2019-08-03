@@ -1,4 +1,4 @@
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 import * as WalletUtils from '../wallet';
 
 describe('Wallet utils', () => {
