@@ -1,4 +1,4 @@
-# Ethereum Wallet
+# Ethereum Wallet [![Build Status](https://travis-ci.org/fmsouza/ethereum-wallet.svg?branch=master)](https://travis-ci.org/fmsouza/ethereum-wallet)
 
 This project is a Ethereum Wallet built on top of ReactNative.
 
