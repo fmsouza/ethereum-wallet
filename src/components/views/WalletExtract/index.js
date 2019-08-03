@@ -32,7 +32,7 @@ export class WalletExtract extends React.Component {
             data={pendingTransactions.concat(history.slice().reverse())}
             refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
             keyExtractor={(element) => element.hash}
-            renderItem={this.renderItem(item.getAddress())} />
+            renderItem={this.renderItem(item.address)} />
     );
 
     render() {

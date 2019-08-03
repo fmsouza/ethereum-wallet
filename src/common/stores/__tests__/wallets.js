@@ -20,7 +20,7 @@ describe('WalletsStore', () => {
         expect(walletsStore.list.length).toBe(1);
         expect(walletsStore.list[0].name).toBe("walletName");
         expect(walletsStore.list[0].description).toBe('description');
-        expect(walletsStore.list[0].getAddress()).toBe(wallet.getAddress());
+        expect(walletsStore.list[0].address).toBe(wallet.address);
     });
     
     it('should be able to modify a wallet balance in the list', () => {
@@ -31,8 +31,8 @@ describe('WalletsStore', () => {
         walletsStore.addWallet("walletName1", wallet1);
         walletsStore.addWallet("walletName2", wallet2);
         expect(walletsStore.list.length).toBe(2);
-        expect(walletsStore.list[1].getAddress()).toBe(wallet2.getAddress());
-        walletsStore.setBalance(wallet2.getAddress(), 1000);
+        expect(walletsStore.list[1].address).toBe(wallet2.address);
+        walletsStore.setBalance(wallet2.address, 1000);
         expect(walletsStore.list[1].balance).toBe(1000);
     });
     

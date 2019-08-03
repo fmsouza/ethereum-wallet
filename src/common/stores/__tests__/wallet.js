@@ -16,7 +16,7 @@ describe('WalletStore', () => {
         const mnemonics = WalletUtils.generateMnemonics();
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
         walletStore.select(wallet);
-        expect(walletStore.item.getAddress()).toBe(wallet.getAddress());
+        expect(walletStore.item.address).toBe(wallet.address);
     });
 
     it('should be able to update the txn history for the currently active wallet', () => {
@@ -45,7 +45,7 @@ describe('WalletStore', () => {
         };
 
         walletStore.setHistory([txn]);
-        expect(walletStore.item.getAddress()).toBe(wallet.getAddress());
+        expect(walletStore.item.address).toBe(wallet.address);
         expect(walletStore.history).toBeInstanceOf(Array);
         expect(walletStore.history.length).toBe(1);
     });

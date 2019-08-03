@@ -35,7 +35,7 @@ describe('WalletsActions', () => {
         try {
             await Action.addWallet("walletName", wallet);
             await Action.updateBalance(wallet);
-            expect(WalletsStore.list[0].getAddress()).toBe(wallet.getAddress());
+            expect(WalletsStore.list[0].address).toBe(wallet.address);
             expect(WalletsStore.list[0].balance).toBeInstanceOf(Object);
         } catch (e) {
             fail(e);

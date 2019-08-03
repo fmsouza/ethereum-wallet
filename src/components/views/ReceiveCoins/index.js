@@ -12,7 +12,7 @@ export class ReceiveCoins extends React.Component {
 
     copyToClipboard() {
         const { item } = this.props.wallet;
-        Clipboard.setString(item.getAddress());
+        Clipboard.setString(item.address);
         GeneralActions.notify('Copied to clipboard', 'short');
     }
 
@@ -20,7 +20,7 @@ export class ReceiveCoins extends React.Component {
         const { item } = this.props.wallet;
         Share.share({
             title: 'Wallet address:',
-            message: item.getAddress()
+            message: item.address
         });
     }
 
@@ -39,9 +39,9 @@ export class ReceiveCoins extends React.Component {
             <View style={styles.container}>
                 <Text style={styles.centered}>Show the code below to receive coins</Text>
                 <View style={styles.centered}>
-                    <QRCode size={256} value={item.getAddress()} />
+                    <QRCode size={256} value={item.address} />
                 </View>
-                <Text style={styles.centered}>{item.getAddress()}</Text>
+                <Text style={styles.centered}>{item.address}</Text>
                 <View style={styles.actions}>
                     <View style={styles.actionsBar}>
                         {this.renderColumn('copy', 'Copy', () => this.copyToClipboard())}

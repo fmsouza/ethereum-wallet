@@ -1,16 +1,16 @@
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 
-const { HDNode, providers, utils, Wallet } = ethers;
+const { utils, Wallet } = ethers;
 
 const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby';
 // let network = (process.env.NODE_ENV === 'production') ?
 //     { name: 'mainnet', ensAddress: '0x314159265dd8dbb310642f98f50c066173c1259b', chainId: 1 } :
 //     { name: 'rinkeby', ensAddress: '0xe7410170f87102df0055eb195163a03b7f2bff4a', chainId: 4 };
 
-const PROVIDER = providers.getDefaultProvider(network);
+const PROVIDER = ethers.getDefaultProvider(network);
 
 export function generateMnemonics() {
-    return HDNode.entropyToMnemonic(utils.randomBytes(16)).split(' ');
+    return utils.HDNode.entropyToMnemonic(utils.randomBytes(16)).split(' ');
 }
 
 export function loadWalletFromMnemonics(mnemonics) {
@@ -19,9 +19,8 @@ export function loadWalletFromMnemonics(mnemonics) {
     else if (mnemonics instanceof Array)
         mnemonics = mnemonics.join(' ');
 
-    const wallet = Wallet.fromMnemonic(mnemonics);
-    wallet.provider = PROVIDER;
-    return wallet;
+    const { privateKey } = Wallet.fromMnemonic(mnemonics);
+    return new Wallet(privateKey, PROVIDER);
 }
 
 export function loadWalletFromPrivateKey(pk) {

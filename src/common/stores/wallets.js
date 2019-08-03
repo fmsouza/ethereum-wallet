@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 
 const INITIAL = {
     list: [],
@@ -23,14 +23,14 @@ export class WalletsStore {
     }
     
     @action removeWallet(wallet) {
-        this.list = this.list.filter(w => w.getAddress() !== wallet.getAddress());
+        this.list = this.list.filter(w => w.address !== wallet.address);
     }
 
     @action setBalance(address, amount) {
-        const wallet = this.list.find(wallet => wallet.getAddress() === address);
+        const wallet = this.list.find(wallet => wallet.address === address);
         if (!wallet) throw new Error('Wallet not found');
         wallet.balance = amount;
-        const otherWallets = this.list.filter(wallet => wallet.getAddress() !== address);
+        const otherWallets = this.list.filter(wallet => wallet.address !== address);
         this.list = [...otherWallets, wallet];
     }
 
