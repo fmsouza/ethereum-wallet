@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { HeaderIcon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
