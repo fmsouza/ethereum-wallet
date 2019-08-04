@@ -56,6 +56,21 @@
     "preset": "react-native",
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "setupTests.js",
+      "common/actions/index.js",
+      "common/services/index.js",
+      "common/stores/index.js",
+      "common/utils/index.js",
+      "common/constants",
+      "common/styles",
+      "components/views/index.js",
+      "components/widgets/index.js"
     ]
   }
 }
