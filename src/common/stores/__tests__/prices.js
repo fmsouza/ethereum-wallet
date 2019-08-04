@@ -115,4 +115,33 @@ describe('PricesStore', () => {
             expect(pricesStore.brl).toBe(0);
             expect(pricesStore.loading).toBe(false);
         });
+
+        it('should default the selected rate to USD', () => {
+            expect(pricesStore.selectedRate).toBe('usd');
+        });
+
+        it('`selectedRateValue` should get the rate for the currently active rate', () => {
+            const usdRate = 350, eurRate = 300;
+            pricesStore.setUSDRate(usdRate);
+            pricesStore.setEURRate(eurRate);
+            expect(pricesStore.selectedRate).toBe('usd');
+            expect(pricesStore.selectedRateValue).toBe(usdRate);
+        });
+
+        it('should be able to change the active rate', () => {
+            const usdRate = 350, eurRate = 300;
+            pricesStore.setUSDRate(usdRate);
+            pricesStore.setEURRate(eurRate);
+            expect(pricesStore.selectedRate).toBe('usd');
+            pricesStore.setSelectedRate('eur');
+            expect(pricesStore.selectedRate).toBe('eur');
+            expect(pricesStore.selectedRateValue).toBe(eurRate);
+        });
+
+        it('should fail to change the active rate if the given rate is invalid', () => {
+            try {
+                pricesStore.setSelectedRate('invalid');
+                fail('Did not failed.');
+            } catch (e) { expect(e.message).toBe('The rate is not valid.'); }
+        });
 });

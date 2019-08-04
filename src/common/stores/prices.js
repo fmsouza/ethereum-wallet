@@ -1,21 +1,25 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 
 const INITIAL = {
     usd: 0,
     eur: 0,
     brl: 0,
+    selectedRate: 'usd',
     loading: false
 };
+
+const AVAILABLE_RATES = ['usd', 'eur', 'brl'];
 
 export class PricesStore {
 
     @observable usd = INITIAL.usd;
     @observable eur = INITIAL.eur;
     @observable brl = INITIAL.brl;
+    @observable selectedRate = INITIAL.selectedRate;
     @observable loading = INITIAL.loading;
 
-    validateInput(input) {
-        if (isNaN(input) || typeof input !== 'number') throw new Error('The input is NaN');
+    @computed get selectedRateValue() {
+        return this[this.selectedRate];
     }
 
     @action isLoading(state) {
@@ -23,18 +27,23 @@ export class PricesStore {
     }
 
     @action setUSDRate(rate) {
-        this.validateInput(rate);
+        this.__validateInput(rate);
         this.usd = Number(rate);
     }
     
     @action setEURRate(rate) {
-        this.validateInput(rate);
+        this.__validateInput(rate);
         this.eur = Number(rate);
     }
     
     @action setBRLRate(rate) {
-        this.validateInput(rate);
+        this.__validateInput(rate);
         this.brl = Number(rate);
+    }
+    
+    @action setSelectedRate(rate) {
+        this.__validateRate(rate);
+        this.selectedRate = String(rate);
     }
 
     @action reset() {
@@ -42,6 +51,14 @@ export class PricesStore {
         this.eur = INITIAL.eur;
         this.brl = INITIAL.brl;
         this.loading = INITIAL.loading;
+    }
+
+    __validateInput(input) {
+        if (isNaN(input) || typeof input !== 'number') throw new Error('The input is NaN');
+    }
+
+    __validateRate(rate) {
+        if (typeof rate !== 'string' || !AVAILABLE_RATES.includes(rate)) throw new Error('The rate is not valid.');
     }
 }
 
