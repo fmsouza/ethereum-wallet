@@ -9,3 +9,7 @@ export async function getPrice() {
     PricesStore.setBRLRate(data.BRL);
     PricesStore.isLoading(false);
 }
+
+export function selectActiveRate(rate) {
+    PricesStore.setSelectedRate(rate);
+}
