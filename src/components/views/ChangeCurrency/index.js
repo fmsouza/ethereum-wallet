@@ -2,6 +2,10 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { colors, measures } from '@common/styles';
+import { Icon } from '@components/widgets';
+import { Prices as PricesActions } from '@common/actions';
+import { Prices as PricesConstants } from '@common/constants';
+
 import ListItem from './ListItem';
 
 @inject('prices')
@@ -12,14 +16,21 @@ export class ChangeCurrency extends React.Component {
         title: 'Select currency'
     });
 
-    selectCurrency(currency) {
+    get selectedRate() {
+        return this.props.prices.selectedRate;
+    }
 
+    selectCurrency(currency) {
+        PricesActions.selectActiveRate(currency);
     }
 
     renderItems = (items) => items.map((item, index) => (
-        <ListItem onPress={item.action} key={index}>
+        <ListItem onPress={() => this.selectCurrency(item.label)} key={index}>
             <View style={styles.itemContainer}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
+                {(this.selectedRate === item.label) && (
+                    <Icon name="checkmark" />
+                )}
             </View>
         </ListItem>
     ));
@@ -27,11 +38,7 @@ export class ChangeCurrency extends React.Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                {this.renderItems([
-                    { title: 'Brazilian Real', action: () => this.selectCurrency('brl') },
-                    { title: 'Dollar', action: () => this.selectCurrency('usd') },
-                    { title: 'Euro', action: () => this.selectCurrency('eur') },
-                ])}
+                {this.renderItems(PricesConstants.AVAILABLE_RATES)}
             </ScrollView>
         );
     }
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     itemContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'space-between'
     },
     itemTitle: {
         fontSize: measures.fontSizeMedium,
