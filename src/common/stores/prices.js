@@ -1,4 +1,5 @@
 import { action, computed, observable } from 'mobx';
+import { Prices as PricesConstants } from '@common/constants';
 
 const INITIAL = {
     usd: 0,
@@ -7,8 +8,6 @@ const INITIAL = {
     selectedRate: 'usd',
     loading: false
 };
-
-const AVAILABLE_RATES = ['usd', 'eur', 'brl'];
 
 export class PricesStore {
 
@@ -60,7 +59,7 @@ export class PricesStore {
     }
 
     __validateRate(rate) {
-        if (typeof rate !== 'string' || !AVAILABLE_RATES.includes(rate)) throw new Error('The rate is not valid.');
+        if (typeof rate !== 'string' || !PricesConstants.AVAILABLE_RATES.find(r => r.label === rate)) throw new Error('The rate is not valid.');
     }
 }
 
