@@ -1,4 +1,4 @@
-import { Api as ApiService } from '@common/services';
+import { Api as ApiService, Prices as PricesService } from '@common/services';
 import { prices as PricesStore } from '@common/stores';
 
 export async function getPrice() {
@@ -11,5 +11,11 @@ export async function getPrice() {
 }
 
 export function selectActiveRate(rate) {
-    PricesStore.setSelectedRate(rate);
+    return PricesService.saveActiveRate(rate)
+        .then(() => PricesStore.setSelectedRate(rate));
+}
+
+export function loadActiveRate() {
+    return PricesService.loadActiveRate()
+        .then(rate => PricesStore.setSelectedRate(rate));
 }

@@ -50,6 +50,7 @@ export class PricesStore {
         this.usd = INITIAL.usd;
         this.eur = INITIAL.eur;
         this.brl = INITIAL.brl;
+        this.selectedRate = INITIAL.selectedRate;
         this.loading = INITIAL.loading;
     }
 

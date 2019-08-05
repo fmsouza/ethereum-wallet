@@ -1,0 +1,1 @@
+export const RATE_STORAGE_KEY = '@Storage/Prices/Rate';
