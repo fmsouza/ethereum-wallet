@@ -6,7 +6,6 @@ import { Wallet as WalletUtils } from '@common/utils';
 
 @inject('prices')
 @observer
-
 export default class TotalBalance extends React.Component {
 
     get balance() {
@@ -16,9 +15,13 @@ export default class TotalBalance extends React.Component {
         const balance = WalletUtils.reduceBigNumbers(balances).toString();
         return Number(WalletUtils.formatBalance(balance));
     }
+
+    get fiatLabel() {
+        return this.props.prices.selectedRate.toUpperCase();
+    }
     
     get fiatBalance() {
-        return Number(this.props.prices.usd * this.balance);
+        return Number(this.props.prices.selectedRateValue * this.balance);
     }
 
     render() {
@@ -29,7 +32,7 @@ export default class TotalBalance extends React.Component {
                 </View>
                 <View style={styles.rightColumn}>
                     <Text style={styles.balance}>ETH {this.balance.toFixed(3)}</Text>
-                    <Text style={styles.fiatBalance}>US$ {this.fiatBalance.toFixed(2)}</Text>
+                    <Text style={styles.fiatBalance}>{this.fiatLabel} {this.fiatBalance.toFixed(2)}</Text>
                 </View>
             </View>
         );

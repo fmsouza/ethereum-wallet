@@ -34,6 +34,10 @@ export default class TransactionCard extends React.Component {
     get balance() {
         return Number(WalletUtils.formatBalance(this.props.transaction.value));
     }
+
+    get fiatLabel() {
+        return this.props.prices.selectedRate.toUpperCase();
+    }
     
     get fiatBalance() {
         return Number(this.props.prices.usd * this.balance).toFixed(2);
@@ -77,7 +81,7 @@ export default class TransactionCard extends React.Component {
                                 ellipsizeMode="tail"
                                 numberOfLines={1}
                                 children={this.balance.toFixed(4)} />
-                            <Text style={styles.fiatLabel}>US$ {this.fiatBalance}</Text>
+                            <Text style={styles.fiatLabel}>{this.fiatLabel} {this.fiatBalance}</Text>
                         </View>
                         <View style={styles.confirmationsContainer}>
                             {this.renderConfirmationStatus()}

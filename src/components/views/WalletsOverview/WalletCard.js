@@ -15,6 +15,10 @@ export default class WalletCard extends React.Component {
         return Number(WalletUtils.formatBalance(this.props.wallet.balance));
     }
 
+    get fiatLabel() {
+        return this.props.prices.selectedRate.toUpperCase();
+    }
+
     get fiatBalance() {
         return Number(this.props.prices.usd * this.balance);
     }
@@ -38,7 +42,7 @@ export default class WalletCard extends React.Component {
                     <View style={styles.rightColumn}>
                         <View style={styles.balanceContainer}>
                             <Text style={styles.balance}>{this.balance.toFixed(3)}</Text>
-                            <Text style={styles.fiatBalance}>US$ {this.fiatBalance.toFixed(2)}</Text>
+                            <Text style={styles.fiatBalance}>{this.fiatLabel} {this.fiatBalance.toFixed(2)}</Text>
                         </View>
                     </View>
                 </View>

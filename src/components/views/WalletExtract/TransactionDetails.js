@@ -36,6 +36,10 @@ export default class TransactionDetails extends React.Component {
     get balance() {
         return Number(WalletUtils.formatBalance(this.props.transaction.value));
     }
+
+    get fiatLabel() {
+        return this.props.prices.selectedRate.toUpperCase();
+    }
     
     get fiatBalance() {
         return Number(this.props.prices.usd * this.balance).toFixed(2);
@@ -93,7 +97,7 @@ export default class TransactionDetails extends React.Component {
                     <Text style={styles.value}>{this.balance}</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={styles.label}>Amount (US$):</Text>
+                    <Text style={styles.label}>Amount ({this.fiatLabel}):</Text>
                     <Text style={styles.value}>{this.fiatBalance}</Text>
                 </View>
                 <View style={styles.row}>
