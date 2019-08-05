@@ -43,7 +43,8 @@ export class WalletsOverview extends React.Component {
         try {
             await Promise.all([
                 WalletActions.loadWallets(),
-                PricesActions.getPrice()
+                PricesActions.loadActiveRate()
+                    .then(() => PricesActions.getPrice())
             ]);
         } catch (e) {
             GeneralActions.notify(e.message, 'long');
