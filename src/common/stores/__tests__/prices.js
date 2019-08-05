@@ -144,4 +144,19 @@ describe('PricesStore', () => {
                 fail('Did not failed.');
             } catch (e) { expect(e.message).toBe('The rate is not valid.'); }
         });
+
+        it('should fallback to default rate if null is given', () => {
+            pricesStore.setSelectedRate(null);
+            expect(pricesStore.selectedRate).toBe('usd');
+        });
+
+        it('should fallback to default rate if undefined is given', () => {
+            pricesStore.setSelectedRate(undefined);
+            expect(pricesStore.selectedRate).toBe('usd');
+        });
+
+        it('should fallback to default rate if empty string is given', () => {
+            pricesStore.setSelectedRate('');
+            expect(pricesStore.selectedRate).toBe('usd');
+        });
 });

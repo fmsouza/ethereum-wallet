@@ -42,6 +42,7 @@ export class PricesStore {
     }
     
     @action setSelectedRate(rate) {
+        rate = rate || INITIAL.selectedRate;
         this.__validateRate(rate);
         this.selectedRate = String(rate);
     }
