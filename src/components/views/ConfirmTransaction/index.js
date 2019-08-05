@@ -35,6 +35,10 @@ export class ConfirmTransaction extends React.Component {
         const estimate = WalletUtils.estimateFee(this.state.txn);
         return WalletUtils.formatBalance(estimate);
     }
+
+    get fiatLabel() {
+        return this.props.prices.selectedRate.toUpperCase();
+    }
     
     get fiatAmount() {
         const { txn } = this.state;
@@ -88,11 +92,11 @@ export class ConfirmTransaction extends React.Component {
                     </View>
                     <View style={styles.textColumn}>
                         <Text style={styles.title}>Amount (ETH)</Text>
-                        <Text style={styles.value}>{WalletUtils.formatBalance(txn.value)} (US$ {this.fiatAmount})</Text>
+                        <Text style={styles.value}>{WalletUtils.formatBalance(txn.value)} ({this.fiatLabel} {this.fiatAmount})</Text>
                     </View>
                     <View style={styles.textColumn}>
                         <Text style={styles.title}>Estimated fee (ETH)</Text>
-                        <Text style={styles.value}>{this.estimatedFee} (US$ {this.fiatEstimatedFee})</Text>
+                        <Text style={styles.value}>{this.estimatedFee} ({this.fiatLabel} {this.fiatEstimatedFee})</Text>
                     </View>
                 </View>
                 <SuccessMessage txn={txn} />

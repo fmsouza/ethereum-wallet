@@ -13,6 +13,10 @@ export default class Panel extends React.Component {
         return this.state.amount || 0;
     }
 
+    get fiatLabel() {
+        return this.props.prices.selectedRate.toUpperCase();
+    }
+
     get fiatAmount() {
         return (this.amount * this.props.prices.usd).toFixed(2);
     }
@@ -46,7 +50,7 @@ export default class Panel extends React.Component {
                     <Text style={styles.unit}>ETH</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={styles.fiat}>US$ {this.fiatAmount}</Text>
+                    <Text style={styles.fiat}>{this.fiatLabel} {this.fiatAmount}</Text>
                 </View>
             </View>
         );
