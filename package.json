@@ -57,6 +57,7 @@
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
     ],
+    "coverageDirectory": "./coverage",
     "collectCoverageFrom": [
       "src/**/*.js"
     ],
