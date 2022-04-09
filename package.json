@@ -21,7 +21,7 @@
     "identicon.js": "2.3.3",
     "mobx": "5.9.4",
     "mobx-react": "5.4.4",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "react": "16.8.6",
     "react-native": "0.59.9",
     "react-native-camera": "2.10.1",
